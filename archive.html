@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -379,32 +380,24 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            max-height: 340px;              /* ВАЖНО: ограничиваем высоту */
-            overflow-y: auto;                /* Включаем вертикальную прокрутку */
+            max-height: 520px;
+            overflow-y: auto;
             padding-right: 4px;
-
-            scrollbar-width: thin;
-            scrollbar-color: rgba(71,85,105,1) rgba(15,23,42,0.8);
         }
 
-        /* Кастомный скроллбар (Chrome/Edge/Safari) */
+        /* Кастомный скроллбар (мягкий) */
         .archive-list::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
-
         .archive-list::-webkit-scrollbar-track {
-            background: rgba(15,23,42,0.4);
-            border-radius: 999px;
+            background: rgba(15,23,42,0.8);
         }
-
         .archive-list::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, rgba(56,189,248,0.9), rgba(34,211,238,0.5));
+            background: rgba(51,65,85,0.9);
             border-radius: 999px;
-            box-shadow: 0 0 10px rgba(34,211,238,0.35);
         }
-
         .archive-list::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, rgba(56,189,248,1), rgba(56,189,248,0.6));
+            background: rgba(71,85,105,1);
         }
 
         .archive-item {
@@ -638,8 +631,7 @@
                     <a href="index.html"><span>РЕЙТИНГ</span></a>
                     <a href="about.html"><span>О ПРОЕКТЕ</span></a>
                     <a href="method.html"><span>МЕТОДИКА</span></a>
-                    <a href="arhiv.html" class="nav-active"><span>АРХИВ</span></a>
-                    <a href="help.html"><span>УЧАСТИЕ</span></a>
+                    <a href="archive.html" class="nav-active"><span>АРХИВ</span></a>
                 </div>
             </nav>
 
@@ -705,7 +697,7 @@
 </div>
 
 <script>
-    // Демо-данные сообщений (сделал их больше, чтобы скролл точно появился)
+    // Демо-данные сообщений
     const messages = [
         {
             media: "«Пример.ТВ»",
@@ -802,66 +794,6 @@
             tags: ["конкретное действие", "отсутствие оценки"],
             explain: "Сообщение фиксирует факт и не делает дополнительных оценочных выводов.",
             meta: "Категория: экономика · Формат: новость"
-        },
-        {
-            media: "«Регион.Live»",
-            time: "17 минут назад",
-            title: "«Жители в шоке: город погружается в хаос после реформы»",
-            index: 79,
-            indexClass: "index-red",
-            category: "Опасное сообщение",
-            status: "danger",
-            tags: ["эмоциональные образы", "без источников", "апелляция к шоку"],
-            explain: "Используется эмоциональная картина «хаоса» и «шока», но не приводятся конкретные данные о масштабах и причинах.",
-            meta: "Категория: общество · Формат: репортаж"
-        },
-        {
-            media: "«Факт-чек.нет»",
-            time: "20 минут назад",
-            title: "«Мы проверили: статистика в вчерашнем эфире не совпадает с официальной»",
-            index: 26,
-            indexClass: "index-green",
-            category: "Нейтральное сообщение",
-            status: "neutral",
-            tags: ["проверка фактов", "ссылка на источник"],
-            explain: "Сообщение описывает факт несоответствия статистики и ссылается на открытые данные.",
-            meta: "Категория: медиа · Формат: проверка фактов"
-        },
-        {
-            media: "«Столица24»",
-            time: "22 минуты назад",
-            title: "«Нас лишают будущего: эксперты предупреждают о разрушительных последствиях реформы»",
-            index: 81,
-            indexClass: "index-red",
-            category: "Опасное сообщение",
-            status: "danger",
-            tags: ["катастрофизация", "обесценивание будущего"],
-            explain: "Фраза «нас лишают будущего» фиксируется как сильная эмоциональная и манипулятивная конструкция без конкретики.",
-            meta: "Категория: политика · Формат: ток-шоу"
-        },
-        {
-            media: "«Рынок+»",
-            time: "25 минут назад",
-            title: "«Эксперты расходятся во мнениях о влиянии реформы на рынок труда»",
-            index: 35,
-            indexClass: "index-yellow",
-            category: "Спорное сообщение",
-            status: "risky",
-            tags: ["неопределённость", "отсутствие конкретных данных"],
-            explain: "Упоминаются «эксперты», но читатель не видит, кто именно и какие аргументы приводятся.",
-            meta: "Категория: экономика · Формат: аналитика"
-        },
-        {
-            media: "«Доброе Утро»",
-            time: "30 минут назад",
-            title: "«В районе обновили парк и открыли новую площадку для детей»",
-            index: 12,
-            indexClass: "index-green",
-            category: "Нейтральное сообщение",
-            status: "neutral",
-            tags: ["локальная новость", "описание события"],
-            explain: "Описание события без эмоционального давления и оценочных ярлыков.",
-            meta: "Категория: общество · Формат: репортаж"
         }
     ];
 
