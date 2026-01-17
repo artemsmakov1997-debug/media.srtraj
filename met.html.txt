@@ -1,0 +1,1695 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МЕДИА.СТРАЖ | Методика</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-body: #05070b;
+            --bg-panel-soft: #151821;
+            --border-color: #2c2f3b;
+
+            --text-main: #ffffff;
+            --text-muted: #8b8d96;
+
+            --accent-blue: #22d3ee;
+            --accent-blue-soft: rgba(34,211,238,0.25);
+            --accent-green: #22c55e;
+            --accent-yellow: #eab308;
+            --accent-red: #ef4444;
+
+            --trigger-bg: rgba(34,211,238,0.12);
+            --trigger-br: rgba(34,211,238,0.55);
+            --trigger-glow: rgba(34,211,238,0.35);
+        }
+
+        * { box-sizing: border-box; outline: none; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background:
+                radial-gradient(circle at top, rgba(15,23,42,0.55), transparent 60%),
+                radial-gradient(circle at bottom, rgba(15,23,42,0.65), transparent 60%),
+                var(--bg-body);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 80px 20px;
+        }
+
+        /* ---------- HEADER ---------- */
+        header { position: sticky; top: 0; z-index: 20; }
+
+        .header-inner {
+            background: linear-gradient(
+                180deg,
+                rgba(15,23,42,0.96) 0%,
+                rgba(15,23,42,0.94) 70%,
+                rgba(15,23,42,0.88) 100%
+            );
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(30,41,59,0.85);
+            box-shadow: 0 18px 30px rgba(0,0,0,0.65);
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e5e7eb;
+            white-space: nowrap;
+            opacity: 0.95;
+        }
+
+        .brand-title span { color: var(--accent-blue); }
+
+        nav {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: radial-gradient(circle at top, rgba(31,41,55,0.9), transparent 70%);
+        }
+
+        nav a {
+            position: relative;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            padding: 7px 14px;
+            border-radius: 999px;
+            transition: color 0.18s ease-out, background 0.18s ease-out;
+        }
+
+        nav a::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(circle at top, rgba(34,211,238,0.2), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.18s ease-out;
+        }
+
+        nav a span { position: relative; z-index: 1; }
+        nav a:hover { color: #e5e7eb; }
+        nav a:hover::before { opacity: 1; }
+
+        .nav-active {
+            color: #f9fafb;
+            background: rgba(15,23,42,0.9);
+            box-shadow: 0 0 0 1px rgba(45,212,191,0.7), 0 0 18px rgba(45,212,191,0.35);
+        }
+        .nav-active::before { opacity: 1; }
+
+        .support-button {
+            padding: 7px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(248, 250, 252, 0.4);
+            font-weight: 600;
+            background: linear-gradient(135deg, #facc15, #f97316);
+            color: #020617;
+            cursor: pointer;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.13em;
+            box-shadow: 0 10px 26px rgba(0,0,0,0.8);
+            white-space: nowrap;
+        }
+        .support-button:hover { filter: brightness(1.05); }
+
+        @media (max-width: 720px) {
+            .navbar { flex-wrap: wrap; justify-content: center; gap: 10px; }
+            .brand-title { order: 1; }
+            nav { order: 2; flex: 0 0 100%; justify-content: center; }
+            .support-button { order: 3; }
+        }
+
+        /* ---------- SECTION HEADERS ---------- */
+        .section { padding-top: 6px; margin-bottom: 54px; }
+
+        .section-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 14px;
+        }
+
+        .kicker {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            color: rgba(148,163,184,0.85);
+        }
+
+        .section-title {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 26px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #e5e7eb;
+        }
+
+        .section-title .accent { color: var(--accent-blue); }
+
+        .section-rule {
+            margin-top: 12px;
+            height: 1px;
+            width: 100%;
+            background: linear-gradient(90deg, rgba(34,211,238,0.55), rgba(34,211,238,0.08), rgba(34,211,238,0));
+            position: relative;
+            overflow: hidden;
+            border-radius: 999px;
+        }
+
+        .section-rule::after {
+            content:"";
+            position:absolute;
+            top:-8px;
+            left:-20%;
+            width: 40%;
+            height: 18px;
+            background: radial-gradient(circle, rgba(34,211,238,0.25), transparent 70%);
+            filter: blur(2px);
+            animation: ruleSweep 3.6s ease-in-out infinite;
+            opacity: .55;
+        }
+
+        @keyframes ruleSweep {
+            0% { transform: translateX(0); opacity: 0; }
+            20% { opacity: .6; }
+            60% { opacity: .35; }
+            100% { transform: translateX(220%); opacity: 0; }
+        }
+
+        .section-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin: 14px 0 26px 0;
+            max-width: 820px;
+            line-height: 1.7;
+        }
+
+        /* ---------- PIPELINE ---------- */
+        .pipeline-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0,1fr));
+            gap: 18px;
+        }
+
+        .pipeline-card {
+            position: relative;
+            border-radius: 22px;
+            padding: 18px 18px 20px 18px;
+            background:
+                radial-gradient(circle at bottom, rgba(34,211,238,0.25), transparent 60%),
+                linear-gradient(145deg, #050816, #050b13);
+            border: 1px solid rgba(31,41,55,0.9);
+            box-shadow:
+                0 26px 60px rgba(0,0,0,0.9),
+                0 -8px 24px rgba(15,23,42,0.9);
+            overflow: hidden;
+            transition:
+                transform 0.23s ease-out,
+                box-shadow 0.23s ease-out,
+                border-color 0.23s ease-out;
+        }
+
+        .pipeline-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top, rgba(148,163,184,0.35), transparent 75%);
+            opacity: 0.0;
+            pointer-events: none;
+            transition: opacity 0.23s ease-out;
+        }
+
+        .pipeline-role {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .pipeline-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .pipeline-text {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0 0 16px 0;
+        }
+
+        .pipeline-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            color: rgba(34,211,238,0.9);
+            margin-top: 6px;
+        }
+
+        .pipeline-more {
+            position: absolute;
+            right: 16px;
+            bottom: 16px;
+            z-index: 2;
+            padding: 7px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(148,163,184,0.7);
+            background: rgba(15,23,42,0.92);
+            color: #e5e7eb;
+            cursor: pointer;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+        }
+        .pipeline-more:hover {
+            border-color: rgba(34,211,238,0.95);
+            box-shadow: 0 0 18px rgba(34,211,238,0.35);
+            transform: translateY(-1px);
+        }
+
+        .pipeline-card-active,
+        .pipeline-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(56,189,248,0.9);
+            box-shadow:
+                0 30px 80px rgba(0,0,0,1),
+                0 0 40px rgba(56,189,248,0.65);
+        }
+
+        .pipeline-card-active::before,
+        .pipeline-card:hover::before { opacity: 0.4; }
+
+        @media (max-width: 1100px) { .pipeline-grid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+        @media (max-width: 720px) { .pipeline-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+        @media (max-width: 540px) { .pipeline-grid { grid-template-columns: 1fr; } }
+
+        /* ---------- LIVE EXAMPLE ---------- */
+        .live-panel { display: grid; grid-template-columns: 1.2fr 1.5fr; gap: 26px; }
+
+        .card {
+            background: radial-gradient(circle at bottom, rgba(34,211,238,0.18), transparent 60%), var(--bg-panel-soft);
+            border-radius: 18px;
+            border: 1px solid var(--border-color);
+            padding: 20px 18px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: radial-gradient(circle at top right, rgba(59,130,246,0.18), transparent 60%);
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .media-badge {
+            font-size: 12px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(75,85,99,0.9);
+            background-color: rgba(15,23,42,0.9);
+        }
+
+        .media-badge strong { font-weight: 600; }
+        .news-time { font-size: 11px; color: var(--text-muted); }
+
+        .news-title { position: relative; z-index: 1; font-size: 17px; line-height: 1.65; margin: 0 0 12px 0; }
+
+        .news-body-wrap{
+            position: relative;
+            z-index: 1;
+            margin-top: 10px;
+            padding: 12px 12px;
+            border-radius: 16px;
+            background: rgba(2,6,23,0.55);
+            border: 1px solid rgba(31,41,55,0.85);
+        }
+
+        .news-body-label{
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: rgba(148,163,184,0.85);
+            margin-bottom: 8px;
+        }
+
+        .news-body{
+            margin: 0;
+            font-size: 13px;
+            color: rgba(229,231,235,0.92);
+            line-height: 1.75;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .news-meta {
+            position: relative;
+            z-index: 1;
+            font-size: 12px;
+            color: var(--text-muted);
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .news-tag {
+            padding: 4px 9px;
+            border-radius: 999px;
+            background-color: rgba(15,23,42,0.96);
+            border: 1px solid rgba(75,85,99,0.9);
+        }
+
+        /* Trigger highlight */
+        .trigger {
+            padding: 1px 6px;
+            border-radius: 999px;
+            background: var(--trigger-bg);
+            border: 1px solid var(--trigger-br);
+            color: rgba(229,231,235,0.98);
+            box-shadow: 0 0 14px var(--trigger-glow);
+            white-space: nowrap;
+        }
+        .trigger:hover { box-shadow: 0 0 20px rgba(34,211,238,0.55); border-color: rgba(34,211,238,0.85); }
+
+        /* ---------- Right card ---------- */
+        .analysis-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .analysis-title { font-size: 15px; font-weight: 600; }
+
+        .analysis-status {
+            font-size: 11px;
+            color: var(--accent-green);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background-color: rgba(22,163,74,0.12);
+            border: 1px solid rgba(34,197,94,0.4);
+        }
+
+        .analysis-status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background-color: var(--accent-green);
+            box-shadow: 0 0 10px rgba(34,197,94,0.8);
+        }
+
+        .daily-snapshot {
+            position: relative;
+            z-index: 1;
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .snapshot-top { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+        .stat-box {
+            border-radius: 16px;
+            padding: 12px 12px;
+            background: rgba(2,6,23,0.55);
+            border: 1px solid rgba(31,41,55,0.85);
+            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .stat-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 0.02em;
+            color: #e5e7eb;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .stat-value small {
+            font-size: 12px;
+            font-weight: 700;
+            color: rgba(148,163,184,0.9);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .risk-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(148,163,184,0.55);
+            background: rgba(15,23,42,0.85);
+            font-size: 11px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+        }
+
+        .risk-pill b { font-family:'Montserrat',sans-serif; letter-spacing: 0.06em; }
+
+        .risk-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: rgba(148,163,184,0.7);
+            box-shadow: 0 0 12px rgba(148,163,184,0.25);
+        }
+
+        .risk-green { border-color: rgba(34,197,94,0.55); color: rgba(134,239,172,0.95); }
+        .risk-green .risk-dot { background: rgba(34,197,94,0.95); box-shadow: 0 0 16px rgba(34,197,94,0.45); }
+
+        .risk-yellow { border-color: rgba(234,179,8,0.55); color: rgba(253,224,71,0.95); }
+        .risk-yellow .risk-dot { background: rgba(234,179,8,0.95); box-shadow: 0 0 16px rgba(234,179,8,0.45); }
+
+        .risk-red { border-color: rgba(239,68,68,0.55); color: rgba(254,202,202,0.95); }
+        .risk-red .risk-dot { background: rgba(239,68,68,0.95); box-shadow: 0 0 16px rgba(239,68,68,0.45); }
+
+        .thresholds { display: flex; flex-wrap: wrap; gap: 8px; }
+
+        .thr-chip {
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            background: rgba(15,23,42,0.85);
+            border: 1px solid rgba(148,163,184,0.5);
+            color: rgba(148,163,184,0.95);
+            white-space: nowrap;
+        }
+        .thr-chip.green { border-color: rgba(34,197,94,0.55); color: rgba(134,239,172,0.95); }
+        .thr-chip.yellow { border-color: rgba(234,179,8,0.55); color: rgba(253,224,71,0.95); }
+        .thr-chip.red { border-color: rgba(239,68,68,0.55); color: rgba(254,202,202,0.95); }
+
+        .density {
+            border-radius: 16px;
+            padding: 12px;
+            background: rgba(2,6,23,0.55);
+            border: 1px solid rgba(31,41,55,0.85);
+        }
+
+        .density-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .density-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--text-muted);
+        }
+
+        .density-bar {
+            height: 10px;
+            border-radius: 999px;
+            background: rgba(15,23,42,0.9);
+            border: 1px solid rgba(31,41,55,0.9);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .density-seg { position: relative; opacity: 0.95; }
+
+        .density-seg::after {
+            content:"";
+            position:absolute;
+            inset:0;
+            background: linear-gradient(90deg, rgba(34,211,238,0.0), rgba(34,211,238,0.28), rgba(34,211,238,0.0));
+            opacity: 0;
+            transform: translateX(-60%);
+        }
+
+        .density-seg.pulse::after { animation: segPulse 1.6s ease-in-out infinite; opacity: 1; }
+
+        @keyframes segPulse {
+            0% { transform: translateX(-70%); opacity: 0.0; }
+            40% { opacity: 0.45; }
+            100% { transform: translateX(70%); opacity: 0.0; }
+        }
+
+        .seg-fill {
+            height: 100%;
+            width: 0%;
+            background: radial-gradient(circle at top, rgba(34,211,238,0.45), rgba(34,211,238,0.10));
+            transition: width .6s ease-out;
+        }
+
+        .mini-log {
+            border-radius: 16px;
+            padding: 12px;
+            background: rgba(2,6,23,0.55);
+            border: 1px solid rgba(31,41,55,0.85);
+        }
+
+        .mini-log-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .mini-log-line {
+            font-size: 12px;
+            line-height: 1.6;
+            color: rgba(229,231,235,0.92);
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .log-time {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            color: rgba(148,163,184,0.95);
+        }
+
+        .log-tag {
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(15,23,42,0.95);
+            border: 1px solid rgba(34,211,238,0.55);
+            color: rgba(34,211,238,0.95);
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .log-text { color: rgba(229,231,235,0.90); }
+
+        @media (max-width: 900px) { .live-panel { grid-template-columns: 1fr; } }
+
+        /* ---------- ACCORDION CARDS ---------- */
+        .manip-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; }
+        @media (max-width: 900px) { .manip-grid { grid-template-columns: 1fr; } }
+
+        details.manip-card {
+            background:
+                radial-gradient(circle at bottom, var(--accent-blue-soft), transparent 60%),
+                linear-gradient(145deg, #050816, #050b13);
+            border-radius: 22px;
+            border: 1px solid rgba(31,41,55,0.9);
+            box-shadow: 0 22px 60px rgba(0,0,0,0.9);
+            overflow: hidden;
+            transition: border-color 0.23s ease-out, box-shadow 0.23s ease-out, transform 0.23s ease-out;
+        }
+
+        details.manip-card[open] {
+            transform: translateY(-3px);
+            border-color: rgba(56,189,248,0.9);
+            box-shadow: 0 30px 80px rgba(0,0,0,1), 0 0 40px rgba(56,189,248,0.65);
+        }
+
+        .manip-summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 16px 18px 18px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+        }
+        .manip-summary::-webkit-details-marker { display: none; }
+
+        .manip-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+
+        .manip-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--text-muted);
+        }
+
+        .manip-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .manip-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            color: rgba(34,211,238,0.9);
+        }
+
+        .manip-preview { font-size: 12px; color: var(--text-muted); line-height: 1.6; max-width: 90%; }
+
+        .manip-summary::after {
+            content: 'подробнее';
+            position: absolute;
+            right: 18px;
+            bottom: 14px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: rgba(148,163,184,0.9);
+        }
+        details[open] > .manip-summary::after { content: 'свернуть'; color: rgba(34,211,238,0.9); }
+
+        .manip-body {
+            padding: 0 18px 16px 18px;
+            border-top: 1px solid rgba(31,41,55,0.9);
+            font-size: 12px;
+            color: var(--text-muted);
+            background: radial-gradient(circle at top, rgba(15,23,42,0.9), transparent 70%);
+        }
+
+        .manip-body p { margin: 10px 0 6px 0; line-height: 1.7; }
+        .manip-list { margin: 4px 0 8px 16px; padding: 0; }
+        .manip-list li { margin-bottom: 4px; }
+        .manip-example-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+        .manip-example-text { margin: 2px 0 0 0; font-size: 12px; color: #e5e7eb; }
+
+        /* ---------- WOW micro-animations ---------- */
+        @keyframes statPop {
+            0% { transform: translateY(0); box-shadow: none; border-color: rgba(31,41,55,0.85); }
+            35% { transform: translateY(-2px); box-shadow: 0 0 28px rgba(34,211,238,0.22); border-color: rgba(34,211,238,0.55); }
+            100% { transform: translateY(0); box-shadow: none; border-color: rgba(31,41,55,0.85); }
+        }
+
+        @keyframes pillPulse {
+            0% { transform: translateY(0) scale(1); box-shadow: none; }
+            45% { transform: translateY(-1px) scale(1.02); box-shadow: 0 0 26px rgba(34,211,238,0.25); }
+            100% { transform: translateY(0) scale(1); box-shadow: none; }
+        }
+
+        @keyframes shimmer {
+            0% { opacity: 0; transform: translateX(-60%); }
+            25% { opacity: .35; }
+            100% { opacity: 0; transform: translateX(60%); }
+        }
+
+        .stat-anim { animation: statPop .55s ease-out; }
+        .pill-anim { animation: pillPulse .55s ease-out; }
+
+        .daily-snapshot.shimmer::after {
+            content:"";
+            position:absolute;
+            left: -10%;
+            top: 8px;
+            width: 120%;
+            height: 40px;
+            background: linear-gradient(90deg, transparent, rgba(34,211,238,0.10), transparent);
+            filter: blur(2px);
+            animation: shimmer .65s ease-out;
+            pointer-events:none;
+        }
+
+        /* ---------- MODAL ---------- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at top, rgba(15,23,42,0.88), rgba(2,6,23,0.95));
+            backdrop-filter: blur(14px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 60;
+            padding: 18px;
+        }
+        .modal-overlay.open { display: flex; }
+
+        .modal-dialog {
+            width: 100%;
+            max-width: 980px;
+            max-height: 86vh;
+            overflow: hidden;
+            border-radius: 26px;
+            border: 1px solid rgba(51,65,85,0.9);
+            background: radial-gradient(circle at top, rgba(34,211,238,0.15), transparent 55%), #020617;
+            box-shadow: 0 30px 90px rgba(0,0,0,0.95), 0 0 40px rgba(34,211,238,0.25);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            padding: 14px 18px;
+            border-bottom: 1px solid rgba(51,65,85,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .modal-title {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #e5e7eb;
+        }
+        .modal-title span { color: var(--accent-blue); }
+
+        .modal-close {
+            width: 38px;
+            height: 38px;
+            border-radius: 999px;
+            border: 1px solid rgba(148,163,184,0.55);
+            background: rgba(15,23,42,0.65);
+            color: #e5e7eb;
+            cursor: pointer;
+            font-size: 18px;
+            transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+        }
+        .modal-close:hover {
+            border-color: rgba(34,211,238,0.9);
+            box-shadow: 0 0 18px rgba(34,211,238,0.35);
+            transform: translateY(-1px);
+        }
+
+        .modal-body { padding: 18px; overflow-y: auto; }
+
+        .daily-rating{
+            padding: 22px 24px 26px;
+            border-radius: 26px;
+            background:
+                radial-gradient(circle at top, rgba(34,211,238,0.22), transparent 60%),
+                linear-gradient(180deg, rgba(2,6,23,0.88), rgba(2,6,23,0.96));
+            border: 1px solid rgba(31,41,55,0.9);
+            box-shadow: 0 34px 90px rgba(0,0,0,.85), 0 0 48px rgba(34,211,238,.24);
+        }
+
+        .daily-rating-header{
+            font-family:'Montserrat',sans-serif;
+            font-size:.95rem;
+            font-weight:700;
+            letter-spacing:.18em;
+            text-transform:uppercase;
+            margin-bottom: 22px;
+            color:#e5e7eb;
+        }
+
+        .daily-rating-flow{
+            display:grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+        }
+
+        .flow-step{
+            display:flex;
+            gap: 14px;
+            padding: 16px;
+            border-radius: 20px;
+            background: rgba(15,23,42,0.9);
+            border: 1px solid rgba(31,41,55,0.85);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .flow-step::after{
+            content:"";
+            position:absolute;
+            inset:0;
+            border-radius:inherit;
+            background: radial-gradient(circle at top, rgba(34,211,238,0.14), transparent 70%);
+            opacity: .4;
+            pointer-events:none;
+        }
+
+        .step-index{
+            font-family:'Montserrat',sans-serif;
+            font-weight:900;
+            font-size: 1.5rem;
+            color: rgba(34,211,238,0.85);
+            opacity: .95;
+            min-width: 44px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-content{ position: relative; z-index: 1; }
+
+        .step-title{
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #e5e7eb;
+        }
+
+        .step-text{
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+        }
+
+        .rating-scale{
+            margin-top: 20px;
+            display:grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 12px;
+        }
+
+        .scale-item{
+            padding: 14px;
+            border-radius: 999px;
+            text-align:center;
+            font-size: .78rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            border: 1px solid rgba(148,163,184,.5);
+            background: rgba(15,23,42,0.9);
+        }
+
+        .scale-item span{
+            display:block;
+            font-family:'Montserrat',sans-serif;
+            font-size: 1.12rem;
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+
+        .scale-item.green{ color: rgba(134,239,172,0.95); border-color: rgba(34,197,94,0.6); }
+        .scale-item.yellow{ color: rgba(253,224,71,0.95); border-color: rgba(234,179,8,0.6); }
+        .scale-item.red{ color: rgba(254,202,202,0.95); border-color: rgba(239,68,68,0.6); }
+
+        @media (prefers-reduced-motion: reduce) {
+            .section-rule::after { animation: none !important; }
+            .density-seg::after { animation: none !important; }
+            .stat-anim, .pill-anim { animation: none !important; }
+            .daily-snapshot.shimmer::after { animation: none !important; }
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="header-inner">
+        <div class="navbar">
+            <div class="brand-title">МЕДИА.<span>СТРАЖ</span></div>
+
+            <nav>
+                <div class="nav-links">
+                    <a href="index.html"><span>РЕЙТИНГ</span></a>
+                    <a href="about.html"><span>О ПРОЕКТЕ</span></a>
+                    <a href="method.html" class="nav-active"><span>МЕТОДИКА</span></a>
+                    <a href="archive.html"><span>АРХИВ</span></a>
+                </div>
+            </nav>
+
+            <button class="support-button">ПОДДЕРЖАТЬ</button>
+        </div>
+        <div style="height: 2px; width: 100%; background: radial-gradient(circle at center, rgba(34,211,238,0.9), transparent 70%); opacity: .55;"></div>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- SECTION: PIPELINE -->
+    <section class="section">
+        <div class="section-head">
+            <div>
+                <div class="kicker">КОНВЕЙЕР</div>
+                <h2 class="section-title">КОНВЕЙЕР АНАЛИЗА <span class="accent">НОВОСТИ</span></h2>
+            </div>
+        </div>
+        <div class="section-rule"></div>
+
+        <p class="section-subtitle">
+            Каждый заголовок проходит один и тот же путь — от «сырого» текста до числового индекса манипулятивности.
+            Активный шаг подсвечивается в режиме реального времени.
+        </p>
+
+        <div class="pipeline-grid" id="pipelineGrid">
+            <article class="pipeline-card" data-step="0">
+                <div class="pipeline-role">шаг 01</div>
+                <div class="pipeline-title">Сбор новостей</div>
+                <p class="pipeline-text">RSS-ленты, открытые API и парсинг сайтов ведущих российских СМИ.</p>
+                <div class="pipeline-number">/01</div>
+            </article>
+
+            <article class="pipeline-card" data-step="1">
+                <div class="pipeline-role">шаг 02</div>
+                <div class="pipeline-title">Предобработка текста</div>
+                <p class="pipeline-text">Очистка, нормализация, токенизация, выделение заголовка и подзаголовка.</p>
+                <div class="pipeline-number">/02</div>
+            </article>
+
+            <article class="pipeline-card" data-step="2">
+                <div class="pipeline-role">шаг 03</div>
+                <div class="pipeline-title">Поиск триггеров</div>
+                <p class="pipeline-text">NLP-модели и словари манипуляций отмечают эмоциональные, оценочные и фреймовые маркеры.</p>
+                <div class="pipeline-number">/03</div>
+            </article>
+
+            <article class="pipeline-card" data-step="3">
+                <div class="pipeline-role">шаг 04</div>
+                <div class="pipeline-title">Расчёт индексов</div>
+                <p class="pipeline-text">Считаются индексы манипулятивности, эмоционального накала и опоры на проверяемые факты.</p>
+                <div class="pipeline-number">/04</div>
+                <button class="pipeline-more" id="openDailyRatingModal" type="button">Подробнее</button>
+            </article>
+
+            <article class="pipeline-card" data-step="4">
+                <div class="pipeline-role">шаг 05</div>
+                <div class="pipeline-title">Обновление рейтинга СМИ</div>
+                <p class="pipeline-text">Индексы агрегируются по изданиям, рубрикам и времени, формируя живой рейтинг и архив.</p>
+                <div class="pipeline-number">/05</div>
+            </article>
+        </div>
+    </section>
+
+    <!-- SECTION: LIVE EXAMPLE -->
+    <section class="section">
+        <div class="section-head">
+            <div>
+                <div class="kicker">ЖИВОЙ ПРИМЕР</div>
+                <h2 class="section-title">КАК ИИ РАЗБИРАЕТ <span class="accent">СООБЩЕНИЕ</span></h2>
+            </div>
+        </div>
+        <div class="section-rule"></div>
+
+        <p class="section-subtitle">
+            Ниже — имитация реального потока. Слева — поступивший заголовок и фрагмент сообщения.
+            Справа — как это влияет на дневной рейтинг СМИ (по доле манипулятивных сообщений).
+        </p>
+
+        <div class="live-panel">
+            <!-- NEWS CARD -->
+            <article class="card">
+                <div class="card-header">
+                    <div class="media-badge">СМИ: <strong id="newsSource">«Пример.ТВ»</strong></div>
+                    <div class="news-time" id="newsTime">обновлено: только что</div>
+                </div>
+
+                <h3 class="news-title" id="newsTitle">
+                    «Власти в панике: эксперты предупреждают о катастрофе уже завтра»
+                </h3>
+
+                <div class="news-body-wrap">
+                    <div class="news-body-label">Фрагмент сообщения</div>
+                    <p class="news-body" id="newsBody">
+                        По словам источников, ситуация может ухудшиться уже завтра. Эксперты предупреждают о возможной катастрофе и призывают срочно принять меры. Многие уверены: власти в панике и скрывают истинные масштабы угрозы.
+                    </p>
+                </div>
+
+                <div class="news-meta">
+                    <div class="news-tag">категория: политика</div>
+                    <div class="news-tag">формат: текст + заголовок</div>
+                    <div class="news-tag">длина текста: ~1200 знаков</div>
+                </div>
+            </article>
+
+            <!-- DAILY SNAPSHOT CARD -->
+            <article class="card">
+                <div class="analysis-header">
+                    <div class="analysis-title">Дневной срез СМИ</div>
+                    <div class="analysis-status">
+                        <span class="analysis-status-dot"></span>
+                        пересчёт в реальном времени
+                    </div>
+                </div>
+
+                <div class="daily-snapshot" id="dailySnapshot">
+
+                    <div class="snapshot-top">
+                        <div class="stat-box" id="statTotalBox">
+                            <div class="stat-label">Всего сообщений за сутки</div>
+                            <div class="stat-value"><span id="dayTotal">0</span> <small>шт</small></div>
+                        </div>
+
+                        <div class="stat-box" id="statManipBox">
+                            <div class="stat-label">Манипулятивных за сутки</div>
+                            <div class="stat-value"><span id="dayManip">0</span> <small>шт</small></div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+                        <div class="risk-pill" id="riskPill">
+                            <span class="risk-dot"></span>
+                            Доля: <b id="dayShare">0%</b>
+                        </div>
+
+                        <div class="thresholds" aria-label="Пороги рейтинга">
+                            <span class="thr-chip green">0–25% — зелёный</span>
+                            <span class="thr-chip yellow">25–50% — жёлтый</span>
+                            <span class="thr-chip red">50%+ — красный</span>
+                        </div>
+                    </div>
+
+                    <div class="density">
+                        <div class="density-row">
+                            <div class="density-title">Плотность по дню</div>
+                            <div style="font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color: rgba(148,163,184,0.9);">
+                                утро · день · вечер
+                            </div>
+                        </div>
+
+                        <div class="density-bar">
+                            <div class="density-seg" id="segMorning"><div class="seg-fill" id="fillMorning"></div></div>
+                            <div class="density-seg" id="segDay"><div class="seg-fill" id="fillDay"></div></div>
+                            <div class="density-seg" id="segEvening"><div class="seg-fill" id="fillEvening"></div></div>
+                        </div>
+                    </div>
+
+                    <!-- УДАЛЕНО: top-tech -->
+
+                    <div class="mini-log">
+                        <div class="mini-log-title">Последняя фиксация</div>
+                        <div class="mini-log-line">
+                            <span class="log-time" id="logTime">12:41</span>
+                            <span class="log-tag" id="logTag">триггер</span>
+                            <span class="log-text" id="logText">обнаружен маркер манипуляции в сообщении</span>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- SECTION: WHAT AI LOOKS FOR -->
+    <section class="section">
+        <div class="section-head">
+            <div>
+                <div class="kicker">ТЕХНИКИ</div>
+                <h2 class="section-title">ЧТО ИМЕННО ИЩЕТ <span class="accent">ИИ</span></h2>
+            </div>
+        </div>
+        <div class="section-rule"></div>
+
+        <p class="section-subtitle">
+            Методика опирается на несколько групп приёмов. Для каждого сообщения модель определяет,
+            какие из них использованы и с какой интенсивностью. Каждый блок можно раскрыть и посмотреть детали.
+        </p>
+
+        <div class="manip-grid">
+            <details class="manip-card" open>
+                <summary class="manip-summary">
+                    <div class="manip-top">
+                        <div>
+                            <div class="manip-label">тип 01</div>
+                            <div class="manip-title">Страх, паника и ощущение неминуемой угрозы</div>
+                        </div>
+                        <div class="manip-number">/01</div>
+                    </div>
+                    <div class="manip-preview">Слова «катастрофа», «обвалится всё», «уже завтра» усиливают тревогу и отключают рациональность.</div>
+                </summary>
+                <div class="manip-body">
+                    <p>Фокус — не на фактах, а на ощущении немедленной опасности.</p>
+                    <ul class="manip-list">
+                        <li><strong>Гиперболы катастрофы</strong> — «обрушится», «рухнет», «конец близко».</li>
+                        <li><strong>Тайм-прессинг</strong> — «уже завтра», «прямо сейчас», «в любую минуту».</li>
+                        <li><strong>Обобщённая угроза</strong> — «все останутся без…», «страна на грани…».</li>
+                    </ul>
+                    <div class="manip-example-label">Пример заголовка:</div>
+                    <p class="manip-example-text">«Экономика рушится: эксперты предупреждают о коллапсе уже завтра».</p>
+                </div>
+            </details>
+
+            <details class="manip-card">
+                <summary class="manip-summary">
+                    <div class="manip-top">
+                        <div>
+                            <div class="manip-label">тип 02</div>
+                            <div class="manip-title">Эмоциональная подмена фактов</div>
+                        </div>
+                        <div class="manip-number">/02</div>
+                    </div>
+                    <div class="manip-preview">Вместо факта — оценка. Реальность подменяется авторским мнением, упакованным как очевидная истина.</div>
+                </summary>
+                <div class="manip-body">
+                    <p>Мнение маскируется под факт через яркие прилагательные и моральные приговоры.</p>
+                    <ul class="manip-list">
+                        <li><strong>Оценочные прилагательные</strong> — «позорный закон», «гениальное решение».</li>
+                        <li><strong>Скрытый субъект оценки</strong> — «все знают», «никого не удивляет».</li>
+                        <li><strong>Моральный приговор</strong> — «предатель», «герой» без контекста.</li>
+                    </ul>
+                    <div class="manip-example-label">Пример заголовка:</div>
+                    <p class="manip-example-text">«Власти снова приняли позорный закон против обычных людей».</p>
+                </div>
+            </details>
+
+            <details class="manip-card">
+                <summary class="manip-summary">
+                    <div class="manip-top">
+                        <div>
+                            <div class="manip-label">тип 03</div>
+                            <div class="manip-title">Фрейминг и навязанная повестка</div>
+                        </div>
+                        <div class="manip-number">/03</div>
+                    </div>
+                    <div class="manip-preview">Один и тот же факт можно подать как «успех», «провал» или «угрозу» — всё зависит от выбранного ракурса.</div>
+                </summary>
+                <div class="manip-body">
+                    <p>Выбор ракурса задаёт эмоцию и повестку вокруг события.</p>
+                    <ul class="manip-list">
+                        <li><strong>Выбор выгодного ракурса</strong> — акцент только на удобных последствиях.</li>
+                        <li><strong>Подмена темы</strong> — обсуждаются эмоции и конфликты вместо сути решения.</li>
+                        <li><strong>Отбор акторов</strong> — одни герои звучат постоянно, другие исчезают.</li>
+                    </ul>
+                    <div class="manip-example-label">Пример заголовка:</div>
+                    <p class="manip-example-text">«Жители возмущены…» вместо «10% опрошенных недовольны новым тарифом».</p>
+                </div>
+            </details>
+
+            <details class="manip-card">
+                <summary class="manip-summary">
+                    <div class="manip-top">
+                        <div>
+                            <div class="manip-label">тип 04</div>
+                            <div class="manip-title">Псевдостатистика и «опросы без опросов»</div>
+                        </div>
+                        <div class="manip-number">/04</div>
+                    </div>
+                    <div class="manip-preview">Цифры есть, но проверить их нельзя: нет методики, выборки, источника данных.</div>
+                </summary>
+                <div class="manip-body">
+                    <p>Такой текст выглядит как доказательство, но им не является.</p>
+                    <ul class="manip-list">
+                        <li><strong>«Большинство» без числа</strong> — «большинство россиян…», «почти все эксперты…».</li>
+                        <li><strong>Точные цифры без источника</strong> — «92% поддержали» без ссылки на исследование.</li>
+                        <li><strong>Нечестные сравнения</strong> — сопоставление несопоставимых периодов или выборок.</li>
+                    </ul>
+                    <div class="manip-example-label">Пример заголовка:</div>
+                    <p class="manip-example-text">«90% жителей поддержали реформу, показал опрос» — без указания, кто и как опрашивал.</p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+</div>
+
+<!-- MODAL: Как формируется рейтинг за день -->
+<div class="modal-overlay" id="dailyRatingModal" aria-hidden="true">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="dailyRatingTitle">
+        <div class="modal-header">
+            <h3 class="modal-title" id="dailyRatingTitle">Рейтинг <span>за день</span></h3>
+            <button class="modal-close" id="dailyRatingClose" type="button" aria-label="Закрыть">&times;</button>
+        </div>
+        <div class="modal-body">
+            <section class="daily-rating">
+                <div class="daily-rating-header">Как формируется рейтинг за день</div>
+
+                <div class="daily-rating-flow">
+                    <div class="flow-step">
+                        <div class="step-index">01</div>
+                        <div class="step-content">
+                            <div class="step-title">Все публикации за сутки</div>
+                            <div class="step-text">
+                                ИИ анализирует <b>каждое текстовое сообщение</b>, которое СМИ публикует в течение дня —
+                                без выборки и ручной фильтрации.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-step">
+                        <div class="step-index">02</div>
+                        <div class="step-content">
+                            <div class="step-title">Подсчёт манипуляций</div>
+                            <div class="step-text">
+                                Для каждого сообщения определяется наличие манипулятивных приёмов и считается
+                                доля манипулятивных публикаций от общего числа.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-step">
+                        <div class="step-index">03</div>
+                        <div class="step-content">
+                            <div class="step-title">Итоговый цветовой рейтинг</div>
+                            <div class="step-text">
+                                По итогам суток изданию присваивается цветовой рейтинг, отражающий уровень манипулятивности.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rating-scale">
+                    <div class="scale-item green"><span>0–25%</span>Низкий уровень</div>
+                    <div class="scale-item yellow"><span>25–50%</span>Средний уровень</div>
+                    <div class="scale-item red"><span>50%+</span>Высокий уровень</div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<script>
+    /* ---------- Pipeline glow cycle ---------- */
+    const pipelineCards = document.querySelectorAll('.pipeline-card');
+    let currentPipelineStep = 0;
+
+    function updatePipelineSteps() {
+        pipelineCards.forEach((card, index) => card.classList.toggle('pipeline-card-active', index === currentPipelineStep));
+        currentPipelineStep = (currentPipelineStep + 1) % pipelineCards.length;
+    }
+    if (pipelineCards.length) {
+        updatePipelineSteps();
+        setInterval(updatePipelineSteps, 2200);
+    }
+
+    /* ---------- Demo data ---------- */
+    const headlines = [
+        {
+            source: '«Пример.ТВ»',
+            title: '«Власти в панике: эксперты предупреждают о катастрофе уже завтра»',
+            body: 'По словам источников, ситуация может ухудшиться уже завтра. Эксперты предупреждают о возможной катастрофе и призывают срочно принять меры. Многие уверены: власти в панике и скрывают истинные масштабы угрозы.',
+            triggers: [
+                { phrase: 'в панике', type: 'страх' },
+                { phrase: 'катастрофе', type: 'страх' },
+                { phrase: 'уже завтра', type: 'тайм-прессинг' },
+                { phrase: 'источников', type: 'безымянный источник' },
+                { phrase: 'срочно', type: 'тайм-прессинг' }
+            ],
+            tags: ['давление страхом', 'категоричность без данных', 'оценочная лексика'],
+            day: {
+                total: 148,
+                manip: 71,
+                density: { morning: 55, day: 72, evening: 43 },
+                top: [
+                    { name: 'Страх и тайм-прессинг', share: 32 },
+                    { name: 'Оценочная лексика', share: 21 },
+                    { name: 'Псевдостатистика', share: 14 }
+                ]
+            }
+        },
+        {
+            source: '«Новости.РУ»',
+            title: '«Экономика рухнула: цены взлетели до небес из-за очередного решения»',
+            body: 'Эксперты утверждают, что экономика рухнула, а цены взлетели до небес. По данным источников, последствия будут катастрофическими. Люди в шоке и требуют немедленных действий.',
+            triggers: [
+                { phrase: 'рухнула', type: 'гипербола' },
+                { phrase: 'взлетели до небес', type: 'гипербола' },
+                { phrase: 'катастрофическими', type: 'страх' },
+                { phrase: 'в шоке', type: 'страх' },
+                { phrase: 'немедленных', type: 'тайм-прессинг' },
+                { phrase: 'источников', type: 'безымянный источник' }
+            ],
+            tags: ['гиперболы', 'указание виноватых', 'оценочная лексика'],
+            day: {
+                total: 132,
+                manip: 78,
+                density: { morning: 48, day: 88, evening: 60 },
+                top: [
+                    { name: 'Гиперболы и катастрофизация', share: 29 },
+                    { name: 'Образ виноватого', share: 24 },
+                    { name: 'Эмоциональная подмена фактов', share: 18 }
+                ]
+            }
+        },
+        {
+            source: '«Город Online»',
+            title: '«По данным опроса, большинство горожан счастливы»',
+            body: 'По данным опроса, большинство горожан счастливы и поддерживают новые меры. Эксперты уверены: это явный успех. Однако методика исследования не раскрывается.',
+            triggers: [
+                { phrase: 'по данным опроса', type: 'псевдостатистика' },
+                { phrase: 'большинство', type: 'обобщение' },
+                { phrase: 'явный успех', type: 'оценка' },
+                { phrase: 'не раскрывается', type: 'непрозрачность' }
+            ],
+            tags: ['неполная ссылка на источник', 'обобщение'],
+            day: {
+                total: 96,
+                manip: 33,
+                density: { morning: 22, day: 40, evening: 28 },
+                top: [
+                    { name: '«Большинство» без методики', share: 20 },
+                    { name: 'Цифры без источника', share: 12 },
+                    { name: 'Селективная подача', share: 9 }
+                ]
+            }
+        },
+        {
+            source: '«Агентство.Инфо»',
+            title: '«Минфин опубликовал отчёт о росте доходов бюджета за год»',
+            body: 'Минфин опубликовал официальный отчёт о росте доходов бюджета за год. Документ доступен на сайте ведомства. В отчёте приведены первичные данные и методика расчётов.',
+            triggers: [
+                { phrase: 'официальный', type: 'источник' },
+                { phrase: 'документ', type: 'источник' },
+                { phrase: 'методика', type: 'прозрачность' }
+            ],
+            tags: ['нейтральный заголовок', 'официальный источник'],
+            day: {
+                total: 88,
+                manip: 10,
+                density: { morning: 16, day: 12, evening: 10 },
+                top: [
+                    { name: 'Манипуляции не доминируют', share: 0 },
+                    { name: '—', share: 0 },
+                    { name: '—', share: 0 }
+                ]
+            }
+        }
+    ];
+
+    /* ---------- Trigger highlighting ---------- */
+    function escapeHtml(str) {
+        return String(str)
+            .replaceAll('&', '&amp;')
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;')
+            .replaceAll('"', '&quot;')
+            .replaceAll("'", '&#039;');
+    }
+
+    function highlightTriggers(text, triggers) {
+        if (!text) return '';
+        const safe = escapeHtml(text);
+        if (!triggers || !triggers.length) return safe;
+
+        const uniq = [];
+        const seen = new Set();
+        triggers.forEach(t => {
+            const p = (t.phrase || '').trim();
+            if (p && !seen.has(p.toLowerCase())) {
+                seen.add(p.toLowerCase());
+                uniq.push(p);
+            }
+        });
+
+        uniq.sort((a,b)=>b.length-a.length);
+
+        let result = safe;
+        uniq.forEach(phrase => {
+            const re = new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+            result = result.replace(re, (match) => `<mark class="trigger">${match}</mark>`);
+        });
+
+        return result;
+    }
+
+    /* ---------- Right card animation helpers ---------- */
+    const animState = new Map();
+
+    function animateNumber(el, from, to, duration, formatFn) {
+        if (!el) return;
+        if (animState.has(el)) cancelAnimationFrame(animState.get(el));
+
+        const start = performance.now();
+        const diff = to - from;
+
+        function tick(now) {
+            const t = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - t, 3);
+            const value = from + diff * eased;
+
+            el.textContent = formatFn ? formatFn(value) : Math.round(value).toString();
+            if (t < 1) {
+                const id = requestAnimationFrame(tick);
+                animState.set(el, id);
+            } else {
+                animState.delete(el);
+            }
+        }
+
+        const id = requestAnimationFrame(tick);
+        animState.set(el, id);
+    }
+
+    function readInt(el) {
+        const raw = (el && el.textContent) ? el.textContent : "0";
+        const cleaned = raw.replace(/[^\d]/g, "");
+        return cleaned ? parseInt(cleaned, 10) : 0;
+    }
+
+    function readPercent(el) {
+        const raw = (el && el.textContent) ? el.textContent : "0";
+        const cleaned = raw.replace(/[^\d]/g, "");
+        return cleaned ? parseInt(cleaned, 10) : 0;
+    }
+
+    function levelByShare(share) {
+        if (share < 25) return 'green';
+        if (share < 50) return 'yellow';
+        return 'red';
+    }
+
+    /* ---------- DOM refs ---------- */
+    const elSource = document.getElementById('newsSource');
+    const elTime = document.getElementById('newsTime');
+    const elTitle = document.getElementById('newsTitle');
+    const elBody = document.getElementById('newsBody');
+
+    const elDayTotal = document.getElementById('dayTotal');
+    const elDayManip = document.getElementById('dayManip');
+    const elDayShare = document.getElementById('dayShare');
+    const elRiskPill = document.getElementById('riskPill');
+
+    const elFillMorning = document.getElementById('fillMorning');
+    const elFillDay = document.getElementById('fillDay');
+    const elFillEvening = document.getElementById('fillEvening');
+
+    const elSegMorning = document.getElementById('segMorning');
+    const elSegDay = document.getElementById('segDay');
+    const elSegEvening = document.getElementById('segEvening');
+
+    // techList удалён — оставляем ref, но он будет null, и это OK
+    const elTechList = document.getElementById('techList');
+
+    const elLogTime = document.getElementById('logTime');
+    const elLogTag = document.getElementById('logTag');
+    const elLogText = document.getElementById('logText');
+
+    const elSnapshot = document.getElementById('dailySnapshot');
+    const elStatTotalBox = document.getElementById('statTotalBox');
+    const elStatManipBox = document.getElementById('statManipBox');
+
+    let currentHeadline = 0;
+
+    function setRiskPill(level) {
+        elRiskPill.classList.remove('risk-green', 'risk-yellow', 'risk-red');
+        if (level === 'green') elRiskPill.classList.add('risk-green');
+        if (level === 'yellow') elRiskPill.classList.add('risk-yellow');
+        if (level === 'red') elRiskPill.classList.add('risk-red');
+    }
+
+    function pulseSegment(levelKey) {
+        [elSegMorning, elSegDay, elSegEvening].forEach(s => s.classList.remove('pulse'));
+        if (levelKey === 'morning') elSegMorning.classList.add('pulse');
+        if (levelKey === 'day') elSegDay.classList.add('pulse');
+        if (levelKey === 'evening') elSegEvening.classList.add('pulse');
+    }
+
+    // ВАЖНО: защита от отсутствия блока
+    function updateTechList(top) {
+        if (!elTechList) return;
+        elTechList.innerHTML = '';
+        top.forEach(item => {
+            const row = document.createElement('div');
+            row.className = 'tech-item';
+            row.innerHTML = `
+                <div class="tech-name">${item.name}</div>
+                <div class="tech-share">${item.share ? item.share + '%' : '—'}</div>
+            `;
+            elTechList.appendChild(row);
+        });
+    }
+
+    function updateMiniLog(tags) {
+        const now = new Date();
+        const hh = String(now.getHours()).padStart(2, '0');
+        const mm = String(now.getMinutes()).padStart(2, '0');
+        elLogTime.textContent = `${hh}:${mm}`;
+
+        const primary = tags && tags.length ? tags[0] : 'сигнал';
+        elLogTag.textContent = primary;
+
+        if (primary === 'нейтральный заголовок' || primary === 'официальный источник') {
+            elLogText.textContent = 'манипулятивные маркеры не обнаружены в сообщении';
+        } else {
+            elLogText.textContent = 'обнаружен манипулятивный маркер в сообщении';
+        }
+    }
+
+    function triggerWow() {
+        elSnapshot.classList.remove('shimmer');
+        void elSnapshot.offsetWidth;
+        elSnapshot.classList.add('shimmer');
+
+        [elStatTotalBox, elStatManipBox].forEach(el => {
+            el.classList.remove('stat-anim');
+            void el.offsetWidth;
+            el.classList.add('stat-anim');
+        });
+
+        elRiskPill.classList.remove('pill-anim');
+        void elRiskPill.offsetWidth;
+        elRiskPill.classList.add('pill-anim');
+    }
+
+    function updateHeadline() {
+        const h = headlines[currentHeadline];
+
+        elSource.textContent = h.source;
+        elTitle.innerHTML = highlightTriggers(h.title, h.triggers);
+        elBody.innerHTML = highlightTriggers(h.body, h.triggers);
+
+        elTime.textContent = 'обновлено: только что';
+
+        const total = h.day.total;
+        const manip = h.day.manip;
+        const share = total > 0 ? Math.round((manip / total) * 100) : 0;
+        const level = levelByShare(share);
+
+        const prevTotal = readInt(elDayTotal);
+        const prevManip = readInt(elDayManip);
+        const prevShare = readPercent(elDayShare);
+
+        animateNumber(elDayTotal, prevTotal, total, 520, (v) => Math.round(v).toLocaleString('ru-RU'));
+        animateNumber(elDayManip, prevManip, manip, 520, (v) => Math.round(v).toLocaleString('ru-RU'));
+        animateNumber(elDayShare, prevShare, share, 520, (v) => Math.round(v) + '%');
+
+        setRiskPill(level);
+
+        elFillMorning.style.width = Math.max(0, Math.min(100, h.day.density.morning)) + '%';
+        elFillDay.style.width = Math.max(0, Math.min(100, h.day.density.day)) + '%';
+        elFillEvening.style.width = Math.max(0, Math.min(100, h.day.density.evening)) + '%';
+
+        const dens = h.day.density;
+        const maxKey = Object.entries(dens).sort((a,b)=>b[1]-a[1])[0][0];
+        pulseSegment(maxKey);
+
+        // Даже если techList удалён — updateTechList просто вернёт управление
+        updateTechList(h.day.top);
+
+        updateMiniLog(h.tags);
+        triggerWow();
+
+        currentHeadline = (currentHeadline + 1) % headlines.length;
+    }
+
+    updateHeadline();
+    setInterval(updateHeadline, 4200);
+
+    /* Accordion exclusive open */
+    const manipCards = document.querySelectorAll('details.manip-card');
+    manipCards.forEach(card => {
+        card.addEventListener('toggle', () => {
+            if (card.open) {
+                manipCards.forEach(other => { if (other !== card) other.open = false; });
+            }
+        });
+    });
+
+    /* Modal */
+    const dailyRatingModal = document.getElementById('dailyRatingModal');
+    const openDailyRatingBtn = document.getElementById('openDailyRatingModal');
+    const dailyRatingClose = document.getElementById('dailyRatingClose');
+
+    function openDailyRating() {
+        dailyRatingModal.classList.add('open');
+        dailyRatingModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        if (dailyRatingClose) dailyRatingClose.focus();
+    }
+
+    function closeDailyRating() {
+        dailyRatingModal.classList.remove('open');
+        dailyRatingModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (openDailyRatingBtn) openDailyRatingBtn.focus();
+    }
+
+    if (openDailyRatingBtn) openDailyRatingBtn.addEventListener('click', openDailyRating);
+    if (dailyRatingClose) dailyRatingClose.addEventListener('click', closeDailyRating);
+
+    dailyRatingModal.addEventListener('click', (e) => {
+        if (e.target === dailyRatingModal) closeDailyRating();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && dailyRatingModal.classList.contains('open')) closeDailyRating();
+    });
+</script>
+</body>
+</html>
