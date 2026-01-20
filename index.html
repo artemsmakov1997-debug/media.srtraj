@@ -168,31 +168,6 @@
 
         .support-button:hover { filter: brightness(1.05); }
 
-        /* Mobile-only support inside burger dropdown */
-        .mobile-support { display: none; }
-
-        /* Mobile-only support icon in header */
-        .support-icon {
-            display: none; /* включим только на мобилке */
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            border: 1px solid rgba(248, 250, 252, 0.35);
-            background: linear-gradient(135deg, rgba(250,204,21,0.22), rgba(249,115,22,0.12));
-            box-shadow: 0 10px 26px rgba(0,0,0,0.55);
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-        }
-        .support-icon svg {
-            width: 22px;
-            height: 22px;
-            display: block;
-            fill: #facc15;
-            filter: drop-shadow(0 0 10px rgba(234,179,8,0.35));
-        }
-        .support-icon:active { transform: translateY(1px); }
-
         .header-glow {
             height: 2px;
             width: 100%;
@@ -690,24 +665,15 @@
         @media (max-width: 900px) {
 
             .navbar { padding: 10px 14px; gap: 10px; }
+            .brand-title { font-size: 0.95rem; letter-spacing: 0.12em; }
 
-            /* Чуть крупнее название в шапке (только мобилка) */
-            .brand-title { font-size: 1.06rem; letter-spacing: 0.12em; }
-
-            /* On mobile: hide top right support, show icon + dropdown button */
+            /* On mobile: hide top right support, show it inside burger menu */
             .desktop-support { display: none; }
-            .support-icon { display: inline-flex; margin-left: auto; }
 
             .burger {
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
-            }
-
-            /* Слегка сдвигаем навигацию/бургеры, чтобы справа красиво встал значок */
-            .site-nav {
-                justify-content: flex-end;
-                flex: 0 0 auto;
             }
 
             /* Dropdown menu */
@@ -741,27 +707,10 @@
                 letter-spacing: 0.12em;
             }
 
-            /* Кнопка "поддержать" внутри бургер-меню (жёлтая, как просили) */
-            .mobile-support {
-                display: inline-flex;
-                width: 100%;
-                margin-top: 6px;
-                padding: 12px 14px;
-                border-radius: 14px; /* чуть «кнопочнее» на мобилке */
-                justify-content: center;
-            }
-
             /* Cleaner layout */
             .container { padding: 18px 14px 70px 14px; }
             main { padding-top: 16px; }
-
-            /* ВАЖНО: чтобы блок "за последние 24 часа" не ломал ширину — делаем колонкой */
-            .hero {
-                padding: 18px 0;
-                gap: 12px;
-                flex-direction: column;
-                align-items: stretch;
-            }
+            .hero { padding: 18px 0; gap: 18px; }
 
             .hero h1 {
                 font-size: 1.45rem;
@@ -775,7 +724,6 @@
             .hero-counter {
                 min-width: 0;
                 max-width: none;
-                width: 100%;
                 text-align: left;
                 align-items: flex-start;
                 padding: 14px 14px;
@@ -783,15 +731,6 @@
                 background: rgba(2,6,23,0.55);
                 border: 1px solid rgba(31,41,55,0.85);
                 box-shadow: 0 18px 30px rgba(0,0,0,0.45);
-            }
-
-            /* Чтобы текст НИКОГДА не вылезал за рамки */
-            .counter-label {
-                white-space: normal;
-                overflow-wrap: anywhere;
-                word-break: break-word;
-                line-height: 1.25;
-                max-width: 100%;
             }
 
             .counter-value { font-size: 3.2rem; }
@@ -842,21 +781,9 @@
                     <a href="about.html"><span>О ПРОЕКТЕ</span></a>
                     <a href="method.html"><span>МЕТОДИКА</span></a>
                     <a href="archive.html"><span>АРХИВ</span></a>
-
-                    <!-- MOBILE: жёлтая кнопка в бургер-меню -->
-                    <a class="support-button mobile-support" href="help.html">ПОДДЕРЖАТЬ</a>
                 </div>
             </nav>
 
-            <!-- MOBILE: иконка "поддержать" в шапке -->
-            <a class="support-icon" href="help.html" aria-label="Поддержать">
-                <!-- простая аккуратная иконка (сердце) -->
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <path d="M12 21s-7.2-4.5-9.6-8.6C.6 9.1 2.1 5.8 5.4 5.1c1.9-.4 3.6.3 4.6 1.6 1-1.3 2.7-2 4.6-1.6 3.3.7 4.8 4 3 7.3C19.2 16.5 12 21 12 21z"/>
-                </svg>
-            </a>
-
-            <!-- DESKTOP: текстовая кнопка справа (как было) -->
             <a class="support-button desktop-support" href="help.html">ПОДДЕРЖАТЬ</a>
         </div>
         <div class="header-glow"></div>
@@ -1117,3 +1044,4 @@ setInterval(cycleCards, 5000);
 
 </body>
 </html>
+
