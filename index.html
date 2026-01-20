@@ -1,12 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>МЕДИА.СТРАЖ — Рейтинг российских СМИ</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
 
     <style>
         :root {
@@ -25,14 +24,12 @@
             --accent-green: #22c55e;
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Roboto', sans-serif;
+            font-family: "Roboto", sans-serif;
             background:
                 radial-gradient(circle at top, rgba(15,23,42,0.6), transparent 60%),
                 radial-gradient(circle at bottom, rgba(15,23,42,0.7), transparent 60%),
@@ -78,7 +75,7 @@
         }
 
         .brand-title {
-            font-family: 'Montserrat', sans-serif;
+            font-family: "Montserrat", sans-serif;
             font-weight: 800;
             font-size: 1.05rem;
             letter-spacing: 0.14em;
@@ -88,16 +85,16 @@
             opacity: 0.95;
         }
 
-        .brand-title span {
-            color: var(--accent-blue);
-        }
+        .brand-title span { color: var(--accent-blue); }
 
-        nav {
+        /* NAV (desktop + mobile) */
+        .site-nav {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
+            position: relative;
         }
 
         .nav-links {
@@ -119,6 +116,7 @@
             padding: 7px 14px;
             border-radius: 999px;
             transition: color 0.18s ease-out, background 0.18s ease-out;
+            outline: none;
         }
 
         nav a::before {
@@ -136,13 +134,8 @@
             z-index: 1;
         }
 
-        nav a:hover {
-            color: #e5e7eb;
-        }
-
-        nav a:hover::before {
-            opacity: 1;
-        }
+        nav a:hover { color: #e5e7eb; }
+        nav a:hover::before { opacity: 1; }
 
         .nav-active {
             color: #f9fafb;
@@ -151,12 +144,13 @@
                 0 0 0 1px rgba(45,212,191,0.7),
                 0 0 18px rgba(45,212,191,0.35);
         }
+        .nav-active::before { opacity: 1; }
 
-        .nav-active::before {
-            opacity: 1;
-        }
-
+        /* Support button as link */
         .support-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             padding: 7px 18px;
             border-radius: 999px;
             border: 1px solid rgba(248, 250, 252, 0.4);
@@ -169,11 +163,10 @@
             letter-spacing: 0.13em;
             box-shadow: 0 10px 26px rgba(0,0,0,0.8);
             white-space: nowrap;
+            text-decoration: none;
         }
 
-        .support-button:hover {
-            filter: brightness(1.05);
-        }
+        .support-button:hover { filter: brightness(1.05); }
 
         .header-glow {
             height: 2px;
@@ -182,33 +175,33 @@
             opacity: .55;
         }
 
-        @media (max-width: 900px) {
-            .navbar {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 10px;
-            }
-
-            nav {
-                order: 3;
-                flex: 0 0 100%;
-                justify-content: center;
-            }
-
-            .brand-title {
-                order: 1;
-            }
-
-            .support-button {
-                order: 2;
-            }
+        /* Burger */
+        .burger {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            border: 1px solid rgba(148,163,184,0.35);
+            background: rgba(15,23,42,0.65);
+            cursor: pointer;
+            padding: 10px;
+            box-shadow: 0 10px 26px rgba(0,0,0,0.55);
         }
+
+        .burger span {
+            display: block;
+            height: 2px;
+            margin: 6px 0;
+            background: rgba(229,231,235,0.9);
+            border-radius: 999px;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .desktop-support { display: inline-flex; }
 
         /* ---------- HERO ---------- */
 
-        main {
-            padding-top: 32px;
-        }
+        main { padding-top: 32px; }
 
         .hero {
             display: flex;
@@ -225,18 +218,17 @@
         }
 
         .hero h1 {
-            font-family: 'Montserrat', sans-serif;
+            font-family: "Montserrat", sans-serif;
             font-size: 2.2rem;
             font-weight: 900;
             margin: 0;
-
             position: relative;
             display: inline-block;
-            isolation: isolate; /* чтобы слои эффекта работали стабильно */
+            isolation: isolate;
             text-shadow: 0 0 18px rgba(0,0,0,0.35);
         }
 
-        /* Скан-линии (заметно, но мягко) */
+        /* TV effects (desktop) */
         .hero h1::after {
             content: "";
             position: absolute;
@@ -244,7 +236,6 @@
             pointer-events: none;
             border-radius: 10px;
             z-index: 1;
-
             background:
                 repeating-linear-gradient(
                     180deg,
@@ -257,11 +248,9 @@
             mix-blend-mode: soft-light;
             transform: translateZ(0);
             will-change: transform, opacity;
-
             animation: tvScan 2.8s linear infinite;
         }
 
-        /* Лёгкая "рябь/шум" */
         .hero h1::before {
             content: "";
             position: absolute;
@@ -269,7 +258,6 @@
             pointer-events: none;
             border-radius: 10px;
             z-index: 2;
-
             background:
                 radial-gradient(circle at 20% 10%, rgba(34,211,238,0.14), transparent 45%),
                 radial-gradient(circle at 80% 60%, rgba(255,255,255,0.08), transparent 55%);
@@ -277,7 +265,6 @@
             filter: blur(10px);
             transform: translateZ(0);
             will-change: transform, opacity;
-
             animation: tvRipple 6.5s ease-in-out infinite;
         }
 
@@ -317,25 +304,13 @@
         }
 
         .counter-value {
-            font-family: 'Montserrat', sans-serif;
+            font-family: "Montserrat", sans-serif;
             font-size: 4.4rem;
             font-weight: 900;
             color: var(--accent-red);
             text-shadow: 0 0 18px rgba(248,113,113,0.75);
             line-height: 1;
             margin: 0;
-        }
-
-        @media (max-width: 960px) {
-            .hero {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .hero-counter {
-                text-align: left;
-                align-items: flex-start;
-            }
         }
 
         /* ---------- DIVIDER + АНИМАЦИЯ ---------- */
@@ -359,18 +334,9 @@
         }
 
         @keyframes dividerGlow {
-            0% {
-                opacity: 0.55;
-                filter: drop-shadow(0 0 6px rgba(34,211,238,0.08));
-            }
-            50% {
-                opacity: 0.95;
-                filter: drop-shadow(0 0 14px rgba(34,211,238,0.28));
-            }
-            100% {
-                opacity: 0.55;
-                filter: drop-shadow(0 0 6px rgba(34,211,238,0.08));
-            }
+            0%   { opacity: 0.55; filter: drop-shadow(0 0 6px rgba(34,211,238,0.08)); }
+            50%  { opacity: 0.95; filter: drop-shadow(0 0 14px rgba(34,211,238,0.28)); }
+            100% { opacity: 0.55; filter: drop-shadow(0 0 6px rgba(34,211,238,0.08)); }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -380,9 +346,7 @@
                 animation: none !important;
             }
             .hero h1::before,
-            .hero h1::after {
-                opacity: 0 !important;
-            }
+            .hero h1::after { opacity: 0 !important; }
         }
 
         /* ---------- Секция рейтинга ---------- */
@@ -402,7 +366,7 @@
 
         .rating-header h2 {
             margin: 0;
-            font-family: 'Montserrat', sans-serif;
+            font-family: "Montserrat", sans-serif;
             font-size: 0.9rem;
             font-weight: 600;
             letter-spacing: 0.18em;
@@ -482,18 +446,11 @@
             box-shadow: 0 0 14px rgba(15,23,42,0.9);
         }
 
-        .media-name {
-            font-weight: 600;
-            font-size: 0.96rem;
-        }
-
-        .media-type {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-        }
+        .media-name { font-weight: 600; font-size: 0.96rem; }
+        .media-type { font-size: 0.78rem; color: var(--text-muted); }
 
         .rating-score {
-            font-family: 'Montserrat', sans-serif;
+            font-family: "Montserrat", sans-serif;
             font-size: 1.6rem;
             font-weight: 800;
         }
@@ -562,15 +519,8 @@
             letter-spacing: 0.12em;
         }
 
-        .badge-yellow {
-            border-color: var(--accent-yellow);
-            color: var(--accent-yellow);
-        }
-
-        .badge-green  {
-            border-color: var(--accent-green);
-            color: var(--accent-green);
-        }
+        .badge-yellow { border-color: var(--accent-yellow); color: var(--accent-yellow); }
+        .badge-green  { border-color: var(--accent-green);  color: var(--accent-green); }
 
         .link-button {
             background: none;
@@ -582,9 +532,7 @@
             white-space: nowrap;
         }
 
-        .link-button:hover {
-            text-shadow: 0 0 10px rgba(56,189,248,0.85);
-        }
+        .link-button:hover { text-shadow: 0 0 10px rgba(56,189,248,0.85); }
 
         footer {
             border-top: 1px solid rgba(31,41,55,0.9);
@@ -608,9 +556,7 @@
             z-index: 40;
         }
 
-        .modal-overlay.open {
-            display: flex;
-        }
+        .modal-overlay.open { display: flex; }
 
         .modal-dialog {
             width: 100%;
@@ -637,15 +583,13 @@
 
         .modal-header h3 {
             margin: 0;
-            font-family: 'Montserrat', sans-serif;
+            font-family: "Montserrat", sans-serif;
             font-size: 1rem;
             letter-spacing: 0.16em;
             text-transform: uppercase;
         }
 
-        .modal-header span {
-            color: var(--accent-blue);
-        }
+        .modal-header span { color: var(--accent-blue); }
 
         .modal-close {
             background: none;
@@ -655,9 +599,7 @@
             cursor: pointer;
         }
 
-        .modal-close:hover {
-            color: #e5e7eb;
-        }
+        .modal-close:hover { color: #e5e7eb; }
 
         .modal-body {
             padding: 10px 18px 16px;
@@ -679,17 +621,11 @@
             flex-direction: column;
         }
 
-        .full-list-name .title {
-            font-weight: 600;
-        }
-
-        .full-list-name .type {
-            color: var(--text-muted);
-            font-size: 0.78rem;
-        }
+        .full-list-name .title { font-weight: 600; }
+        .full-list-name .type { color: var(--text-muted); font-size: 0.78rem; }
 
         .full-list-rating {
-            font-family: 'Montserrat', sans-serif;
+            font-family: "Montserrat", sans-serif;
             font-weight: 800;
             text-align: right;
         }
@@ -705,22 +641,13 @@
             color: var(--text-muted);
         }
 
-        .full-list-rating.red   { color: var(--accent-red); }
-        .full-list-rating.yellow{ color: var(--accent-yellow); }
-        .full-list-rating.green { color: var(--accent-green); }
+        .full-list-rating.red    { color: var(--accent-red); }
+        .full-list-rating.yellow { color: var(--accent-yellow); }
+        .full-list-rating.green  { color: var(--accent-green); }
 
-        .full-list-badge.red {
-            border-color: var(--accent-red);
-            color: var(--accent-red);
-        }
-        .full-list-badge.yellow {
-            border-color: var(--accent-yellow);
-            color: var(--accent-yellow);
-        }
-        .full-list-badge.green {
-            border-color: var(--accent-green);
-            color: var(--accent-green);
-        }
+        .full-list-badge.red    { border-color: var(--accent-red); color: var(--accent-red); }
+        .full-list-badge.yellow { border-color: var(--accent-yellow); color: var(--accent-yellow); }
+        .full-list-badge.green  { border-color: var(--accent-green); color: var(--accent-green); }
 
         @media (max-width: 640px) {
             .full-list-row {
@@ -733,25 +660,132 @@
                 margin-top: 4px;
             }
         }
+
+        /* ---------- MOBILE CLEANUP + BURGER MENU ---------- */
+        @media (max-width: 900px) {
+
+            .navbar { padding: 10px 14px; gap: 10px; }
+            .brand-title { font-size: 0.95rem; letter-spacing: 0.12em; }
+
+            /* On mobile: hide top right support, show it inside burger menu */
+            .desktop-support { display: none; }
+
+            .burger {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* Dropdown menu */
+            .nav-links {
+                position: absolute;
+                top: 56px;
+                right: 0;
+                left: 0;
+                margin: 0 auto;
+                max-width: 560px;
+
+                display: none;
+                flex-direction: column;
+                gap: 6px;
+
+                padding: 10px;
+                border-radius: 18px;
+
+                background: rgba(2,6,23,0.92);
+                border: 1px solid rgba(51,65,85,0.9);
+                box-shadow: 0 30px 80px rgba(0,0,0,0.75);
+
+                backdrop-filter: blur(14px);
+            }
+
+            .nav-links.open { display: flex; }
+
+            nav a {
+                padding: 12px 14px;
+                font-size: 0.85rem;
+                letter-spacing: 0.12em;
+            }
+
+            /* Cleaner layout */
+            .container { padding: 18px 14px 70px 14px; }
+            main { padding-top: 16px; }
+            .hero { padding: 18px 0; gap: 18px; }
+
+            .hero h1 {
+                font-size: 1.45rem;
+                line-height: 1.15;
+            }
+
+            /* Remove noisy effects on mobile */
+            .hero h1::before,
+            .hero h1::after { display: none; }
+
+            .hero-counter {
+                min-width: 0;
+                max-width: none;
+                text-align: left;
+                align-items: flex-start;
+                padding: 14px 14px;
+                border-radius: 16px;
+                background: rgba(2,6,23,0.55);
+                border: 1px solid rgba(31,41,55,0.85);
+                box-shadow: 0 18px 30px rgba(0,0,0,0.45);
+            }
+
+            .counter-value { font-size: 3.2rem; }
+
+            .rating-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .rating-header h2 {
+                font-size: 0.82rem;
+                line-height: 1.25;
+            }
+
+            .media-grid { grid-template-columns: 1fr; gap: 14px; }
+
+            .media-card {
+                border-radius: 16px;
+                box-shadow: 0 18px 40px rgba(0,0,0,0.75);
+            }
+
+            .media-card:hover { transform: none; }
+            .rating-score { font-size: 1.45rem; }
+
+            .modal-dialog {
+                max-height: 86vh;
+                border-radius: 18px;
+                margin: 0 10px;
+            }
+        }
     </style>
 </head>
-<body>
 
+<body>
 <header>
     <div class="header-inner">
         <div class="navbar">
             <div class="brand-title">МЕДИА.<span>СТРАЖ</span></div>
 
-            <nav>
-                <div class="nav-links">
+            <nav class="site-nav" aria-label="Навигация">
+                <button class="burger" id="burgerBtn" aria-label="Открыть меню" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+
+                <div class="nav-links" id="navLinks">
                     <a href="index.html" class="nav-active"><span>РЕЙТИНГ</span></a>
                     <a href="about.html"><span>О ПРОЕКТЕ</span></a>
                     <a href="method.html"><span>МЕТОДИКА</span></a>
                     <a href="arhiv.html"><span>АРХИВ</span></a>
+                    <a href="help.html"><span>ПОДДЕРЖАТЬ</span></a>
                 </div>
             </nav>
 
-            <button class="support-button">ПОДДЕРЖАТЬ</button>
+            <a class="support-button desktop-support" href="help.html">ПОДДЕРЖАТЬ</a>
         </div>
         <div class="header-glow"></div>
     </div>
@@ -761,9 +795,7 @@
 
     <section class="hero">
         <div class="hero-text">
-            <h1>
-                ПЕРВЫЙ НЕЗАВИСИМЫЙ РЕЙТИНГ РОССИЙСКИХ СМИ
-            </h1>
+            <h1>ПЕРВЫЙ НЕЗАВИСИМЫЙ РЕЙТИНГ РОССИЙСКИХ СМИ</h1>
         </div>
 
         <aside class="hero-counter">
@@ -807,87 +839,15 @@
 <script>
 /* Демо-данные СМИ */
 const mediaData = [
-    {
-        name: "RT",
-        type: "ТВ / Онлайн",
-        audience: "Аудитория: 7,3 млн",
-        posts: 142,
-        manipulative: 113,
-        rating: 78,
-        level: "red"
-    },
-    {
-        name: "Первый канал",
-        type: "ТВ",
-        audience: "Аудитория: 9,1 млн",
-        posts: 135,
-        manipulative: 92,
-        rating: 76,
-        level: "red"
-    },
-    {
-        name: "Россия 1",
-        type: "ТВ",
-        audience: "Аудитория: 8,4 млн",
-        posts: 128,
-        manipulative: 95,
-        rating: 72,
-        level: "red"
-    },
-    {
-        name: "РИА Новости",
-        type: "Информагентство",
-        audience: "Аудитория: 6,2 млн",
-        posts: 120,
-        manipulative: 70,
-        rating: 44,
-        level: "yellow"
-    },
-    {
-        name: "Комсомольская правда",
-        type: "Газета",
-        audience: "Аудитория: 5,1 млн",
-        posts: 110,
-        manipulative: 40,
-        rating: 42,
-        level: "yellow"
-    },
-    {
-        name: "Meduza",
-        type: "Онлайн",
-        audience: "Аудитория: 1,9 млн",
-        posts: 64,
-        manipulative: 30,
-        rating: 27,
-        level: "green"
-    },
-    {
-        name: "РБК",
-        type: "ТВ / Онлайн",
-        audience: "Аудитория: 2,7 млн",
-        posts: 82,
-        manipulative: 32,
-        rating: 25,
-        level: "green"
-    },
-    {
-        name: "Новая газета",
-        type: "Газета",
-        audience: "Аудитория: 1,1 млн",
-        posts: 54,
-        manipulative: 10,
-        rating: 13,
-        level: "green"
-    },
-    {
-        name: "ТАСС",
-        type: "Информагентство",
-        audience: "Аудитория: 4,5 млн",
-        posts: 96,
-        manipulative: 18,
-        rating: 15,
-        level: "green"
-    }
+    { name: "RT", type: "ТВ / Онлайн", audience: "Аудитория: 7,3 млн", posts: 142, manipulative: 113, rating: 78, level: "red" },
+    { name: "Первый канал", type: "ТВ", audience: "Аудитория: 9,1 млн", posts: 135, manipulative: 92, rating: 76, level: "red" },
+    { name: "Россия 1", type: "ТВ", audience: "Аудитория: 8,4 млн", posts: 128, manipulative: 95, rating: 72, level: "red" },
+    { name: "РИА Новости", type: "Информагентство", audience: "Аудитория: 6,2 млн", posts: 120, manipulative: 70, rating: 44, level: "yellow" },
+    { name: "Комсомольская правда", type: "Газета", audience: "Аудитория: 5,1 млн", posts: 110, manipulative: 40, rating: 42, level: "yellow" },
+    { name: "Meduza", type: "Онлайн", audience: "Аудитория: 1,9 млн", posts: 64, manipulative: 30, rating: 27, level: "green" },
+    { name: "РБК", type: "ТВ / Онлайн", audience: "Аудитория: 2,7 млн", posts: 82, manipulative: 32, rating: 25, level: "green" },
+    { name: "Новая газета", type: "Газета", audience: "Аудитория: 1,1 млн", posts: 54, manipulative: 10, rating: 13, level: "green" },
+    { name: "ТАСС", type: "Информагентство", audience: "Аудитория: 4,5 млн", posts: 96, manipulative: 18, rating: 15, level: "green" }
 ];
 
 const mediaGrid = document.getElementById("mediaGrid");
@@ -924,7 +884,7 @@ function initCards() {
 
             <footer class="media-footer">
                 <span class="badge"></span>
-                <button class="link-button">Смотреть примеры →</button>
+                <button class="link-button" type="button">Смотреть примеры →</button>
             </footer>
         `;
         mediaGrid.appendChild(card);
@@ -986,9 +946,7 @@ function initDailyCounter() {
             current = value;
             counterEl.textContent = current.toLocaleString("ru-RU");
         }
-        if (progress < 1) {
-            requestAnimationFrame(animate);
-        }
+        if (progress < 1) requestAnimationFrame(animate);
     }
 
     requestAnimationFrame(animate);
@@ -1021,18 +979,13 @@ function renderFullList() {
 
         const badge = document.createElement("div");
         badge.className = "full-list-badge " + media.level;
-        if (media.level === "red") {
-            badge.textContent = "высокий риск";
-        } else if (media.level === "yellow") {
-            badge.textContent = "средний риск";
-        } else {
-            badge.textContent = "низкий риск";
-        }
+        if (media.level === "red") badge.textContent = "высокий риск";
+        else if (media.level === "yellow") badge.textContent = "средний риск";
+        else badge.textContent = "низкий риск";
 
         row.appendChild(name);
         row.appendChild(rating);
         row.appendChild(badge);
-
         fullListContainer.appendChild(row);
     });
 }
@@ -1047,10 +1000,41 @@ fullListCloseBtn.addEventListener("click", () => {
 });
 
 fullListModal.addEventListener("click", (e) => {
-    if (e.target === fullListModal) {
-        fullListModal.classList.remove("open");
-    }
+    if (e.target === fullListModal) fullListModal.classList.remove("open");
 });
+
+/* BURGER MENU */
+const burgerBtn = document.getElementById("burgerBtn");
+const navLinks = document.getElementById("navLinks");
+
+if (burgerBtn && navLinks) {
+    burgerBtn.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("open");
+        burgerBtn.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navLinks.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", () => {
+            navLinks.classList.remove("open");
+            burgerBtn.setAttribute("aria-expanded", "false");
+        });
+    });
+
+    document.addEventListener("click", (e) => {
+        const target = e.target;
+        if (!navLinks.contains(target) && !burgerBtn.contains(target)) {
+            navLinks.classList.remove("open");
+            burgerBtn.setAttribute("aria-expanded", "false");
+        }
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            navLinks.classList.remove("open");
+            burgerBtn.setAttribute("aria-expanded", "false");
+        }
+    });
+}
 
 /* INIT */
 initCards();
