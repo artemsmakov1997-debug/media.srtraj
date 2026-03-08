@@ -929,7 +929,7 @@
 
           <footer class="media-footer">
             <span class="badge"></span>
-            <button class="link-button" type="button">Смотреть примеры</button>
+            <button class="link-button" type="button" data-archive-link>Смотреть примеры</button>
           </footer>
         `;
         mediaGrid.appendChild(card);
@@ -1122,6 +1122,13 @@
         closeModal();
         navLinks.classList.remove("open");
         burgerBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      const target = e.target;
+      if (target && target.matches("[data-archive-link]")) {
+        window.location.href = "archive.html";
       }
     });
 
