@@ -1,459 +1,947 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МЕДИА.СТРАЖ | Архив сообщений</title>
 
-<title>МЕДИА.СТРАЖ | Архив сообщений</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #05070b;
+            --bg-panel: #12141b;
+            --bg-panel-soft: #151821;
+            --border-color: #2c2f3b;
 
-<style>
+            --text-main: #ffffff;
+            --text-muted: #8b8d96;
 
-:root{
---bg-body:#05070b;
---bg-panel:#12141b;
---bg-panel-soft:#151821;
---border-color:#2c2f3b;
+            --accent-blue: #22d3ee;
+            --accent-blue-soft: rgba(34,211,238,0.25);
+            --accent-cyan: #14b8a6;
+            --accent-red: #ef4444;
+            --accent-yellow: #eab308;
+            --accent-green: #22c55e;
+        }
 
---text-main:#ffffff;
---text-muted:#8b8d96;
+        * {
+            box-sizing: border-box;
+            outline: none;
+        }
 
---accent-blue:#22d3ee;
---accent-red:#ef4444;
---accent-yellow:#eab308;
---accent-green:#22c55e;
-}
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background:
+                radial-gradient(circle at top, rgba(15,23,42,0.55), transparent 60%),
+                radial-gradient(circle at bottom, rgba(15,23,42,0.65), transparent 60%),
+                var(--bg-body);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
 
-*{box-sizing:border-box;}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 80px 20px;
+        }
 
-body{
-margin:0;
-font-family:'Roboto',sans-serif;
-background:
-radial-gradient(circle at top,rgba(15,23,42,.55),transparent 60%),
-radial-gradient(circle at bottom,rgba(15,23,42,.65),transparent 60%),
-var(--bg-body);
-color:var(--text-main);
-}
+        /* --- HEADER (единый стиль) --- */
 
-.container{
-max-width:1200px;
-margin:auto;
-padding:40px 20px 80px;
-}
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
 
-/* HEADER */
+        .header-inner {
+            background: linear-gradient(
+                180deg,
+                rgba(15,23,42,0.96) 0%,
+                rgba(15,23,42,0.94) 70%,
+                rgba(15,23,42,0.88) 100%
+            );
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(30,41,59,0.85);
+            box-shadow: 0 18px 30px rgba(0,0,0,0.65);
+        }
 
-header{position:sticky;top:0;z-index:20;}
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
 
-.header-inner{
-background:rgba(15,23,42,.95);
-border-bottom:1px solid rgba(30,41,59,.8);
-backdrop-filter:blur(18px);
-}
+        .brand-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #e5e7eb;
+            white-space: nowrap;
+            opacity: 0.95;
+        }
 
-.navbar{
-max-width:1200px;
-margin:auto;
-padding:10px 20px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:20px;
-}
+        .brand-title span {
+            color: var(--accent-blue);
+        }
 
-.brand-title{
-font-family:'Montserrat',sans-serif;
-font-weight:800;
-letter-spacing:.14em;
-font-size:1.05rem;
-text-transform:uppercase;
-}
+        nav {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
 
-.brand-title span{color:var(--accent-blue);}
+        .nav-links {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: radial-gradient(circle at top, rgba(31,41,55,0.9), transparent 70%);
+        }
 
-nav{
-flex:1;
-display:flex;
-justify-content:center;
-}
+        nav a {
+            position: relative;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            padding: 7px 14px;
+            border-radius: 999px;
+            transition: color 0.18s ease-out, background 0.18s ease-out;
+        }
 
-.nav-links{
-display:inline-flex;
-gap:4px;
-background:rgba(15,23,42,.8);
-padding:4px 8px;
-border-radius:999px;
-}
+        nav a::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(circle at top, rgba(34,211,238,0.2), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.18s ease-out;
+        }
 
-nav a{
-text-decoration:none;
-font-size:.85rem;
-letter-spacing:.16em;
-text-transform:uppercase;
-padding:7px 14px;
-border-radius:999px;
-color:var(--text-muted);
-}
+        nav a span {
+            position: relative;
+            z-index: 1;
+        }
 
-nav a:hover{color:#fff;}
+        nav a:hover {
+            color: #e5e7eb;
+        }
 
-.nav-active{
-color:#fff;
-box-shadow:0 0 0 1px rgba(34,211,238,.7);
-}
+        nav a:hover::before {
+            opacity: 1;
+        }
 
-.support-button{
-padding:7px 18px;
-border-radius:999px;
-font-weight:600;
-background:linear-gradient(135deg,#facc15,#f97316);
-color:#020617;
-text-decoration:none;
-font-size:.8rem;
-}
+        .nav-active {
+            color: #f9fafb;
+            background: rgba(15,23,42,0.9);
+            box-shadow:
+                0 0 0 1px rgba(45,212,191,0.7),
+                0 0 18px rgba(45,212,191,0.35);
+        }
 
-.header-glow{
-height:2px;
-background:radial-gradient(circle,rgba(34,211,238,.9),transparent 70%);
-}
+        .nav-active::before {
+            opacity: 1;
+        }
 
-/* MOBILE HEADER */
+        .support-button {
+            padding: 7px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(248, 250, 252, 0.4);
+            font-weight: 600;
+            background: linear-gradient(135deg, #facc15, #f97316);
+            color: #020617;
+            cursor: pointer;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.13em;
+            box-shadow: 0 10px 26px rgba(0,0,0,0.8);
+            white-space: nowrap;
+        }
 
-@media(max-width:720px){
+        .support-button:hover {
+            filter: brightness(1.05);
+        }
 
-.navbar{
-flex-direction:column;
-align-items:center;
-gap:12px;
-}
+        @media (max-width: 720px) {
+            .navbar {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
 
-nav{
-width:100%;
-overflow-x:auto;
-}
+            .brand-title {
+                order: 1;
+            }
 
-.nav-links{
-width:max-content;
-}
+            nav {
+                order: 2;
+                flex: 0 0 100%;
+                justify-content: center;
+            }
 
-.support-button{
-width:100%;
-text-align:center;
-}
+            .support-button {
+                order: 3;
+            }
+        }
 
-}
+        .header-glow {
+            height: 2px;
+            width: 100%;
+            background: radial-gradient(circle at center, rgba(34,211,238,0.9), transparent 70%);
+            opacity: .55;
+        }
 
-/* SECTION */
+        /* --- Секция архива --- */
 
-.section-title{
-font-family:'Montserrat',sans-serif;
-font-size:24px;
-margin-bottom:4px;
-}
+        .archive-section {
+            max-width: 1120px;
+            margin: 40px auto 0 auto;
+        }
 
-.section-ai{color:var(--accent-blue);}
+        .archive-top-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 16px;
+        }
 
-.section-subtitle{
-color:var(--text-muted);
-font-size:14px;
-max-width:700px;
-margin-bottom:20px;
-}
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            margin: 0 0 6px 0;
+        }
 
-/* SEARCH */
+        .section-ai {
+            color: var(--accent-blue);
+        }
 
-.archive-search{
-display:flex;
-align-items:center;
-gap:8px;
-padding:9px 16px;
-border-radius:999px;
-background:#0f172a;
-border:1px solid #334155;
-margin-bottom:16px;
-}
+        .section-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            margin-bottom: 22px;
+            max-width: 760px;
+        }
 
-.archive-search input{
-flex:1;
-background:transparent;
-border:none;
-color:#fff;
-}
+        .manip-counter {
+            font-size: 11px;
+            color: var(--text-muted);
+            white-space: nowrap;
+            margin-bottom: 6px;
+        }
 
-/* LIST */
+        .manip-counter-label {
+            opacity: 0.8;
+            margin-right: 4px;
+        }
 
-.archive-list{
-display:flex;
-flex-direction:column;
-gap:12px;
-max-height:520px;
-overflow-y:auto;
-}
+        .manip-counter-value {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--accent-blue);
+        }
 
-.archive-item{
-border-radius:18px;
-background:var(--bg-panel-soft);
-border:1px solid #1f2937;
-transition:.2s;
-}
+        @media (max-width: 720px) {
+            .archive-top-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .manip-counter {
+                margin-bottom: 0;
+            }
+        }
 
-.archive-item:hover{
-transform:translateY(-2px);
-border-color:var(--accent-blue);
-}
+        /* Фильтры: поиск + статусы */
 
-.archive-summary{
-padding:16px 18px;
-display:grid;
-grid-template-columns:1fr 3fr 80px 120px 90px;
-gap:12px;
-align-items:center;
-}
+        .archive-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+            margin-bottom: 16px;
+        }
 
-.cell-title{line-height:1.5;}
+        .archive-search {
+            flex: 1 1 260px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 16px;
+            border-radius: 999px;
+            background-color: rgba(15,23,42,0.96);
+            border: 1px solid rgba(51,65,85,0.9);
+        }
 
-.cell-index{
-font-family:'Montserrat';
-font-weight:700;
-}
+        .archive-search-icon {
+            font-size: 15px;
+            opacity: 0.9;
+        }
 
-.index-red{color:var(--accent-red);}
-.index-yellow{color:var(--accent-yellow);}
-.index-green{color:var(--accent-green);}
+        .archive-search input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            color: #e5e7eb;
+            font-size: 14px;
+        }
 
-.cell-category{
-font-size:12px;
-padding:4px 10px;
-border-radius:999px;
-border:1px solid #374151;
-}
+        .archive-search input::placeholder {
+            color: rgba(148,163,184,0.85);
+        }
 
-.more-btn{
-padding:6px 14px;
-border-radius:999px;
-background:transparent;
-border:1px solid #64748b;
-color:#fff;
-font-size:11px;
-cursor:pointer;
-}
+        .status-chips-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: auto;
+        }
 
-.archive-details{
-display:none;
-padding:14px 18px;
-border-top:1px solid #1f2937;
-font-size:13px;
-}
+        .status-chips {
+            display: inline-flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
 
-.archive-details.open{display:block;}
+        .chip {
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            border: 1px solid rgba(51,65,85,0.9);
+            background-color: rgba(15,23,42,0.96);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
 
-.details-article{
-margin-top:8px;
-padding:10px 12px;
-border-radius:10px;
-background:#0f172a;
-border:1px solid #334155;
-}
+        .chip:hover {
+            border-color: var(--accent-blue);
+            color: #e5e7eb;
+        }
 
-.source-btn{
-display:inline-block;
-margin-top:8px;
-padding:6px 14px;
-border-radius:999px;
-border:1px solid var(--accent-blue);
-color:var(--accent-blue);
-text-decoration:none;
-font-size:11px;
-}
+        .chip-active {
+            background: radial-gradient(circle at top, rgba(34,211,238,0.28), transparent 70%);
+            border-color: rgba(56,189,248,0.9);
+            color: #f9fafb;
+            box-shadow: 0 0 18px rgba(56,189,248,0.45);
+        }
 
-.source-btn:hover{
-background:rgba(34,211,238,.1);
-}
+        @media (max-width: 720px) {
+            .status-chips-wrapper {
+                width: 100%;
+                justify-content: flex-start;
+                margin-left: 0;
+            }
+        }
 
-/* MOBILE LIST */
+        /* Заголовки колонок */
 
-@media(max-width:700px){
+        .archive-header-row {
+            display: grid;
+            grid-template-columns: 0.9fr 0.8fr 2.4fr 0.7fr 0.9fr 0.8fr;
+            gap: 12px;
+            padding: 10px 16px;
+            margin-top: 8px;
+            margin-bottom: 6px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--text-muted);
+            border-bottom: 1px solid rgba(31,41,55,0.9);
+        }
 
-.archive-summary{
-grid-template-columns:1fr;
-row-gap:8px;
-}
+        @media (max-width: 900px) {
+            .archive-header-row {
+                display: none;
+            }
+        }
 
-.more-btn{
-align-self:flex-start;
-}
+        /* Строки списка + прокрутка */
 
-}
+        .archive-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 520px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
 
-</style>
+        /* Кастомный скроллбар (мягкий) */
+        .archive-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        .archive-list::-webkit-scrollbar-track {
+            background: rgba(15,23,42,0.8);
+        }
+        .archive-list::-webkit-scrollbar-thumb {
+            background: rgba(51,65,85,0.9);
+            border-radius: 999px;
+        }
+        .archive-list::-webkit-scrollbar-thumb:hover {
+            background: rgba(71,85,105,1);
+        }
+
+        .archive-item {
+            position: relative;
+            border-radius: 18px;
+            background:
+                radial-gradient(circle at bottom, rgba(34,211,238,0.16), transparent 70%),
+                var(--bg-panel-soft);
+            border: 1px solid rgba(31,41,55,0.9);
+            box-shadow:
+                0 16px 40px rgba(0,0,0,0.85),
+                0 -4px 14px rgba(15,23,42,0.9);
+            overflow: hidden;
+            transition:
+                border-color 0.22s ease-out,
+                box-shadow 0.22s ease-out,
+                transform 0.22s ease-out,
+                opacity 0.25s ease-out;
+            opacity: 1;
+        }
+
+        .archive-item:hover {
+            transform: translateY(-2px);
+            border-color: rgba(56,189,248,0.9);
+            box-shadow:
+                0 26px 70px rgba(0,0,0,1),
+                0 0 34px rgba(56,189,248,0.45);
+        }
+
+        .archive-summary {
+            padding: 14px 18px;
+            display: grid;
+            grid-template-columns: 0.9fr 0.8fr 2.4fr 0.7fr 0.9fr 0.8fr;
+            gap: 12px;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        @media (max-width: 900px) {
+            .archive-summary {
+                grid-template-columns: 1.4fr 2.4fr;
+                grid-template-rows: auto auto auto;
+                row-gap: 6px;
+            }
+
+            .cell-media { grid-column: 1 / 2; grid-row: 1; }
+            .cell-time { grid-column: 2 / 3; grid-row: 1; justify-self: flex-end; font-size: 11px; }
+            .cell-title { grid-column: 1 / 3; grid-row: 2; }
+            .cell-index { grid-column: 1 / 2; grid-row: 3; }
+            .cell-category { grid-column: 2 / 3; grid-row: 3; justify-self: flex-start; }
+            .cell-button { display: none; }
+        }
+
+        .cell-media {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .cell-time {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .cell-title {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #e5e7eb;
+        }
+
+        .cell-index {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .index-red { color: var(--accent-red); }
+        .index-yellow { color: var(--accent-yellow); }
+        .index-green { color: var(--accent-green); }
+
+        .cell-category {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(75,85,99,0.9);
+            background-color: rgba(15,23,42,0.96);
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .cell-category.danger {
+            border-color: rgba(239,68,68,0.85);
+            color: #fecaca;
+        }
+
+        .cell-category.risky {
+            border-color: rgba(234,179,8,0.85);
+            color: #fef3c7;
+        }
+
+        .cell-category.neutral {
+            border-color: rgba(22,163,74,0.75);
+            color: #bbf7d0;
+        }
+
+        .cell-button {
+            text-align: right;
+        }
+
+        .more-btn {
+            padding: 6px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(148,163,184,0.9);
+            background-color: rgba(15,23,42,0.96);
+            color: #e5e7eb;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            cursor: pointer;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+
+        .more-btn:hover {
+            border-color: rgba(56,189,248,0.9);
+            color: var(--accent-blue);
+        }
+
+        .archive-details {
+            border-top: 1px solid rgba(31,41,55,0.9);
+            padding: 10px 18px 12px 18px;
+            font-size: 12px;
+            color: var(--text-muted);
+            display: none;
+            background: radial-gradient(circle at top, rgba(15,23,42,0.9), transparent 70%);
+        }
+
+        .archive-details.open {
+            display: block;
+        }
+
+        .details-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .tag-pill {
+            font-size: 11px;
+            padding: 3px 9px;
+            border-radius: 999px;
+            background-color: rgba(15,23,42,0.95);
+            border: 1px solid rgba(75,85,99,0.9);
+        }
+
+        .tag-pill.alert {
+            border-color: rgba(239,68,68,0.9);
+            color: #fecaca;
+        }
+
+        .tag-pill.soft {
+            border-color: rgba(56,189,248,0.7);
+            color: #e0f2fe;
+        }
+
+        .details-text {
+            margin-top: 4px;
+            line-height: 1.6;
+        }
+
+        .details-meta {
+            margin-top: 6px;
+            font-size: 11px;
+            opacity: 0.85;
+        }
+
+        /* Анимации обновления */
+
+        .archive-item.fade-out {
+            opacity: 0;
+            transform: translateY(4px);
+        }
+
+        .archive-item.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Подпись о режиме реального времени */
+
+        .realtime-note {
+            font-size: 11px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .rt-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background-color: var(--accent-green);
+            box-shadow: 0 0 12px rgba(34,197,94,0.85);
+            animation: pulse 1.4s ease-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.6; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                padding-top: 28px;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
 <header>
-<div class="header-inner">
+    <div class="header-inner">
+        <div class="navbar">
+            <div class="brand-title">МЕДИА.<span>СТРАЖ</span></div>
 
-<div class="navbar">
+            <nav>
+                <div class="nav-links">
+                    <a href="index.html"><span>РЕЙТИНГ</span></a>
+                    <a href="about.html"><span>О ПРОЕКТЕ</span></a>
+                    <a href="method.html"><span>МЕТОДИКА</span></a>
+                    <a href="archive.html" class="nav-active"><span>АРХИВ</span></a>
+                </div>
+            </nav>
 
-<div class="brand-title">МЕДИА.<span>СТРАЖ</span></div>
-
-<nav>
-<div class="nav-links">
-<a href="index.html">Рейтинг</a>
-<a href="about.html">О проекте</a>
-<a href="method.html">Методика</a>
-<a href="archive.html" class="nav-active">Архив</a>
-</div>
-</nav>
-
-<a class="support-button" href="help.html">Поддержать</a>
-
-</div>
-
-<div class="header-glow"></div>
-</div>
+            <a class="support-button desktop-support" href="help.html">ПОДДЕРЖАТЬ</a>
+        </div>
+        <div class="header-glow"></div>
+    </div>
 </header>
 
 <div class="container">
 
-<h2 class="section-title">Архив сообщений <span class="section-ai">ИИ</span></h2>
+    <!-- СЕКЦИЯ АРХИВА -->
+    <section class="archive-section">
 
-<p class="section-subtitle">
-Используйте поиск, чтобы посмотреть примеры сообщений и анализ манипулятивных приёмов.
-</p>
+        <div class="archive-top-row">
+            <h2 class="section-title">Архив сообщений <span class="section-ai">ИИ</span></h2>
+            <div class="manip-counter">
+                <span class="manip-counter-label">Манипулятивных сообщений в выборке:</span>
+                <span class="manip-counter-value" id="manipCounter">0</span>
+            </div>
+        </div>
 
-<div class="archive-search">
-🔍
-<input id="searchInput" placeholder="Поиск по СМИ или заголовку">
-</div>
+        <p class="section-subtitle">
+            Используйте поиск и фильтры, чтобы посмотреть, как разные издания формулируют свою повестку:
+            от откровенно <strong>опасных</strong> сообщений до спорных и почти нейтральных.
+        </p>
 
-<div class="archive-list" id="archiveList"></div>
+        <div class="archive-filters">
+            <div class="archive-search">
+                <span class="archive-search-icon">🔍</span>
+                <input id="searchInput" type="text" placeholder="Найти по СМИ, заголовку или типу манипуляции">
+            </div>
+
+            <div class="status-chips-wrapper">
+                <div class="status-chips">
+                    <button class="chip chip-active" data-status="all">Все</button>
+                    <button class="chip" data-status="danger">Опасные</button>
+                    <button class="chip" data-status="risky">Спорные</button>
+                    <button class="chip" data-status="neutral">Нейтральные</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="archive-header-row">
+            <div>СМИ</div>
+            <div>Время</div>
+            <div>Сообщение</div>
+            <div>Индекс</div>
+            <div>Категория</div>
+            <div></div>
+        </div>
+
+        <div class="archive-list" id="archiveList">
+            <!-- Строки будут заполнены скриптом -->
+        </div>
+
+        <div class="realtime-note" id="rtNote">
+            <span class="rt-dot"></span>
+            <span id="rtText">Поток обновляется в демо-режиме каждые несколько секунд.</span>
+        </div>
+    </section>
 
 </div>
 
 <script>
+    // Демо-данные сообщений
+    const messages = [
+        {
+            media: "«Пример.ТВ»",
+            time: "только что",
+            title: "«Власти в панике: эксперты предупреждают о катастрофе уже завтра»",
+            index: 82,
+            indexClass: "index-red",
+            category: "Опасное сообщение",
+            status: "danger",
+            tags: ["давление страхом", "апокалиптический тон", "отсутствие фактов"],
+            explain: "Модель фиксирует сочетание гипербол («катастрофа») и срочного тайм-прессинга («уже завтра»), при этом в тексте нет конкретных данных и ссылок на источники.",
+            meta: "Категория: политика · Формат: заголовок к новостному сюжету"
+        },
+        {
+            media: "«Новости.РУ»",
+            time: "1 минута назад",
+            title: "«Экономика рухнула: цены взлетели до небес из-за нового решения»",
+            index: 76,
+            indexClass: "index-red",
+            category: "Опасное сообщение",
+            status: "danger",
+            tags: ["гиперболы", "поиск виноватых", "оценочная лексика"],
+            explain: "Слова «рухнула» и «до небес» отмечены как гиперболы. Виновник назван, но отсутствует разбор альтернативных факторов и конкретные цифры.",
+            meta: "Категория: экономика · Формат: новостной текст"
+        },
+        {
+            media: "«Город Online»",
+            time: "3 минуты назад",
+            title: "«По данным опроса, большинство горожан счастливы»",
+            index: 48,
+            indexClass: "index-yellow",
+            category: "Спорное сообщение",
+            status: "risky",
+            tags: ["обобщение", "неполная ссылка на источник"],
+            explain: "Упоминается «опрос», но нет информации о методике и выборке. Формулировка «большинство горожан» помечается как потенциальное обобщение.",
+            meta: "Категория: общество · Формат: заметка"
+        },
+        {
+            media: "«Агентство.Инфо»",
+            time: "5 минут назад",
+            title: "«Минфин опубликовал отчёт о росте доходов бюджета за год»",
+            index: 18,
+            indexClass: "index-green",
+            category: "Нейтральное сообщение",
+            status: "neutral",
+            tags: ["официальный источник", "описание факта"],
+            explain: "В заголовке нет оценочной лексики, эмоциональных триггеров и скрытой причинности. Описывается факт публикации отчёта.",
+            meta: "Категория: экономика · Формат: новостная заметка"
+        },
+        {
+            media: "«Полит.Лента»",
+            time: "8 минут назад",
+            title: "«Паникёры снова пытаются сорвать стабильность в стране»",
+            index: 84,
+            indexClass: "index-red",
+            category: "Опасное сообщение",
+            status: "danger",
+            tags: ["образ врага", "ярлык «паникёры»", "поляризация"],
+            explain: "Текст строит чёткое разделение «мы — они», использует ярлык «паникёры» и не уточняет, о ком именно речь.",
+            meta: "Категория: политика · Формат: авторская колонка"
+        },
+        {
+            media: "«Эксперт+»",
+            time: "10 минут назад",
+            title: "«После нового закона люди массово беднеют»",
+            index: 61,
+            indexClass: "index-yellow",
+            category: "Спорное сообщение",
+            status: "risky",
+            tags: ["ложная причинность", "обобщение"],
+            explain: "Фраза «после нового закона» подаётся как причина «массового обеднения», без ссылки на статистику и альтернативные факторы.",
+            meta: "Категория: экономика · Формат: аналитическая статья"
+        },
+        {
+            media: "«Репортёр»",
+            time: "12 минут назад",
+            title: "«90% жителей поддержали реформу, показал опрос»",
+            index: 54,
+            indexClass: "index-yellow",
+            category: "Спорное сообщение",
+            status: "risky",
+            tags: ["псевдостатистика", "нет источника"],
+            explain: "Указана точная цифра поддержки, но отсутствует ссылка на исследование и методику опроса.",
+            meta: "Категория: общество · Формат: новость"
+        },
+        {
+            media: "«Независимый взгляд»",
+            time: "15 минут назад",
+            title: "«Минфин опубликовал подробную расшифровку расходов бюджета»",
+            index: 22,
+            indexClass: "index-green",
+            category: "Нейтральное сообщение",
+            status: "neutral",
+            tags: ["конкретное действие", "отсутствие оценки"],
+            explain: "Сообщение фиксирует факт и не делает дополнительных оценочных выводов.",
+            meta: "Категория: экономика · Формат: новость"
+        }
+    ];
 
-const messages=[
+    const archiveList = document.getElementById('archiveList');
+    const searchInput = document.getElementById('searchInput');
+    const chips = document.querySelectorAll('.chip');
+    const rtText = document.getElementById('rtText');
+    const manipCounterEl = document.getElementById('manipCounter');
 
-{
-media:"Северный Вестник",
-title:"«Власти в панике: эксперты предупреждают о катастрофе уже завтра»",
-index:82,
-indexClass:"index-red",
-category:"Опасное",
-text:"Власти оказались не готовы к последствиям — уже завтра страну может ждать катастрофа.",
-explain:"Используется апокалиптическая риторика и срочность без фактической базы.",
-link:"https://example.com"
-},
+    let currentStatusFilter = 'all';
+    let currentSearch = '';
+    let visiblePool = [...messages]; // текущая выборка для отображения и ротации
+    let lastUpdateIdx = 0;
 
-{
-media:"Континент24",
-title:"«Экономика рухнула: цены взлетели до небес»",
-index:76,
-indexClass:"index-red",
-category:"Опасное",
-text:"Экономика буквально рухнула после нового решения — цены уже взлетели до небес.",
-explain:"Гиперболы и эмоциональные формулировки создают ощущение кризиса.",
-link:"https://example.com"
-},
+    function createArchiveItem(msg) {
+        const item = document.createElement('article');
+        item.className = 'archive-item';
 
-{
-media:"Городской сигнал",
-title:"«Большинство жителей поддержали инициативу»",
-index:48,
-indexClass:"index-yellow",
-category:"Спорное",
-text:"Большинство жителей города заявили о поддержке инициативы.",
-explain:"Не указана методика опроса и выборка.",
-link:"https://example.com"
-},
+        item.innerHTML = `
+            <div class="archive-summary">
+                <div class="cell-media">${msg.media}</div>
+                <div class="cell-time">${msg.time}</div>
+                <div class="cell-title">${msg.title}</div>
+                <div class="cell-index ${msg.indexClass}">${msg.index}</div>
+                <div class="cell-category ${msg.status === 'danger' ? 'danger' : msg.status === 'risky' ? 'risky' : 'neutral'}">
+                    ${msg.category}
+                </div>
+                <div class="cell-button">
+                    <button class="more-btn">Подробнее</button>
+                </div>
+            </div>
+            <div class="archive-details">
+                <div class="details-row">
+                    ${msg.tags.map(tag => `
+                        <span class="tag-pill ${msg.status === 'danger' ? 'alert' : 'soft'}">${tag}</span>
+                    `).join('')}
+                </div>
+                <div class="details-text">${msg.explain}</div>
+                <div class="details-meta">${msg.meta}</div>
+            </div>
+        `;
 
-{
-media:"Агентство фактов",
-title:"«Минфин опубликовал отчёт о доходах бюджета»",
-index:18,
-indexClass:"index-green",
-category:"Нейтральное",
-text:"Министерство финансов опубликовало годовой отчёт о доходах бюджета.",
-explain:"Описывается факт без эмоциональной оценки.",
-link:"https://example.com"
-}
+        const summary = item.querySelector('.archive-summary');
+        const btn = item.querySelector('.more-btn');
+        const details = item.querySelector('.archive-details');
 
-];
+        function toggleDetails(e) {
+            if (e.target.tagName === 'BUTTON' || e.target === summary || e.target.closest('.archive-summary')) {
+                e.preventDefault();
+                details.classList.toggle('open');
+            }
+        }
 
-const list=document.getElementById("archiveList");
-const searchInput=document.getElementById("searchInput");
+        summary.addEventListener('click', toggleDetails);
+        if (btn) btn.addEventListener('click', toggleDetails);
 
-function createItem(msg){
+        return item;
+    }
 
-const el=document.createElement("article");
-el.className="archive-item";
+    function updateCounter() {
+        if (!manipCounterEl) return;
+        const manipCount = visiblePool.filter(m => m.status === 'danger' || m.status === 'risky').length;
+        manipCounterEl.textContent = manipCount;
+    }
 
-el.innerHTML=`
+    function applyFilters() {
+        const term = currentSearch.trim().toLowerCase();
 
-<div class="archive-summary">
+        visiblePool = messages.filter(msg => {
+            const matchStatus = currentStatusFilter === 'all' || msg.status === currentStatusFilter;
+            const fullText = (msg.media + ' ' + msg.title + ' ' + msg.category + ' ' + msg.tags.join(' ') + ' ' + msg.meta).toLowerCase();
+            const matchSearch = !term || fullText.includes(term);
+            return matchStatus && matchSearch;
+        });
 
-<div>${msg.media}</div>
+        updateCounter();
+        renderList(true);
+    }
 
-<div class="cell-title">${msg.title}</div>
+    function renderList(withAnimation) {
+        archiveList.innerHTML = '';
 
-<div class="cell-index ${msg.indexClass}">${msg.index}</div>
+        const toShow = visiblePool;
+        toShow.forEach(msg => {
+            const item = createArchiveItem(msg);
+            if (withAnimation) {
+                item.classList.add('fade-in');
+                setTimeout(() => item.classList.remove('fade-in'), 350);
+            }
+            archiveList.appendChild(item);
+        });
 
-<div class="cell-category">${msg.category}</div>
+        if (!toShow.length) {
+            const empty = document.createElement('div');
+            empty.style.fontSize = '13px';
+            empty.style.color = 'var(--text-muted)';
+            empty.style.marginTop = '8px';
+            empty.textContent = 'Сообщения по заданным условиям не найдены.';
+            archiveList.appendChild(empty);
+        }
+    }
 
-<button class="more-btn">Подробнее</button>
+    // Живая "ротация" одной строки
+    function rotateOneRow() {
+        const items = archiveList.querySelectorAll('.archive-item');
+        if (!items.length || visiblePool.length <= 1) return;
 
-</div>
+        const idx = lastUpdateIdx % items.length;
+        lastUpdateIdx++;
 
-<div class="archive-details">
+        const targetItem = items[idx];
+        targetItem.classList.add('fade-out');
 
-<p><strong>Анализ:</strong> ${msg.explain}</p>
+        setTimeout(() => {
+            const replacementIdx = Math.floor(Math.random() * visiblePool.length);
+            const msg = visiblePool[replacementIdx];
+            const newItem = createArchiveItem(msg);
+            newItem.classList.add('fade-in');
 
-<div class="details-article">
-${msg.text}
-</div>
+            archiveList.replaceChild(newItem, targetItem);
 
-<a class="source-btn" href="${msg.link}" target="_blank">
-Открыть оригинальный материал
-</a>
+            setTimeout(() => newItem.classList.remove('fade-in'), 350);
 
-</div>
-`;
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+            rtText.textContent = 'Последнее обновление списка — ' + timeStr + ' (демо-режим).';
+        }, 260);
+    }
 
-const btn=el.querySelector(".more-btn");
-const details=el.querySelector(".archive-details");
+    // Обработчики фильтров
+    chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+            chips.forEach(c => c.classList.remove('chip-active'));
+            chip.classList.add('chip-active');
+            currentStatusFilter = chip.getAttribute('data-status');
+            applyFilters();
+        });
+    });
 
-btn.onclick=()=>details.classList.toggle("open");
+    searchInput.addEventListener('input', (e) => {
+        currentSearch = e.target.value;
+        applyFilters();
+    });
 
-return el;
-}
-
-function render(listData){
-
-list.innerHTML="";
-
-listData.forEach(m=>{
-list.appendChild(createItem(m));
-});
-
-}
-
-searchInput.addEventListener("input",e=>{
-
-const term=e.target.value.toLowerCase();
-
-const filtered=messages.filter(m=>
-(m.media+m.title).toLowerCase().includes(term)
-);
-
-render(filtered);
-
-});
-
-render(messages);
-
+    // Инициализация
+    applyFilters();
+    // Интервал для живого обновления
+    setInterval(rotateOneRow, 5000);
 </script>
 
 </body>
