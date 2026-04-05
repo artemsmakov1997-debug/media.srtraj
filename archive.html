@@ -18,7 +18,6 @@
       --text-muted: #8b8d96;
 
       --accent-blue: #22d3ee;
-      --accent-blue-soft: rgba(34,211,238,0.25);
       --accent-cyan: #14b8a6;
       --accent-red: #ef4444;
       --accent-yellow: #eab308;
@@ -42,7 +41,6 @@
 
     body {
       margin: 0;
-      padding: 0;
       min-height: 100vh;
       font-family: "Roboto", sans-serif;
       color: var(--text-main);
@@ -64,8 +62,6 @@
       margin: 0 auto;
       padding: 20px 16px 72px;
     }
-
-    /* HEADER */
 
     header {
       position: sticky;
@@ -216,8 +212,6 @@
       text-transform: uppercase;
     }
 
-    /* SECTION */
-
     .archive-section {
       margin: 18px auto 0;
     }
@@ -315,20 +309,26 @@
       flex: 1 1 320px;
       display: flex;
       align-items: center;
+      height: 48px;
       min-height: 48px;
       padding: 0 14px;
       border-radius: 14px;
       background: rgba(15,23,42,.95);
       border: 1px solid rgba(51,65,85,.9);
       box-shadow: inset 0 1px 0 rgba(255,255,255,.03);
+      overflow: hidden;
     }
 
     .archive-search input {
       width: 100%;
+      height: 100%;
       border: none;
       background: transparent;
       color: #e5e7eb;
       font-size: .92rem;
+      line-height: 1;
+      padding: 0;
+      margin: 0;
     }
 
     .archive-search input::placeholder {
@@ -392,7 +392,7 @@
     .archive-list {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
       max-height: 560px;
       overflow-y: auto;
       padding-right: 4px;
@@ -537,35 +537,6 @@
       color: var(--accent-blue);
     }
 
-    .archive-preview-row {
-      display: none;
-      padding: 0 18px 14px;
-      gap: 8px;
-      flex-wrap: wrap;
-      border-top: 1px solid rgba(31,41,55,.7);
-      background: linear-gradient(180deg, rgba(255,255,255,.015), transparent);
-    }
-
-    .tag-pill {
-      font-size: .68rem;
-      padding: 5px 9px;
-      border-radius: 999px;
-      background-color: rgba(15,23,42,.95);
-      border: 1px solid rgba(75,85,99,.9);
-      color: #d1d5db;
-      line-height: 1.25;
-    }
-
-    .tag-pill.alert {
-      border-color: rgba(239,68,68,.9);
-      color: #fecaca;
-    }
-
-    .tag-pill.soft {
-      border-color: rgba(56,189,248,.7);
-      color: #e0f2fe;
-    }
-
     .archive-item.fade-out {
       opacity: 0;
       transform: translateY(4px);
@@ -611,8 +582,6 @@
       font-size: .92rem;
       background: rgba(15,23,42,.55);
     }
-
-    /* MODAL */
 
     .message-modal-overlay {
       position: fixed;
@@ -775,6 +744,33 @@
       color: var(--text-muted);
     }
 
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      max-width: 100%;
+      min-height: 28px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: rgba(15,23,42,.95);
+      border: 1px solid rgba(75,85,99,.9);
+      color: #d1d5db;
+      font-size: .68rem;
+      line-height: 1.25;
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    .tag-pill.alert {
+      border-color: rgba(239,68,68,.9);
+      color: #fecaca;
+    }
+
+    .tag-pill.soft {
+      border-color: rgba(56,189,248,.7);
+      color: #e0f2fe;
+    }
+
     .highlight-word {
       padding: 0 .18em;
       border-radius: .3em;
@@ -789,89 +785,51 @@
       box-shadow: inset 0 0 0 1px rgba(234,179,8,.18);
     }
 
-    /* MOBILE */
-
     @media (max-width: 900px) {
       .archive-header-row {
         display: none;
       }
 
       .archive-summary {
-        grid-template-columns: 1fr auto;
+        grid-template-columns: minmax(0, 1fr) auto;
         grid-template-areas:
           "media time"
           "title title"
-          "meta meta"
+          "meta1 meta2"
           "button button";
-        row-gap: 10px;
+        row-gap: 8px;
+        column-gap: 10px;
       }
 
-      .cell-media { grid-area: media; }
+      .cell-media {
+        grid-area: media;
+      }
+
       .cell-time {
         grid-area: time;
         justify-self: end;
         text-align: right;
         font-size: .75rem;
       }
-      .cell-title { grid-area: title; }
+
+      .cell-title {
+        grid-area: title;
+      }
+
+      .cell-index {
+        grid-area: meta1;
+        align-self: center;
+      }
+
+      .cell-category {
+        grid-area: meta2;
+        justify-self: end;
+        align-self: center;
+      }
+
       .cell-button {
         grid-area: button;
         text-align: left;
-      }
-
-      .cell-index,
-      .cell-category {
-        display: inline-flex;
-        align-items: center;
-      }
-
-      .archive-summary .cell-index {
-        margin-right: 8px;
-      }
-
-      .archive-summary .cell-category {
-        margin-top: 2px;
-      }
-
-      .archive-summary .cell-index,
-      .archive-summary .cell-category {
-        width: fit-content;
-      }
-
-      .archive-summary .cell-index::before {
-        content: "Индекс ";
-        margin-right: 6px;
-        font-family: "Roboto", sans-serif;
-        font-size: .76rem;
-        font-weight: 400;
-        color: var(--text-muted);
-      }
-
-      .archive-summary > .cell-index,
-      .archive-summary > .cell-category {
-        display: inline-flex;
-      }
-
-      .archive-summary {
-        position: relative;
-      }
-
-      .archive-summary::after {
-        content: "";
-        grid-area: meta;
-      }
-
-      .archive-summary .cell-index {
-        grid-column: 1 / 2;
-      }
-
-      .archive-summary .cell-category {
-        grid-column: 2 / 3;
-        justify-self: start;
-      }
-
-      .archive-preview-row {
-        display: flex;
       }
 
       .modal-meta-grid {
@@ -892,7 +850,7 @@
       .archive-top-row {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+        gap: 8px;
       }
 
       .manip-counter {
@@ -904,14 +862,26 @@
         text-align: left;
       }
 
+      .section-subtitle {
+        margin-bottom: 14px;
+      }
+
       .archive-filters {
         flex-direction: column;
         align-items: stretch;
+        gap: 10px;
       }
 
       .archive-search,
       .status-chips-wrapper {
         width: 100%;
+      }
+
+      .archive-search {
+        flex: 0 0 auto;
+        height: 52px;
+        min-height: 52px;
+        border-radius: 16px;
       }
 
       .status-chips-wrapper {
@@ -922,10 +892,12 @@
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         width: 100%;
+        gap: 8px;
       }
 
       .chip {
         width: 100%;
+        min-height: 42px;
         padding: 0 10px;
         font-size: .68rem;
         letter-spacing: .1em;
@@ -935,6 +907,7 @@
         max-height: none;
         overflow: visible;
         padding-right: 0;
+        gap: 8px;
       }
 
       .archive-item {
@@ -942,21 +915,46 @@
       }
 
       .archive-summary {
-        padding: 14px;
+        padding: 12px 12px 10px;
+        row-gap: 7px;
+        column-gap: 8px;
       }
 
       .cell-media {
-        font-size: .86rem;
+        font-size: .85rem;
+        line-height: 1.3;
+      }
+
+      .cell-time {
+        font-size: .72rem;
+        line-height: 1.2;
       }
 
       .cell-title {
-        font-size: .88rem;
-        line-height: 1.55;
+        font-size: .85rem;
+        line-height: 1.45;
+      }
+
+      .cell-index {
+        font-size: .92rem;
+        line-height: 1;
+      }
+
+      .cell-category {
+        font-size: .66rem;
+        padding: 4px 9px;
+        min-height: 26px;
+      }
+
+      .cell-button {
+        margin-top: 2px;
       }
 
       .more-btn {
         width: 100%;
-        min-height: 42px;
+        min-height: 38px;
+        font-size: .66rem;
+        letter-spacing: .12em;
       }
 
       .message-modal-overlay {
@@ -980,6 +978,10 @@
 
       .modal-meta-grid {
         grid-template-columns: 1fr;
+      }
+
+      .message-tags {
+        gap: 6px;
       }
 
       .message-full-text {
@@ -1108,7 +1110,7 @@
 
       <div class="archive-list" id="archiveList"></div>
 
-      <div class="realtime-note" id="rtNote">
+      <div class="realtime-note">
         <span class="rt-dot"></span>
         <span id="rtText">Поток обновляется в демо-режиме каждые несколько секунд.</span>
       </div>
@@ -1394,11 +1396,6 @@
         <div class="cell-button">
           <button class="more-btn" type="button">Подробнее</button>
         </div>
-      </div>
-      <div class="archive-preview-row">
-        ${msg.tags.slice(0, 3).map(tag => `
-          <span class="tag-pill ${msg.status === "danger" ? "alert" : "soft"}">${escapeHtml(tag)}</span>
-        `).join("")}
       </div>
     `;
 
