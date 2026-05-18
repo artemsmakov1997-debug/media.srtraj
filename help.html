@@ -3,36 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>МЕДИА.СТРАЖ | Поддержка</title>
+  <title>МЕДИА.СТРАЖ — Поддержка проекта</title>
+  <meta name="description" content="Поддержите независимый проект «МЕДИА.СТРАЖ». Разовый донат или ежемесячная подписка — любая помощь сохраняет беспристрастность анализа." />
+  <meta property="og:title" content="МЕДИА.СТРАЖ — Поддержка проекта" />
+  <meta property="og:description" content="Помогите независимому рейтингу российских СМИ оставаться свободным от рекламных и государственных интересов." />
+  <meta property="og:type" content="website" />
 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-body: #05070b;
-      --bg-panel: #12141b;
+      --bg-body:       #05070b;
+      --bg-panel:      #12141b;
       --bg-panel-soft: #151821;
-      --border-color: #2c2f3b;
-
-      --text-main: #ffffff;
-      --text-muted: #8b8d96;
-
-      --accent-blue: #22d3ee;
-      --accent-cyan: #14b8a6;
-      --accent-red: #ef4444;
+      --border-color:  #2c2f3b;
+      --text-main:     #ffffff;
+      --text-muted:    #8b8d96;
+      --accent-blue:   #22d3ee;
+      --accent-cyan:   #14b8a6;
+      --accent-red:    #ef4444;
       --accent-yellow: #eab308;
-      --accent-gold: #facc15;
+      --accent-gold:   #facc15;
       --accent-orange: #f97316;
-      --accent-green: #22c55e;
-
-      --shadow-card: 0 16px 40px rgba(0,0,0,.55);
-      --radius-lg: 20px;
-      --radius-md: 16px;
-      --radius-sm: 12px;
-      --container: 1200px;
+      --accent-green:  #22c55e;
+      --shadow-card:   0 16px 40px rgba(0,0,0,.55);
+      --radius-lg:     20px;
+      --radius-md:     16px;
+      --radius-sm:     12px;
+      --container:     1200px;
     }
 
-    * { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
 
     body {
@@ -41,17 +42,15 @@
       font-family: "Roboto", sans-serif;
       color: var(--text-main);
       background:
-        radial-gradient(circle at 20% 0%, rgba(34,211,238,.14), transparent 25%),
-        radial-gradient(circle at 80% 10%, rgba(239,68,68,.08), transparent 25%),
-        radial-gradient(circle at bottom, rgba(15,23,42,.7), transparent 60%),
+        radial-gradient(circle at 20% 0%,  rgba(34,211,238,.14), transparent 25%),
+        radial-gradient(circle at 80% 10%, rgba(239,68,68,.08),  transparent 25%),
+        radial-gradient(circle at bottom,  rgba(15,23,42,.7),    transparent 60%),
         var(--bg-body);
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
 
-    button, a, input {
-      -webkit-tap-highlight-color: transparent;
-    }
+    button, a, input { -webkit-tap-highlight-color: transparent; }
 
     .container {
       width: min(100%, var(--container));
@@ -59,13 +58,10 @@
       padding: 20px 16px 72px;
     }
 
-    /* HEADER */
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-    }
+    /* ══════════════════════════════════
+       HEADER
+    ══════════════════════════════════ */
+    header { position: sticky; top: 0; z-index: 40; }
 
     .header-inner {
       background: linear-gradient(180deg, rgba(15,23,42,.96), rgba(15,23,42,.88));
@@ -96,7 +92,6 @@
       line-height: 1.15;
       max-width: 170px;
     }
-
     .brand-title span { color: var(--accent-blue); }
 
     .header-glow {
@@ -113,38 +108,34 @@
     }
 
     .burger {
-      width: 44px;
-      height: 44px;
+      width: 44px; height: 44px;
       border-radius: 12px;
       border: 1px solid rgba(148,163,184,.35);
       background: rgba(15,23,42,.65);
       display: inline-flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: 5px;
       padding: 10px;
       cursor: pointer;
       box-shadow: 0 8px 20px rgba(0,0,0,.4);
     }
-
     .burger span {
       display: block;
-      width: 100%;
-      height: 2px;
-      margin: 3px 0;
+      width: 100%; height: 2px;
       background: rgba(229,231,235,.95);
       border-radius: 999px;
       transition: .2s ease;
     }
-
-    .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-    .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     .nav-links {
       position: absolute;
       top: calc(100% + 8px);
-      right: 16px;
-      left: 16px;
+      right: 16px; left: 16px;
       display: none;
       flex-direction: column;
       gap: 8px;
@@ -155,14 +146,12 @@
       box-shadow: 0 24px 60px rgba(0,0,0,.65);
       backdrop-filter: blur(14px);
     }
-
     .nav-links.open { display: flex; }
 
     .nav-link,
     .support-button-mobile {
       display: flex;
       align-items: center;
-      justify-content: space-between;
       min-height: 48px;
       padding: 12px 14px;
       border-radius: 12px;
@@ -171,19 +160,17 @@
       letter-spacing: .12em;
       font-size: .82rem;
     }
-
     .nav-link {
       color: var(--text-muted);
       background: rgba(15,23,42,.65);
       border: 1px solid rgba(30,41,59,.85);
     }
-
+    /* FIX 3: nav-active на текущей странице */
     .nav-link.nav-active {
       color: #f9fafb;
       border-color: rgba(45,212,191,.7);
       box-shadow: 0 0 0 1px rgba(45,212,191,.25) inset;
     }
-
     .support-button-mobile,
     .support-button-desktop {
       font-weight: 700;
@@ -191,7 +178,6 @@
       color: #020617;
       box-shadow: 0 10px 22px rgba(0,0,0,.45);
     }
-
     .support-button-desktop {
       display: none;
       text-decoration: none;
@@ -206,8 +192,33 @@
       text-transform: uppercase;
     }
 
-    /* HERO */
+    @media (min-width: 1024px) {
+      .burger { display: none; }
+      .site-nav { flex: 1; justify-content: center; }
+      .nav-links {
+        position: static;
+        display: inline-flex !important;
+        flex-direction: row;
+        gap: 4px;
+        padding: 4px 8px;
+        background: radial-gradient(circle at top, rgba(31,41,55,.9), transparent 70%);
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+      }
+      .nav-link, .support-button-mobile {
+        min-height: 40px;
+        padding: 8px 14px;
+        border-radius: 999px;
+      }
+      .nav-link { background: transparent; }
+      .support-button-mobile { display: none; }
+      .support-button-desktop { display: inline-flex; }
+    }
 
+    /* ══════════════════════════════════
+       HERO
+    ══════════════════════════════════ */
     .hero-support {
       position: relative;
       overflow: hidden;
@@ -215,19 +226,17 @@
       border-radius: 22px;
       padding: 24px;
       background:
-        radial-gradient(circle at 0% 0%, rgba(34,211,238,.18), transparent 35%),
+        radial-gradient(circle at 0% 0%,     rgba(34,211,238,.18), transparent 35%),
         radial-gradient(circle at 100% 100%, rgba(250,204,21,.10), transparent 28%),
         linear-gradient(180deg, rgba(12,18,32,.95), rgba(6,10,18,.95));
       border: 1px solid rgba(31,41,55,.92);
       box-shadow: 0 24px 70px rgba(0,0,0,.65);
     }
-
     .hero-support::before {
       content: "";
       position: absolute;
       inset: -30% auto auto -10%;
-      width: 220px;
-      height: 220px;
+      width: 220px; height: 220px;
       background: radial-gradient(circle, rgba(34,211,238,.18), transparent 70%);
       pointer-events: none;
     }
@@ -272,9 +281,7 @@
       line-height: 1.7;
     }
 
-    .hero-highlight {
-      color: var(--accent-blue);
-    }
+    .hero-highlight { color: var(--accent-blue); }
 
     .hero-meta {
       position: relative;
@@ -284,7 +291,6 @@
       gap: 10px;
       margin-top: 16px;
     }
-
     .hero-meta span {
       display: inline-flex;
       align-items: center;
@@ -298,11 +304,10 @@
       line-height: 1.35;
     }
 
-    /* SECTION HEADERS */
-
-    .section-block {
-      margin-top: 34px;
-    }
+    /* ══════════════════════════════════
+       SECTION HEADERS
+    ══════════════════════════════════ */
+    .section-block { margin-top: 34px; }
 
     .section-title {
       margin: 0 0 10px;
@@ -311,7 +316,6 @@
       font-weight: 800;
       line-height: 1.15;
     }
-
     .section-subtitle {
       margin: 0 0 18px;
       max-width: 760px;
@@ -320,12 +324,15 @@
       line-height: 1.65;
     }
 
-    /* SUPPORT CARDS */
-
+    /* ══════════════════════════════════
+       SUPPORT CARDS
+       FIX 5: подписка — приоритетный вариант
+    ══════════════════════════════════ */
     .support-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
+      align-items: start;
     }
 
     .support-card {
@@ -335,21 +342,33 @@
       padding: 20px;
       background:
         radial-gradient(circle at 100% 0%, rgba(255,255,255,.06), transparent 28%),
-        radial-gradient(circle at bottom, rgba(34,211,238,.12), transparent 55%),
+        radial-gradient(circle at bottom,  rgba(34,211,238,.12),  transparent 55%),
         linear-gradient(145deg, #050816, #050b13);
       border: 1px solid rgba(31,41,55,.92);
       box-shadow: 0 18px 48px rgba(0,0,0,.55);
       display: flex;
       flex-direction: column;
-      min-height: 100%;
     }
-
     .support-card::before {
       content: "";
       position: absolute;
       inset: 0;
       background: linear-gradient(180deg, rgba(255,255,255,.02), transparent 28%);
       pointer-events: none;
+    }
+
+    /* FIX 5: карточка подписки — выделенная */
+    .support-card.card-featured {
+      border-color: rgba(250,204,21,.4);
+      background:
+        radial-gradient(circle at 100% 0%,   rgba(250,204,21,.10), transparent 30%),
+        radial-gradient(circle at 0% 100%,   rgba(249,115,22,.08), transparent 35%),
+        radial-gradient(circle at bottom,    rgba(34,211,238,.10), transparent 55%),
+        linear-gradient(145deg, #080910, #060810);
+      box-shadow:
+        0 18px 48px rgba(0,0,0,.65),
+        0 0 0 1px rgba(250,204,21,.08) inset,
+        0 0 40px rgba(250,204,21,.06);
     }
 
     .support-card-header {
@@ -391,6 +410,14 @@
       white-space: nowrap;
     }
 
+    /* FIX 5: badge «рекомендуем» для подписки */
+    .badge-recommended {
+      border-color: rgba(250,204,21,.7) !important;
+      background: linear-gradient(135deg, rgba(250,204,21,.22), rgba(249,115,22,.18)) !important;
+      color: #fde68a !important;
+      font-weight: 700;
+    }
+
     .support-card-title {
       position: relative;
       z-index: 1;
@@ -400,7 +427,6 @@
       font-weight: 800;
       line-height: 1.2;
     }
-
     .support-card-subtitle {
       position: relative;
       z-index: 1;
@@ -419,14 +445,12 @@
       margin-bottom: 16px;
       font-family: "Montserrat", sans-serif;
     }
-
     .support-price strong {
       font-size: 1.9rem;
       line-height: 1;
       font-weight: 900;
       color: #f8fafc;
     }
-
     .support-price span {
       color: var(--text-muted);
       font-size: .88rem;
@@ -448,7 +472,6 @@
       background: rgba(15,23,42,.68);
       border: 1px solid rgba(51,65,85,.82);
     }
-
     .bonus-box.highlight {
       background:
         radial-gradient(circle at top, rgba(34,211,238,.18), transparent 70%),
@@ -456,7 +479,6 @@
       border-color: rgba(34,211,238,.38);
       box-shadow: inset 0 0 0 1px rgba(34,211,238,.08);
     }
-
     .bonus-box-title {
       display: block;
       margin-bottom: 10px;
@@ -467,15 +489,12 @@
       text-transform: uppercase;
       color: var(--text-muted);
     }
-
     .bonus-list {
       list-style: none;
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       display: grid;
       gap: 8px;
     }
-
     .bonus-list li {
       display: flex;
       align-items: flex-start;
@@ -484,23 +503,23 @@
       font-size: .88rem;
       line-height: 1.5;
     }
-
     .bonus-list li::before {
       content: "";
-      width: 7px;
-      height: 7px;
+      width: 7px; height: 7px;
       border-radius: 999px;
       background: var(--accent-blue);
       margin-top: .45em;
       flex-shrink: 0;
       box-shadow: 0 0 10px rgba(34,211,238,.65);
     }
-
     .bonus-box.project .bonus-list li::before {
       background: var(--accent-green);
       box-shadow: 0 0 10px rgba(34,197,94,.55);
     }
 
+    /* ══════════════════════════════════
+       AMOUNT INPUT — FIX 2 + FIX 4
+    ══════════════════════════════════ */
     .support-input-row {
       position: relative;
       z-index: 1;
@@ -509,19 +528,46 @@
       margin-top: auto;
     }
 
-    .support-input-row input {
+    .amount-wrap {
+      position: relative;
       flex: 1;
       min-width: 0;
+    }
+
+    .amount-wrap .currency {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: .92rem;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* FIX 4: inputmode + pattern для iOS цифровой клавиатуры */
+    .support-input-row input[type="text"] {
+      width: 100%;
       height: 46px;
       border-radius: 999px;
       border: 1px solid rgba(51,65,85,.85);
       background: rgba(15,23,42,.96);
       color: #e5e7eb;
       font-size: .92rem;
-      padding: 0 16px;
+      padding: 0 16px 0 32px;
+      transition: border-color .18s ease, box-shadow .18s ease;
+      outline: none;
     }
-
-    .support-input-row input::placeholder {
+    .support-input-row input[type="text"]:focus {
+      border-color: rgba(34,211,238,.55);
+      box-shadow: 0 0 0 3px rgba(34,211,238,.08);
+    }
+    /* FIX 2: невалидное состояние */
+    .support-input-row input[type="text"].input-error {
+      border-color: rgba(239,68,68,.65);
+      box-shadow: 0 0 0 3px rgba(239,68,68,.08);
+    }
+    .support-input-row input[type="text"]::placeholder {
       color: rgba(148,163,184,.8);
     }
 
@@ -537,13 +583,19 @@
       letter-spacing: .12em;
       text-transform: uppercase;
       cursor: pointer;
-      transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
+      transition: transform .2s ease, filter .2s ease, box-shadow .2s ease, opacity .2s ease;
       white-space: nowrap;
     }
-
-    .support-btn:hover {
+    .support-btn:hover:not(:disabled) {
       transform: translateY(-1px);
-      filter: brightness(1.04);
+      filter: brightness(1.05);
+    }
+    /* FIX 2: disabled-состояние */
+    .support-btn:disabled {
+      opacity: .38;
+      cursor: not-allowed;
+      transform: none;
+      filter: none;
     }
 
     .btn-blue {
@@ -551,12 +603,24 @@
       color: #04111a;
       box-shadow: 0 12px 28px rgba(8,47,73,.55);
     }
-
     .btn-gold {
       background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
       color: #2b1600;
       box-shadow: 0 12px 28px rgba(120,53,15,.55);
     }
+
+    /* FIX 2: inline-ошибка */
+    .input-hint {
+      position: relative;
+      z-index: 1;
+      margin-top: 8px;
+      font-size: .75rem;
+      color: var(--accent-red);
+      min-height: 16px;
+      padding-left: 4px;
+      transition: opacity .15s ease;
+    }
+    .input-hint:empty { opacity: 0; }
 
     .support-note {
       position: relative;
@@ -567,29 +631,52 @@
       line-height: 1.5;
     }
 
-    /* HONOR BOARD CTA */
-
+    /* ══════════════════════════════════
+       FIX 6: Honor board CTA
+    ══════════════════════════════════ */
     .honor-board-cta {
       margin-top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       width: 100%;
-      min-height: 52px;
+      min-height: 56px;
       border-radius: 16px;
-      border: 1px solid rgba(34,211,238,.28);
+      border: 1px solid rgba(34,211,238,.45);
       background:
-        radial-gradient(circle at top, rgba(34,211,238,.16), transparent 70%),
+        radial-gradient(circle at 30% 50%, rgba(34,211,238,.14), transparent 60%),
+        radial-gradient(circle at 70% 50%, rgba(34,211,238,.08), transparent 60%),
         rgba(15,23,42,.92);
       color: var(--accent-blue);
       font-family: "Montserrat", sans-serif;
-      font-size: .8rem;
+      font-size: .82rem;
       font-weight: 800;
       letter-spacing: .12em;
       text-transform: uppercase;
       cursor: pointer;
-      box-shadow: inset 0 0 0 1px rgba(34,211,238,.04);
+      box-shadow:
+        0 0 0 1px rgba(34,211,238,.06) inset,
+        0 14px 36px rgba(0,0,0,.45);
+      transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+    }
+    .honor-board-cta:hover {
+      border-color: rgba(34,211,238,.75);
+      box-shadow:
+        0 0 0 1px rgba(34,211,238,.1) inset,
+        0 14px 40px rgba(0,0,0,.55),
+        0 0 24px rgba(34,211,238,.18);
+      transform: translateY(-1px);
+    }
+    .honor-board-cta::before {
+      content: "★";
+      font-size: .9rem;
+      opacity: .75;
     }
 
-    /* HONOR MODAL */
-
+    /* ══════════════════════════════════
+       HONOR MODAL
+    ══════════════════════════════════ */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -601,10 +688,7 @@
       z-index: 70;
       padding: 18px;
     }
-
-    .modal-overlay.open {
-      display: flex;
-    }
+    .modal-overlay.open { display: flex; }
 
     .modal-dialog {
       width: min(100%, 980px);
@@ -627,29 +711,23 @@
       gap: 14px;
       padding: 18px 18px 14px;
       border-bottom: 1px solid rgba(51,65,85,.82);
+      flex-shrink: 0;
     }
-
-    .modal-header-copy {
-      min-width: 0;
-    }
-
+    .modal-header-copy { min-width: 0; }
     .modal-label {
       display: inline-block;
       margin-bottom: 8px;
       font-size: .72rem;
-      line-height: 1.3;
       letter-spacing: .14em;
       text-transform: uppercase;
       color: var(--accent-blue);
     }
-
     .modal-title {
       margin: 0 0 6px;
       font-family: "Montserrat", sans-serif;
       font-size: clamp(1.1rem, 3vw, 1.55rem);
       line-height: 1.2;
     }
-
     .modal-subtitle {
       margin: 0;
       color: var(--text-muted);
@@ -657,10 +735,8 @@
       line-height: 1.55;
       max-width: 720px;
     }
-
     .modal-close {
-      width: 42px;
-      height: 42px;
+      width: 42px; height: 42px;
       border-radius: 12px;
       border: 1px solid rgba(51,65,85,.9);
       background: rgba(15,23,42,.82);
@@ -668,17 +744,24 @@
       font-size: 1.25rem;
       cursor: pointer;
       flex-shrink: 0;
+      transition: border-color .15s ease;
     }
+    .modal-close:hover { border-color: rgba(148,163,184,.55); }
 
     .modal-body {
       overflow-y: auto;
       padding: 16px 18px 18px;
+      flex: 1;
     }
 
+    /* ══════════════════════════════════
+       FIX 7: доска почёта — разный вес колонок
+    ══════════════════════════════════ */
     .board-grid {
       display: grid;
-      grid-template-columns: 1.15fr 1fr 1fr;
+      grid-template-columns: 1.3fr 1fr 0.85fr;
       gap: 14px;
+      align-items: start;
     }
 
     .board-column {
@@ -690,7 +773,6 @@
       min-width: 0;
       overflow: hidden;
     }
-
     .board-column::before {
       content: "";
       position: absolute;
@@ -699,16 +781,24 @@
       opacity: .8;
     }
 
+    /* Патроны — доминируют */
     .board-column.patrons {
       background:
-        radial-gradient(circle at top, rgba(250,204,21,.16), transparent 45%),
-        rgba(23,18,8,.75);
-      border-color: rgba(250,204,21,.35);
-      box-shadow: inset 0 0 0 1px rgba(250,204,21,.06);
+        radial-gradient(circle at top, rgba(250,204,21,.18), transparent 45%),
+        rgba(23,18,8,.78);
+      border-color: rgba(250,204,21,.42);
+      box-shadow:
+        inset 0 0 0 1px rgba(250,204,21,.07),
+        0 0 30px rgba(250,204,21,.06);
     }
-
     .board-column.patrons::before {
       background: linear-gradient(180deg, rgba(255,255,255,.03), transparent 28%);
+    }
+    /* Заголовок патронов чуть крупнее */
+    .board-column.patrons .board-tier-title { font-size: 1.12rem; }
+    .board-column.patrons .donor-card {
+      border-color: rgba(250,204,21,.18);
+      background: rgba(8,7,2,.5);
     }
 
     .board-column.allies {
@@ -716,7 +806,6 @@
         radial-gradient(circle at top, rgba(34,211,238,.16), transparent 45%),
         rgba(10,20,28,.75);
       border-color: rgba(34,211,238,.28);
-      box-shadow: inset 0 0 0 1px rgba(34,211,238,.05);
     }
 
     .board-column.members {
@@ -724,8 +813,10 @@
         radial-gradient(circle at top, rgba(34,197,94,.14), transparent 45%),
         rgba(11,22,16,.74);
       border-color: rgba(34,197,94,.26);
-      box-shadow: inset 0 0 0 1px rgba(34,197,94,.05);
     }
+    /* Участники — компактнее */
+    .board-column.members .donor-card { padding: 10px 12px; }
+    .board-column.members .donor-name { font-size: .86rem; }
 
     .board-tier {
       position: relative;
@@ -736,7 +827,6 @@
       gap: 10px;
       margin-bottom: 10px;
     }
-
     .board-tier-title {
       margin: 0;
       font-family: "Montserrat", sans-serif;
@@ -744,7 +834,6 @@
       font-weight: 800;
       line-height: 1.2;
     }
-
     .board-tier-badge {
       display: inline-flex;
       align-items: center;
@@ -758,9 +847,8 @@
       opacity: .95;
       white-space: nowrap;
     }
-
     .patrons .board-tier-badge { color: #fcd34d; }
-    .allies .board-tier-badge { color: #67e8f9; }
+    .allies  .board-tier-badge { color: #67e8f9; }
     .members .board-tier-badge { color: #86efac; }
 
     .board-tier-text {
@@ -778,7 +866,6 @@
       display: grid;
       gap: 10px;
     }
-
     .donor-card {
       border-radius: 14px;
       padding: 12px;
@@ -786,7 +873,6 @@
       border: 1px solid rgba(148,163,184,.16);
       box-shadow: inset 0 1px 0 rgba(255,255,255,.02);
     }
-
     .donor-name {
       display: block;
       margin-bottom: 4px;
@@ -794,7 +880,6 @@
       font-size: .92rem;
       color: #f8fafc;
     }
-
     .donor-role {
       display: block;
       color: var(--text-muted);
@@ -809,137 +894,118 @@
       line-height: 1.55;
     }
 
-    /* MOBILE */
+    /* ══════════════════════════════════
+       FIX 8: FOOTER
+    ══════════════════════════════════ */
+    footer {
+      border-top: 1px solid rgba(31,41,55,.9);
+      padding: 20px 16px 28px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: .83rem;
+      margin-top: 32px;
+      opacity: .65;
+    }
 
+    /* ══════════════════════════════════
+       MOBILE
+    ══════════════════════════════════ */
     @media (max-width: 900px) {
-      .board-grid {
-        grid-template-columns: 1fr;
-      }
+      .board-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 767px) {
-      .container {
-        padding: 18px 16px 64px;
-      }
+      .container { padding: 14px 14px 56px; }
 
+      /* ── Hero: только заголовок + одна строка текста ── */
       .hero-support {
-        padding: 18px 16px;
-        border-radius: 18px;
+        padding: 16px 14px;
+        border-radius: 16px;
+        margin-top: 12px;
       }
-
-      .hero-meta {
-        gap: 8px;
+      .hero-pill { display: none; }
+      .hero-support h1 {
+        font-size: 1.35rem;
+        margin-bottom: 8px;
+        letter-spacing: -.01em;
       }
-
-      .hero-meta span {
-        width: 100%;
-        min-height: auto;
-        padding: 9px 12px;
-        border-radius: 14px;
+      .hero-support p {
+        font-size: .84rem;
+        line-height: 1.55;
+        /* Обрезаем до двух строк, остальное — под чертой */
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
       }
+      /* Убираем мета-теги — они дублируют текст карточек */
+      .hero-meta { display: none; }
 
-      .section-block {
-        margin-top: 26px;
-      }
+      /* ── Секция форматов ── */
+      .section-block { margin-top: 20px; }
+      .section-title { font-size: 1.1rem; margin-bottom: 6px; }
+      /* Убираем подзаголовок секции — он дублирует смысл карточек */
+      .section-subtitle { display: none; }
 
-      .support-grid {
-        grid-template-columns: 1fr;
-        gap: 14px;
-      }
+      /* ── Карточки поддержки ── */
+      .support-grid { grid-template-columns: 1fr; gap: 12px; }
+      .support-card { border-radius: 16px; padding: 14px; }
 
-      .support-card {
-        border-radius: 18px;
-        padding: 16px;
-      }
-
+      /* Лейбл + бейдж в одну строку */
       .support-card-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 8px;
       }
 
-      .support-price strong {
-        font-size: 1.7rem;
-      }
+      /* Цена компактнее */
+      .support-price { margin-bottom: 12px; }
+      .support-price strong { font-size: 1.55rem; }
 
-      .support-input-row {
-        flex-direction: column;
-      }
+      /* Бонусные блоки: убираем заголовок "Что получает...",
+         оставляем только список */
+      .bonus-box { padding: 10px 12px; border-radius: 12px; }
+      .bonus-box-title { display: none; }
+      .bonus-list li { font-size: .82rem; gap: 7px; }
+      .bonus-list li::before { width: 6px; height: 6px; margin-top: .4em; }
 
-      .support-input-row input,
-      .support-btn {
-        width: 100%;
-      }
+      /* Блок "Что получает проект" скрываем на мобиле —
+         пользователь принимает решение по своей выгоде */
+      .bonus-box.project { display: none; }
 
-      .support-btn {
-        min-height: 44px;
-      }
+      .support-layout { gap: 0; margin-bottom: 14px; }
 
+      /* Поле ввода */
+      .support-input-row { flex-direction: row; gap: 8px; }
+      .support-input-row input[type="text"] { height: 44px; font-size: .88rem; }
+      .support-btn { min-height: 44px; font-size: .72rem; padding: 0 14px; }
+      .support-note { display: none; }
+
+      /* Кнопка доски почёта */
       .honor-board-cta {
         min-height: 48px;
         font-size: .74rem;
         letter-spacing: .1em;
+        margin-top: 14px;
       }
 
-      .modal-overlay {
-        padding: 0;
-        align-items: flex-end;
-      }
-
-      .modal-dialog {
-        width: 100%;
-        max-height: 92vh;
-        border-radius: 20px 20px 0 0;
-      }
-
-      .modal-header {
-        padding: 16px 16px 12px;
-      }
-
-      .modal-body {
-        padding: 14px 16px 18px;
-      }
-
-      .board-column {
-        padding: 14px;
-      }
-
-      .board-tier {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .burger { display: none; }
-
-      .site-nav {
-        flex: 1;
-        justify-content: center;
-      }
-
-      .nav-links {
-        position: static;
-        display: inline-flex !important;
-        flex-direction: row;
-        gap: 4px;
-        padding: 4px 8px;
-        background: radial-gradient(circle at top, rgba(31,41,55,.9), transparent 70%);
-        border: none;
-        box-shadow: none;
-        backdrop-filter: none;
-      }
-
-      .nav-link,
-      .support-button-mobile {
-        min-height: 40px;
-        padding: 8px 14px;
-        border-radius: 999px;
-      }
-
-      .nav-link { background: transparent; }
-      .support-button-mobile { display: none; }
-      .support-button-desktop { display: inline-flex; }
+      /* ── Модалка снизу ── */
+      .modal-overlay { padding: 0; align-items: flex-end; }
+      .modal-dialog  { width: 100%; max-height: 90vh; border-radius: 20px 20px 0 0; }
+      .modal-header  { padding: 14px 14px 10px; }
+      /* Подзаголовок модалки скрываем на мобиле */
+      .modal-subtitle { display: none; }
+      .modal-body    { padding: 12px 14px 16px; }
+      .board-column  { padding: 12px; }
+      .board-tier    { align-items: flex-start; flex-direction: column; gap: 6px; }
+      /* Описание уровня в колонках скрываем */
+      .board-tier-text { display: none; }
+      /* Донор-карточки компактнее */
+      .donor-card { padding: 9px 11px; border-radius: 11px; }
+      .donor-name { font-size: .86rem; margin-bottom: 2px; }
+      .donor-role { font-size: .72rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -959,20 +1025,23 @@
       <div class="brand-title">МЕДИА.<span>СТРАЖ</span></div>
 
       <nav class="site-nav" aria-label="Навигация">
-        <button class="burger" id="burgerBtn" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks">
+        <button class="burger" id="burgerBtn"
+          aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks">
           <span></span><span></span><span></span>
         </button>
 
         <div class="nav-links" id="navLinks">
-          <a href="index.html" class="nav-link">Рейтинг</a>
-          <a href="about.html" class="nav-link">О проекте</a>
-          <a href="method.html" class="nav-link">Методика</a>
+          <a href="index.html"   class="nav-link">Рейтинг</a>
+          <a href="about.html"   class="nav-link">О проекте</a>
+          <a href="method.html"  class="nav-link">Методика</a>
           <a href="archive.html" class="nav-link">Архив</a>
-          <a href="help.html" class="support-button-mobile">Поддержать проект</a>
+          <!-- FIX 3: help.html — активная страница, кнопка в меню не дублирует сама себя -->
+          <a href="help.html" class="nav-link nav-active">Поддержать</a>
         </div>
       </nav>
 
-      <a class="support-button-desktop" href="#supportFormats">Поддержать</a>
+      <!-- FIX 1: href на якорь, закрытие меню через JS -->
+      <a class="support-button-desktop" href="#supportFormats" id="desktopSupportLink">Поддержать</a>
     </div>
     <div class="header-glow"></div>
   </div>
@@ -982,13 +1051,12 @@
 
   <section class="hero-support" id="support-top">
     <div class="hero-pill">участие · поддержка независимого проекта</div>
-    <h1>Развитие стоит дорого. Независимость — бесценна.</h1>
+    <h1>Развитие стоит дорого.<br>Независимость — бесценна.</h1>
     <p>
       «МЕДИА.СТРАЖ» не берёт деньги у государства и медиахолдингов, чтобы алгоритм оставался
       <span class="hero-highlight">максимально беспристрастным</span>. Поддержка сообщества помогает нам
       развивать модели, обновлять открытый рейтинг и сохранять свободу анализа.
     </p>
-
     <div class="hero-meta">
       <span>Без рекламных интеграций в рейтингах</span>
       <span>Открытая логика оценки и методика</span>
@@ -1005,6 +1073,7 @@
 
     <div class="support-grid">
 
+      <!-- КАРТОЧКА 1: разовый донат -->
       <article class="support-card">
         <div class="support-card-header">
           <span class="support-card-label">разовая поддержка</span>
@@ -1024,7 +1093,6 @@
               <li>Публичное спасибо от команды — по желанию, без раскрытия полного имени.</li>
             </ul>
           </div>
-
           <div class="bonus-box project">
             <span class="bonus-box-title">Что получает проект</span>
             <ul class="bonus-list">
@@ -1034,20 +1102,36 @@
           </div>
         </div>
 
-        <div class="support-input-row">
-          <input type="number" placeholder="Сумма в рублях (₽)">
-          <button class="support-btn btn-blue" type="button">Поддержать</button>
+        <!-- FIX 2 + FIX 4: валидация + inputmode для iOS -->
+        <div class="support-input-row" id="donateRow">
+          <div class="amount-wrap">
+            <span class="currency" aria-hidden="true">₽</span>
+            <input
+              type="text"
+              id="donateInput"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              placeholder="Сумма"
+              autocomplete="off"
+              aria-label="Сумма доната в рублях"
+            />
+          </div>
+          <button class="support-btn btn-blue" id="donateBtn" type="button" disabled>
+            Поддержать
+          </button>
         </div>
+        <div class="input-hint" id="donateHint" role="alert" aria-live="polite"></div>
 
         <div class="support-note">
           Любой донат добавляет имя или ник в список участников поддержки.
         </div>
       </article>
 
-      <article class="support-card">
+      <!-- FIX 5: КАРТОЧКА 2 — подписка как приоритетный вариант -->
+      <article class="support-card card-featured">
         <div class="support-card-header">
           <span class="support-card-label">ежемесячная поддержка</span>
-          <span class="support-card-badge">400 ₽ / месяц</span>
+          <span class="support-card-badge badge-recommended">★ Рекомендуем</span>
         </div>
 
         <div class="support-price">
@@ -1064,7 +1148,6 @@
               <li>Доступ к экспертному чату с обсуждением медиаповестки.</li>
             </ul>
           </div>
-
           <div class="bonus-box project">
             <span class="bonus-box-title">Что получает проект</span>
             <ul class="bonus-list">
@@ -1074,7 +1157,9 @@
           </div>
         </div>
 
-        <button class="support-btn btn-gold" type="button">Оформить подписку</button>
+        <button class="support-btn btn-gold" id="subscribeBtn" type="button">
+          Оформить подписку
+        </button>
 
         <div class="support-note">
           Подписчики попадают в более высокий уровень доски почёта и получают закрытые возможности сообщества.
@@ -1083,6 +1168,7 @@
 
     </div>
 
+    <!-- FIX 6: выразительная CTA кнопка доски почёта -->
     <button class="honor-board-cta" id="openHonorBoard" type="button">
       Открыть доску почёта
     </button>
@@ -1090,6 +1176,10 @@
 
 </div>
 
+<!-- FIX 8: footer -->
+<footer>© 2025 Проект «МЕДИА.СТРАЖ»</footer>
+
+<!-- HONOR BOARD MODAL -->
 <div class="modal-overlay" id="honorBoardModal" aria-hidden="true">
   <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="honorBoardTitle">
     <div class="modal-header">
@@ -1098,13 +1188,14 @@
         <h3 class="modal-title" id="honorBoardTitle">Доска почёта</h3>
         <p class="modal-subtitle">
           Здесь — люди, которые помогают «МЕДИА.СТРАЖУ» оставаться независимым.
-          Мы сознательно делаем эту витрину не “про деньги”, а про вклад в устойчивость проекта.
+          Мы сознательно делаем эту витрину не «про деньги», а про вклад в устойчивость проекта.
         </p>
       </div>
       <button class="modal-close" id="closeHonorBoard" type="button" aria-label="Закрыть окно">×</button>
     </div>
 
     <div class="modal-body">
+      <!-- FIX 7: разные пропорции колонок — патроны доминируют -->
       <div class="board-grid">
 
         <section class="board-column patrons">
@@ -1113,9 +1204,9 @@
             <span class="board-tier-badge">подписка</span>
           </div>
           <p class="board-tier-text">
-            Ежемесячные участники, которые дают проекту долгую опору и получают доступ к закрытому каналу и экспертному чату.
+            Ежемесячные участники, которые дают проекту долгую опору и получают доступ
+            к закрытому каналу и экспертному чату.
           </p>
-
           <div class="donor-list">
             <article class="donor-card">
               <span class="donor-name">Анна К.</span>
@@ -1140,7 +1231,6 @@
           <p class="board-tier-text">
             Люди, которые поддержали проект разовым взносом и заметно усилили его в важный момент.
           </p>
-
           <div class="donor-list">
             <article class="donor-card">
               <span class="donor-name">Дмитрий Р.</span>
@@ -1165,14 +1255,13 @@
           <p class="board-tier-text">
             Все, кто решил поддержать проект любой суммой и стать частью его живого сообщества.
           </p>
-
           <div class="donor-list">
             <article class="donor-card">
               <span class="donor-name">Алексей К.</span>
               <span class="donor-role">донат · доска почёта</span>
             </article>
             <article class="donor-card">
-              <span class="donor-name">Ник “Signal”</span>
+              <span class="donor-name">Ник "Signal"</span>
               <span class="donor-role">донат · публичный ник</span>
             </article>
             <article class="donor-card">
@@ -1180,7 +1269,7 @@
               <span class="donor-role">донат · участие в поддержке</span>
             </article>
             <article class="donor-card">
-              <span class="donor-name">Ник “Observer”</span>
+              <span class="donor-name">Ник "Observer"</span>
               <span class="donor-role">донат · участник сообщества</span>
             </article>
           </div>
@@ -1188,21 +1277,28 @@
 
       </div>
 
-      <div class="board-footer-note">
+      <p class="board-footer-note">
         Имена на доске — демонстрационные. В реальной версии участник сможет выбрать:
         показывать полное имя, сокращённый формат или только ник.
-      </div>
+      </p>
     </div>
   </div>
 </div>
 
 <script>
-  const burgerBtn = document.getElementById("burgerBtn");
-  const navLinks = document.getElementById("navLinks");
+  /* ─────────────────────────────────────────
+     FIX 1: Бургер + якорная ссылка в хедере
+     Закрываем меню перед плавным скроллом
+  ───────────────────────────────────────── */
+  const burgerBtn  = document.getElementById("burgerBtn");
+  const navLinks   = document.getElementById("navLinks");
+  const desktopLink = document.getElementById("desktopSupportLink");
 
-  const honorBoardModal = document.getElementById("honorBoardModal");
-  const openHonorBoardBtn = document.getElementById("openHonorBoard");
-  const closeHonorBoardBtn = document.getElementById("closeHonorBoard");
+  function closeNav() {
+    if (!navLinks || !burgerBtn) return;
+    navLinks.classList.remove("open");
+    burgerBtn.setAttribute("aria-expanded", "false");
+  }
 
   if (burgerBtn && navLinks) {
     burgerBtn.addEventListener("click", () => {
@@ -1211,57 +1307,110 @@
     });
 
     navLinks.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        burgerBtn.setAttribute("aria-expanded", "false");
-      });
+      link.addEventListener("click", () => closeNav());
     });
 
     document.addEventListener("click", (e) => {
-      const target = e.target;
-      if (!navLinks.contains(target) && !burgerBtn.contains(target)) {
-        navLinks.classList.remove("open");
-        burgerBtn.setAttribute("aria-expanded", "false");
-      }
+      if (!navLinks.contains(e.target) && !burgerBtn.contains(e.target)) closeNav();
     });
   }
 
-  function openHonorBoard() {
+  // FIX 1: desktop-ссылка закрывает мобильное меню перед скроллом
+  if (desktopLink) {
+    desktopLink.addEventListener("click", () => closeNav());
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeNav();
+      closeHonorBoardModal();
+    }
+  });
+
+  /* ─────────────────────────────────────────
+     FIX 2 + FIX 4: Валидация поля суммы
+  ───────────────────────────────────────── */
+  const donateInput = document.getElementById("donateInput");
+  const donateBtn   = document.getElementById("donateBtn");
+  const donateHint  = document.getElementById("donateHint");
+
+  function validateAmount(raw) {
+    // разрешаем только цифры
+    const clean = raw.replace(/[^0-9]/g, "");
+    const num   = parseInt(clean, 10);
+    if (!clean || isNaN(num)) return { ok: false, msg: "Введите сумму" };
+    if (num < 1)              return { ok: false, msg: "Минимальная сумма — 1 ₽" };
+    if (num > 1_000_000)      return { ok: false, msg: "Максимальная сумма — 1 000 000 ₽" };
+    return { ok: true, msg: "" };
+  }
+
+  if (donateInput && donateBtn) {
+    donateInput.addEventListener("input", () => {
+      // FIX 4: оставляем только цифры в поле
+      const cleaned = donateInput.value.replace(/[^0-9]/g, "");
+      if (donateInput.value !== cleaned) donateInput.value = cleaned;
+
+      const { ok, msg } = validateAmount(cleaned);
+      donateBtn.disabled = !ok;
+      donateInput.classList.toggle("input-error", !ok && cleaned.length > 0);
+      donateHint.textContent = (!ok && cleaned.length > 0) ? msg : "";
+    });
+
+    donateBtn.addEventListener("click", () => {
+      const { ok } = validateAmount(donateInput.value);
+      if (!ok) {
+        donateInput.classList.add("input-error");
+        donateHint.textContent = "Введите корректную сумму";
+        donateInput.focus();
+        return;
+      }
+      // Здесь будет интеграция с платёжной системой
+      alert(`Переход к оплате: ${parseInt(donateInput.value, 10).toLocaleString("ru-RU")} ₽`);
+    });
+
+    // Снимаем ошибку при фокусе
+    donateInput.addEventListener("focus", () => {
+      donateInput.classList.remove("input-error");
+      donateHint.textContent = "";
+    });
+  }
+
+  /* ─────────────────────────────────────────
+     Подписка (заглушка)
+  ───────────────────────────────────────── */
+  const subscribeBtn = document.getElementById("subscribeBtn");
+  if (subscribeBtn) {
+    subscribeBtn.addEventListener("click", () => {
+      alert("Переход к оформлению подписки (интеграция с платёжной системой)");
+    });
+  }
+
+  /* ─────────────────────────────────────────
+     HONOR BOARD MODAL
+  ───────────────────────────────────────── */
+  const honorBoardModal    = document.getElementById("honorBoardModal");
+  const openHonorBoardBtn  = document.getElementById("openHonorBoard");
+  const closeHonorBoardBtn = document.getElementById("closeHonorBoard");
+
+  function openHonorBoardModal() {
+    if (!honorBoardModal) return;
     honorBoardModal.classList.add("open");
     honorBoardModal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
+    closeHonorBoardBtn && closeHonorBoardBtn.focus();
   }
 
-  function closeHonorBoard() {
+  function closeHonorBoardModal() {
+    if (!honorBoardModal) return;
     honorBoardModal.classList.remove("open");
     honorBoardModal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
   }
 
-  if (openHonorBoardBtn) {
-    openHonorBoardBtn.addEventListener("click", openHonorBoard);
-  }
-
-  if (closeHonorBoardBtn) {
-    closeHonorBoardBtn.addEventListener("click", closeHonorBoard);
-  }
-
-  if (honorBoardModal) {
-    honorBoardModal.addEventListener("click", (e) => {
-      if (e.target === honorBoardModal) {
-        closeHonorBoard();
-      }
-    });
-  }
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      closeHonorBoard();
-      if (navLinks && burgerBtn) {
-        navLinks.classList.remove("open");
-        burgerBtn.setAttribute("aria-expanded", "false");
-      }
-    }
+  if (openHonorBoardBtn)  openHonorBoardBtn.addEventListener("click",  openHonorBoardModal);
+  if (closeHonorBoardBtn) closeHonorBoardBtn.addEventListener("click",  closeHonorBoardModal);
+  if (honorBoardModal)    honorBoardModal.addEventListener("click", (e) => {
+    if (e.target === honorBoardModal) closeHonorBoardModal();
   });
 </script>
 
