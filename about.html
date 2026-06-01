@@ -9,6 +9,7 @@
   <meta property="og:description" content="Алгоритм 24/7 отслеживает манипуляции в российских СМИ. Прозрачная методика, независимость, открытый архив." />
   <meta property="og:type" content="website" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg-body:          #05070b;
@@ -276,6 +277,8 @@
       line-height: 1.75;
       color: var(--text-muted);
     }
+    .manifest-subtitle-mobile { display: none; }
+
     .manifest-chips { display: flex; flex-wrap: wrap; gap: 10px; }
     .chip {
       padding: 7px 12px;
@@ -466,7 +469,7 @@
     .cap-demo-note { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(139,141,150,0.6); }
 
     /* ══════════════════════════════════
-       VALUES — три колонки, без иконок
+       VALUES
     ══════════════════════════════════ */
     .values-section { margin-bottom: 50px; }
 
@@ -489,7 +492,6 @@
       transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
     }
 
-    /* Тонкая цветная полоса сверху */
     .value-card::before {
       content: "";
       position: absolute;
@@ -510,7 +512,6 @@
     .value-card[data-n="2"] { --card-accent: var(--accent-cyan); }
     .value-card[data-n="3"] { --card-accent: var(--accent-green); }
 
-    /* Номер вместо иконки */
     .value-num {
       font-family: 'Montserrat', sans-serif;
       font-weight: 900;
@@ -631,56 +632,51 @@
     }
 
     /* ══════════════════════════════════
-       MOBILE — полная адаптация
+       MOBILE — исправленная адаптация
     ══════════════════════════════════ */
     @media (max-width: 767px) {
       .container { padding: 16px 14px 60px; }
 
-      /* ── Манифест мобиль:
-         Строка 1: заголовок (лево) + подпись (право)
-         Строка 2: карта во всю ширину               */
       .manifest-section { margin-bottom: 28px; }
       .manifest-inner {
         grid-template-columns: 1fr;
-        padding: 16px;
+        padding: 18px;
         border-radius: 18px;
-        gap: 12px;
+        gap: 14px;
         align-items: start;
       }
       .manifest-kicker { display: none; }
 
-      /* Строка 1: заголовок + подпись рядом */
       .manifest-text {
         order: 1;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0 14px;
-        align-items: start;
+        display: block;
       }
       .manifest-title {
-        grid-column: 1;
-        font-size: clamp(16px, 5vw, 20px);
-        line-height: 1.1;
-        margin: 0;
-        letter-spacing: 0.02em;
+        font-size: clamp(22px, 7vw, 30px);
+        line-height: 1.05;
+        margin: 0 0 12px 0;
+        letter-spacing: 0.035em;
+        max-width: 340px;
       }
       .manifest-subtitle {
-        grid-column: 2;
-        font-size: 11.5px;
-        line-height: 1.6;
+        font-size: 13px;
+        line-height: 1.55;
         margin: 0;
+        max-width: 95%;
         color: var(--text-muted);
       }
+      .manifest-subtitle-desktop { display: none; }
+      .manifest-subtitle-mobile { display: inline; }
 
-      /* Строка 2: карта во всю ширину */
       .manifest-visual {
         order: 2;
         display: flex;
         flex-direction: column;
         align-items: stretch;
         gap: 8px;
+        margin-top: 14px;
       }
-      .map-wrap { height: 170px; border-radius: 12px; }
+      .map-wrap { height: 180px; border-radius: 12px; }
       .map-caption {
         justify-content: flex-start;
         padding: 7px 10px;
@@ -692,7 +688,6 @@
       .cap-unit  { font-size: 9px; }
       .cap-demo-note { display: none; }
 
-      /* ── Принципы: один столбик, текст не режется ── */
       .values-grid {
         grid-template-columns: 1fr;
         gap: 10px;
@@ -709,7 +704,6 @@
       }
       .value-link { font-size: 11px; }
 
-      /* Секция "кто стоит за проектом" */
       .section-title { font-size: 17px; margin-bottom: 10px; }
       .section-subtitle {
         font-size: 13px;
@@ -717,8 +711,6 @@
         margin-bottom: 18px;
       }
 
-      /* Карточка автора: аватар + имя в строку,
-         bio обрезан */
       .author-card {
         grid-template-columns: auto 1fr;
         gap: 14px;
@@ -744,7 +736,7 @@
       .author-link { font-size: 10px; padding: 6px 10px; }
     }
 
-    /* Планшет: карта чуть ниже, 2 колонки принципов */
+    /* Планшет: карта чуть ниже */
     @media (min-width: 768px) and (max-width: 1023px) {
       .manifest-inner {
         grid-template-columns: 1fr;
@@ -797,9 +789,15 @@
       <div class="manifest-text">
         <div class="manifest-kicker">О ПРОЕКТЕ</div>
         <h1 class="manifest-title">ДЕЛАЕМ ЖУРНАЛИСТИКУ ЛУЧШЕ</h1>
+
         <p class="manifest-subtitle">
-          «МЕДИА.СТРАЖ» — это алгоритм, который круглосуточно отслеживает новостные ленты
-          и фиксирует манипуляции и другие скрытые приёмы в заголовках и текстах российских СМИ.
+          <span class="manifest-subtitle-desktop">
+            «МЕДИА.СТРАЖ» — это алгоритм, который круглосуточно отслеживает новостные ленты
+            и фиксирует манипуляции и другие скрытые приёмы в заголовках и текстах российских СМИ.
+          </span>
+          <span class="manifest-subtitle-mobile">
+            «МЕДИА.СТРАЖ» — это алгоритм, который круглосуточно отслеживает новостные ленты и фиксирует манипуляции
+          </span>
         </p>
       </div>
 
@@ -986,7 +984,7 @@
     left = clamp(left, 10, wr.width  - TIP_W - 10);
     top  = clamp(top,  10, wr.height - TIP_H - 10);
     tip.style.left = left + 'px';
-    tip.style.top  = top  + 'px';
+    tip.style.top  = top + 'px';
   }
 
   function showTipForSource(s) {
