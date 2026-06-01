@@ -636,28 +636,51 @@
     @media (max-width: 767px) {
       .container { padding: 16px 14px 60px; }
 
-      /* ── Манифест: две колонки
-         Левая: карта + счётчик
-         Правая: заголовок + подпись  */
+      /* ── Манифест мобиль:
+         Строка 1: заголовок (лево) + подпись (право)
+         Строка 2: карта во всю ширину               */
       .manifest-section { margin-bottom: 28px; }
       .manifest-inner {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         padding: 16px;
         border-radius: 18px;
-        gap: 14px;
+        gap: 12px;
         align-items: start;
       }
       .manifest-kicker { display: none; }
 
-      /* Карта — левая колонка, идёт первой */
-      .manifest-visual {
+      /* Строка 1: заголовок + подпись рядом */
+      .manifest-text {
         order: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 14px;
+        align-items: start;
+      }
+      .manifest-title {
+        grid-column: 1;
+        font-size: clamp(16px, 5vw, 20px);
+        line-height: 1.1;
+        margin: 0;
+        letter-spacing: 0.02em;
+      }
+      .manifest-subtitle {
+        grid-column: 2;
+        font-size: 11.5px;
+        line-height: 1.6;
+        margin: 0;
+        color: var(--text-muted);
+      }
+
+      /* Строка 2: карта во всю ширину */
+      .manifest-visual {
+        order: 2;
         display: flex;
         flex-direction: column;
         align-items: stretch;
         gap: 8px;
       }
-      .map-wrap { height: 140px; border-radius: 12px; }
+      .map-wrap { height: 170px; border-radius: 12px; }
       .map-caption {
         justify-content: flex-start;
         padding: 7px 10px;
@@ -668,26 +691,6 @@
       .cap-value { font-size: 15px; min-width: auto; text-align: left; }
       .cap-unit  { font-size: 9px; }
       .cap-demo-note { display: none; }
-
-      /* Текст — правая колонка */
-      .manifest-text {
-        order: 2;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-      .manifest-title {
-        font-size: clamp(15px, 4.5vw, 19px);
-        line-height: 1.1;
-        margin: 0;
-        letter-spacing: 0.02em;
-      }
-      .manifest-subtitle {
-        font-size: 11.5px;
-        line-height: 1.6;
-        margin: 0;
-        color: var(--text-muted);
-      }
 
       /* ── Принципы: один столбик, текст не режется ── */
       .values-grid {
