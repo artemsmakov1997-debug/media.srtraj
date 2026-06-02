@@ -224,13 +224,16 @@
       overflow: hidden;
       margin-top: 18px;
       border-radius: 22px;
-      padding: 24px;
+      padding: 36px 32px 32px;
       background:
         radial-gradient(circle at 0% 0%,     rgba(34,211,238,.18), transparent 35%),
         radial-gradient(circle at 100% 100%, rgba(250,204,21,.10), transparent 28%),
         linear-gradient(180deg, rgba(12,18,32,.95), rgba(6,10,18,.95));
       border: 1px solid rgba(31,41,55,.92);
       box-shadow: 0 24px 70px rgba(0,0,0,.65);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .hero-support::before {
       content: "";
@@ -241,23 +244,7 @@
       pointer-events: none;
     }
 
-    .hero-pill {
-      position: relative;
-      z-index: 1;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      min-height: 32px;
-      padding: 0 12px;
-      border-radius: 999px;
-      font-size: .72rem;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      color: var(--text-muted);
-      border: 1px solid rgba(148,163,184,.35);
-      background: rgba(15,23,42,.82);
-      margin-bottom: 14px;
-    }
+
 
     .hero-support h1 {
       position: relative;
@@ -269,19 +256,30 @@
       line-height: 1.08;
       letter-spacing: -.02em;
       max-width: 760px;
+      text-align: center;
+      width: 100%;
     }
 
     .hero-support p {
       position: relative;
       z-index: 1;
-      max-width: 720px;
+      max-width: 640px;
       margin: 0;
       color: var(--text-muted);
       font-size: .98rem;
       line-height: 1.7;
+      text-align: center;
     }
 
     .hero-highlight { color: var(--accent-blue); }
+
+    /* Длинный параграф — только десктоп */
+    .hero-desc-short { display: none; }
+
+    /* Десктоп: убираем дублирующую nav-ссылку "Поддержать" в pill-меню */
+    @media (min-width: 1024px) {
+      .nav-links .nav-link[href="help.html"] { display: none; }
+    }
 
     .hero-meta {
       position: relative;
@@ -344,10 +342,20 @@
         radial-gradient(circle at 100% 0%, rgba(255,255,255,.06), transparent 28%),
         radial-gradient(circle at bottom,  rgba(34,211,238,.12),  transparent 55%),
         linear-gradient(145deg, #050816, #050b13);
-      border: 1px solid rgba(31,41,55,.92);
-      box-shadow: 0 18px 48px rgba(0,0,0,.55);
+      border: 1px solid rgba(34,211,238,.28);
+      box-shadow:
+        0 18px 48px rgba(0,0,0,.55),
+        0 0 0 1px rgba(34,211,238,.06) inset;
       display: flex;
       flex-direction: column;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .support-card:hover {
+      border-color: rgba(34,211,238,.55);
+      box-shadow:
+        0 24px 60px rgba(0,0,0,.7),
+        0 0 0 1px rgba(34,211,238,.1) inset,
+        0 0 28px rgba(34,211,238,.08);
     }
     .support-card::before {
       content: "";
@@ -359,7 +367,7 @@
 
     /* FIX 5: карточка подписки — выделенная */
     .support-card.card-featured {
-      border-color: rgba(250,204,21,.4);
+      border-color: rgba(250,204,21,.55);
       background:
         radial-gradient(circle at 100% 0%,   rgba(250,204,21,.10), transparent 30%),
         radial-gradient(circle at 0% 100%,   rgba(249,115,22,.08), transparent 35%),
@@ -367,8 +375,15 @@
         linear-gradient(145deg, #080910, #060810);
       box-shadow:
         0 18px 48px rgba(0,0,0,.65),
-        0 0 0 1px rgba(250,204,21,.08) inset,
-        0 0 40px rgba(250,204,21,.06);
+        0 0 0 1px rgba(250,204,21,.1) inset,
+        0 0 40px rgba(250,204,21,.08);
+    }
+    .support-card.card-featured:hover {
+      border-color: rgba(250,204,21,.85);
+      box-shadow:
+        0 24px 60px rgba(0,0,0,.75),
+        0 0 0 1px rgba(250,204,21,.14) inset,
+        0 0 48px rgba(250,204,21,.12);
     }
 
     .support-card-header {
@@ -923,22 +938,20 @@
         border-radius: 16px;
         margin-top: 12px;
       }
-      .hero-pill { display: none; }
       .hero-support h1 {
         font-size: 1.35rem;
         margin-bottom: 8px;
         letter-spacing: -.01em;
       }
-      .hero-support p {
-        font-size: .84rem;
-        line-height: 1.55;
-        /* Обрезаем до двух строк, остальное — под чертой */
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+      /* Длинный параграф скрываем, показываем короткий */
+      .hero-desc       { display: none; }
+      .hero-desc-short {
+        display: block;
+        font-size: .86rem;
+        line-height: 1.6;
+        margin: 0;
+        color: var(--text-muted);
       }
-      /* Убираем мета-теги — они дублируют текст карточек */
       .hero-meta { display: none; }
 
       /* ── Секция форматов ── */
@@ -1035,8 +1048,7 @@
           <a href="about.html"   class="nav-link">О проекте</a>
           <a href="method.html"  class="nav-link">Методика</a>
           <a href="archive.html" class="nav-link">Архив</a>
-          <!-- FIX 3: help.html — активная страница, кнопка в меню не дублирует сама себя -->
-          <a href="help.html" class="nav-link nav-active">Поддержать</a>
+          <a href="help.html"    class="support-button-mobile">Поддержать проект</a>
         </div>
       </nav>
 
@@ -1050,26 +1062,23 @@
 <div class="container">
 
   <section class="hero-support" id="support-top">
-    <div class="hero-pill">участие · поддержка независимого проекта</div>
-    <h1>Развитие стоит дорого.<br>Независимость — бесценна.</h1>
-    <p>
-      «МЕДИА.СТРАЖ» не берёт деньги у государства и медиахолдингов, чтобы алгоритм оставался
-      <span class="hero-highlight">максимально беспристрастным</span>. Поддержка сообщества помогает нам
-      развивать модели, обновлять открытый рейтинг и сохранять свободу анализа.
+    <h1>Развитие стоит дорого<br>Независимость — бесценна</h1>
+    <p class="hero-desc">
+      Государство и медиахолдинги не финансируют «МЕДИА.СТРАЖ» —
+      <span class="hero-highlight">это принципиальная позиция</span>,
+      а не просто факт. Деньги сообщества — единственное, что позволяет алгоритму
+      называть манипуляцию манипуляцией, не оглядываясь ни на кого.
     </p>
-    <div class="hero-meta">
-      <span>Без рекламных интеграций в рейтингах</span>
-      <span>Открытая логика оценки и методика</span>
-      <span>Развитие ИИ-модели за счёт сообщества</span>
-    </div>
+    <p class="hero-desc hero-desc-short">
+      «МЕДИА.СТРАЖ» не берёт деньги у государства и медиахолдингов,
+      чтобы алгоритм оставался <span class="hero-highlight">максимально беспристрастным</span>
+    </p>
+
   </section>
 
   <section class="section-block" id="supportFormats">
     <h2 class="section-title">Форматы поддержки</h2>
-    <p class="section-subtitle">
-      Мы оставили только две простые формы участия: разовый донат и ежемесячную подписку.
-      Обе помогают проекту, но дают разный уровень включённости.
-    </p>
+
 
     <div class="support-grid">
 
