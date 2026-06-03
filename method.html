@@ -391,6 +391,56 @@
       box-shadow: 0 0 20px rgba(34,211,238,.55);
     }
 
+    /* Футер живого примера */
+    .live-footer {
+      position: relative; z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .live-next-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(34,211,238,.4);
+      background: rgba(15,23,42,.88);
+      color: var(--accent-blue);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: border-color .18s, box-shadow .18s, transform .18s;
+      flex-shrink: 0;
+    }
+    .live-next-btn:hover {
+      border-color: rgba(34,211,238,.8);
+      box-shadow: 0 0 20px rgba(34,211,238,.2);
+      transform: translateY(-1px);
+    }
+    .live-next-btn:active { transform: translateY(0); }
+    .live-next-counter {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(34,211,238,.12);
+      border: 1px solid rgba(34,211,238,.25);
+      font-size: 10px;
+      color: rgba(34,211,238,.8);
+      letter-spacing: .1em;
+    }
+    .live-next-arrow { font-size: 13px; opacity: .7; }
+
+    @media (max-width: 767px) {
+      .live-footer { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .live-next-btn { width: 100%; justify-content: center; }
+    }
+
     /* Тултип триггера */
     .trigger-tooltip {
       position: fixed;
@@ -864,9 +914,16 @@
         <p class="live-body-text" id="liveBody"></p>
       </div>
 
-      <div class="live-triggers-row">
-        <span class="live-triggers-label">Найдено:</span>
-        <div id="liveTags"></div>
+      <div class="live-footer">
+        <div class="live-triggers-row">
+          <span class="live-triggers-label">Найдено:</span>
+          <div id="liveTags"></div>
+        </div>
+        <button class="live-next-btn" id="liveNextBtn" type="button">
+          <span>Следующий пример</span>
+          <span class="live-next-counter" id="liveCounter">1&nbsp;/&nbsp;4</span>
+          <span class="live-next-arrow">→</span>
+        </button>
       </div>
     </div>
 
@@ -1153,10 +1210,13 @@
   });
   document.addEventListener('scroll', hideTooltip, { passive: true });
 
-  /* ── Live updater ── */
+  /* ── Live updater (manual only) ── */
   let liveIdx = 0;
+
   function updateLive() {
     const h = headlines[liveIdx];
+    hideTooltip();
+
     document.getElementById('liveSource').textContent = h.source;
     document.getElementById('liveTime').textContent   = 'обновлено: ' + nowHHMM();
     document.getElementById('liveTitle').innerHTML    = buildHighlighted(h.title, h.triggers);
@@ -1165,10 +1225,16 @@
     const tagsEl = document.getElementById('liveTags');
     tagsEl.innerHTML = h.tags.map(t => `<span class="trigger-tag">${escHtml(t)}</span>`).join('');
 
-    liveIdx = (liveIdx + 1) % headlines.length;
+    document.getElementById('liveCounter').textContent =
+      (liveIdx + 1) + ' / ' + headlines.length;
   }
+
   updateLive();
-  setInterval(updateLive, 4500);
+
+  document.getElementById('liveNextBtn').addEventListener('click', () => {
+    liveIdx = (liveIdx + 1) % headlines.length;
+    updateLive();
+  });
 
   /* ── Manip data ── */
   const manipData = [
