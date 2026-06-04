@@ -58,9 +58,6 @@
       padding: 20px 16px 72px;
     }
 
-    /* ══════════════════════════════════
-       HEADER
-    ══════════════════════════════════ */
     header { position: sticky; top: 0; z-index: 40; }
 
     .header-inner {
@@ -92,6 +89,7 @@
       line-height: 1.15;
       max-width: 170px;
     }
+
     .brand-title span { color: var(--accent-blue); }
 
     .header-glow {
@@ -108,7 +106,8 @@
     }
 
     .burger {
-      width: 44px; height: 44px;
+      width: 44px;
+      height: 44px;
       border-radius: 12px;
       border: 1px solid rgba(148,163,184,.35);
       background: rgba(15,23,42,.65);
@@ -121,13 +120,16 @@
       cursor: pointer;
       box-shadow: 0 8px 20px rgba(0,0,0,.4);
     }
+
     .burger span {
       display: block;
-      width: 100%; height: 2px;
+      width: 100%;
+      height: 2px;
       background: rgba(229,231,235,.95);
       border-radius: 999px;
       transition: .2s ease;
     }
+
     .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
     .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -135,7 +137,8 @@
     .nav-links {
       position: absolute;
       top: calc(100% + 8px);
-      right: 16px; left: 16px;
+      right: 16px;
+      left: 16px;
       display: none;
       flex-direction: column;
       gap: 8px;
@@ -146,6 +149,7 @@
       box-shadow: 0 24px 60px rgba(0,0,0,.65);
       backdrop-filter: blur(14px);
     }
+
     .nav-links.open { display: flex; }
 
     .nav-link,
@@ -160,17 +164,19 @@
       letter-spacing: .12em;
       font-size: .82rem;
     }
+
     .nav-link {
       color: var(--text-muted);
       background: rgba(15,23,42,.65);
       border: 1px solid rgba(30,41,59,.85);
     }
-    /* FIX 3: nav-active на текущей странице */
+
     .nav-link.nav-active {
       color: #f9fafb;
       border-color: rgba(45,212,191,.7);
       box-shadow: 0 0 0 1px rgba(45,212,191,.25) inset;
     }
+
     .support-button-mobile,
     .support-button-desktop {
       font-weight: 700;
@@ -178,6 +184,7 @@
       color: #020617;
       box-shadow: 0 10px 22px rgba(0,0,0,.45);
     }
+
     .support-button-desktop {
       display: none;
       text-decoration: none;
@@ -194,7 +201,12 @@
 
     @media (min-width: 1024px) {
       .burger { display: none; }
-      .site-nav { flex: 1; justify-content: center; }
+
+      .site-nav {
+        flex: 1;
+        justify-content: center;
+      }
+
       .nav-links {
         position: static;
         display: inline-flex !important;
@@ -206,19 +218,19 @@
         box-shadow: none;
         backdrop-filter: none;
       }
-      .nav-link, .support-button-mobile {
+
+      .nav-link,
+      .support-button-mobile {
         min-height: 40px;
         padding: 8px 14px;
         border-radius: 999px;
       }
+
       .nav-link { background: transparent; }
       .support-button-mobile { display: none; }
       .support-button-desktop { display: inline-flex; }
     }
 
-    /* ══════════════════════════════════
-       HERO
-    ══════════════════════════════════ */
     .hero-support {
       position: relative;
       overflow: hidden;
@@ -235,16 +247,16 @@
       flex-direction: column;
       align-items: center;
     }
+
     .hero-support::before {
       content: "";
       position: absolute;
       inset: -30% auto auto -10%;
-      width: 220px; height: 220px;
+      width: 220px;
+      height: 220px;
       background: radial-gradient(circle, rgba(34,211,238,.18), transparent 70%);
       pointer-events: none;
     }
-
-
 
     .hero-support h1 {
       position: relative;
@@ -260,23 +272,109 @@
       width: 100%;
     }
 
+    .hero-principle-card {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 760px);
+      margin-top: 6px;
+      padding: 20px 24px 22px;
+      border-radius: 20px;
+      border: 1px solid rgba(34,211,238,.34);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(34,211,238,.16), transparent 34%),
+        radial-gradient(circle at 100% 100%, rgba(250,204,21,.10), transparent 38%),
+        linear-gradient(180deg, rgba(15,23,42,.72), rgba(2,6,23,.56));
+      box-shadow:
+        0 18px 50px rgba(0,0,0,.42),
+        inset 0 1px 0 rgba(255,255,255,.04),
+        0 0 34px rgba(34,211,238,.08);
+      overflow: hidden;
+    }
+
+    .hero-principle-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 18px;
+      bottom: 18px;
+      width: 3px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--accent-blue), var(--accent-gold));
+      box-shadow: 0 0 18px rgba(34,211,238,.55);
+    }
+
+    .hero-principle-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent, rgba(255,255,255,.035), transparent);
+      transform: translateX(-120%);
+      animation: heroCardSweep 5.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes heroCardSweep {
+      0%, 58% {
+        transform: translateX(-120%);
+        opacity: 0;
+      }
+      68% {
+        opacity: .7;
+      }
+      100% {
+        transform: translateX(120%);
+        opacity: 0;
+      }
+    }
+
+    .hero-principle-label {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      font-family: "Montserrat", sans-serif;
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(226,232,240,.92);
+    }
+
+    .hero-principle-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent-blue);
+      box-shadow: 0 0 14px rgba(34,211,238,.85);
+    }
+
     .hero-support p {
       position: relative;
       z-index: 1;
-      max-width: 640px;
-      margin: 0;
-      color: var(--text-muted);
-      font-size: .98rem;
-      line-height: 1.7;
+      max-width: 680px;
+      margin: 0 auto;
+      color: rgba(203,213,225,.88);
+      font-size: 1rem;
+      line-height: 1.8;
       text-align: center;
     }
 
-    .hero-highlight { color: var(--accent-blue); }
+    .hero-highlight {
+      color: var(--accent-blue);
+      font-weight: 700;
+      text-shadow: 0 0 16px rgba(34,211,238,.22);
+    }
 
-    /* Длинный параграф — только десктоп */
+    .hero-highlight-gold {
+      color: #facc15;
+      text-shadow: 0 0 16px rgba(250,204,21,.18);
+    }
+
     .hero-desc-short { display: none; }
 
-    /* Десктоп: убираем дублирующую nav-ссылку "Поддержать" в pill-меню */
     @media (min-width: 1024px) {
       .nav-links .nav-link[href="help.html"] { display: none; }
     }
@@ -289,6 +387,7 @@
       gap: 10px;
       margin-top: 16px;
     }
+
     .hero-meta span {
       display: inline-flex;
       align-items: center;
@@ -302,9 +401,6 @@
       line-height: 1.35;
     }
 
-    /* ══════════════════════════════════
-       SECTION HEADERS
-    ══════════════════════════════════ */
     .section-block { margin-top: 34px; }
 
     .section-title {
@@ -314,6 +410,7 @@
       font-weight: 800;
       line-height: 1.15;
     }
+
     .section-subtitle {
       margin: 0 0 18px;
       max-width: 760px;
@@ -322,10 +419,6 @@
       line-height: 1.65;
     }
 
-    /* ══════════════════════════════════
-       SUPPORT CARDS
-       FIX 5: подписка — приоритетный вариант
-    ══════════════════════════════════ */
     .support-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -350,6 +443,7 @@
       flex-direction: column;
       transition: border-color .2s ease, box-shadow .2s ease;
     }
+
     .support-card:hover {
       border-color: rgba(34,211,238,.55);
       box-shadow:
@@ -357,6 +451,7 @@
         0 0 0 1px rgba(34,211,238,.1) inset,
         0 0 28px rgba(34,211,238,.08);
     }
+
     .support-card::before {
       content: "";
       position: absolute;
@@ -365,7 +460,6 @@
       pointer-events: none;
     }
 
-    /* FIX 5: карточка подписки — выделенная */
     .support-card.card-featured {
       border-color: rgba(250,204,21,.55);
       background:
@@ -378,6 +472,7 @@
         0 0 0 1px rgba(250,204,21,.1) inset,
         0 0 40px rgba(250,204,21,.08);
     }
+
     .support-card.card-featured:hover {
       border-color: rgba(250,204,21,.85);
       box-shadow:
@@ -425,7 +520,6 @@
       white-space: nowrap;
     }
 
-    /* FIX 5: badge «рекомендуем» для подписки */
     .badge-recommended {
       border-color: rgba(250,204,21,.7) !important;
       background: linear-gradient(135deg, rgba(250,204,21,.22), rgba(249,115,22,.18)) !important;
@@ -442,6 +536,7 @@
       font-weight: 800;
       line-height: 1.2;
     }
+
     .support-card-subtitle {
       position: relative;
       z-index: 1;
@@ -460,12 +555,14 @@
       margin-bottom: 16px;
       font-family: "Montserrat", sans-serif;
     }
+
     .support-price strong {
       font-size: 1.9rem;
       line-height: 1;
       font-weight: 900;
       color: #f8fafc;
     }
+
     .support-price span {
       color: var(--text-muted);
       font-size: .88rem;
@@ -487,6 +584,7 @@
       background: rgba(15,23,42,.68);
       border: 1px solid rgba(51,65,85,.82);
     }
+
     .bonus-box.highlight {
       background:
         radial-gradient(circle at top, rgba(34,211,238,.18), transparent 70%),
@@ -494,6 +592,7 @@
       border-color: rgba(34,211,238,.38);
       box-shadow: inset 0 0 0 1px rgba(34,211,238,.08);
     }
+
     .bonus-box-title {
       display: block;
       margin-bottom: 10px;
@@ -504,12 +603,15 @@
       text-transform: uppercase;
       color: var(--text-muted);
     }
+
     .bonus-list {
       list-style: none;
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
       display: grid;
       gap: 8px;
     }
+
     .bonus-list li {
       display: flex;
       align-items: flex-start;
@@ -518,23 +620,23 @@
       font-size: .88rem;
       line-height: 1.5;
     }
+
     .bonus-list li::before {
       content: "";
-      width: 7px; height: 7px;
+      width: 7px;
+      height: 7px;
       border-radius: 999px;
       background: var(--accent-blue);
       margin-top: .45em;
       flex-shrink: 0;
       box-shadow: 0 0 10px rgba(34,211,238,.65);
     }
+
     .bonus-box.project .bonus-list li::before {
       background: var(--accent-green);
       box-shadow: 0 0 10px rgba(34,197,94,.55);
     }
 
-    /* ══════════════════════════════════
-       AMOUNT INPUT — FIX 2 + FIX 4
-    ══════════════════════════════════ */
     .support-input-row {
       position: relative;
       z-index: 1;
@@ -560,7 +662,6 @@
       user-select: none;
     }
 
-    /* FIX 4: inputmode + pattern для iOS цифровой клавиатуры */
     .support-input-row input[type="text"] {
       width: 100%;
       height: 46px;
@@ -573,15 +674,17 @@
       transition: border-color .18s ease, box-shadow .18s ease;
       outline: none;
     }
+
     .support-input-row input[type="text"]:focus {
       border-color: rgba(34,211,238,.55);
       box-shadow: 0 0 0 3px rgba(34,211,238,.08);
     }
-    /* FIX 2: невалидное состояние */
+
     .support-input-row input[type="text"].input-error {
       border-color: rgba(239,68,68,.65);
       box-shadow: 0 0 0 3px rgba(239,68,68,.08);
     }
+
     .support-input-row input[type="text"]::placeholder {
       color: rgba(148,163,184,.8);
     }
@@ -601,11 +704,12 @@
       transition: transform .2s ease, filter .2s ease, box-shadow .2s ease, opacity .2s ease;
       white-space: nowrap;
     }
+
     .support-btn:hover:not(:disabled) {
       transform: translateY(-1px);
       filter: brightness(1.05);
     }
-    /* FIX 2: disabled-состояние */
+
     .support-btn:disabled {
       opacity: .38;
       cursor: not-allowed;
@@ -618,13 +722,13 @@
       color: #04111a;
       box-shadow: 0 12px 28px rgba(8,47,73,.55);
     }
+
     .btn-gold {
       background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
       color: #2b1600;
       box-shadow: 0 12px 28px rgba(120,53,15,.55);
     }
 
-    /* FIX 2: inline-ошибка */
     .input-hint {
       position: relative;
       z-index: 1;
@@ -635,6 +739,7 @@
       padding-left: 4px;
       transition: opacity .15s ease;
     }
+
     .input-hint:empty { opacity: 0; }
 
     .support-note {
@@ -646,9 +751,6 @@
       line-height: 1.5;
     }
 
-    /* ══════════════════════════════════
-       FIX 6: Honor board CTA
-    ══════════════════════════════════ */
     .honor-board-cta {
       margin-top: 18px;
       display: flex;
@@ -675,6 +777,7 @@
         0 14px 36px rgba(0,0,0,.45);
       transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
     }
+
     .honor-board-cta:hover {
       border-color: rgba(34,211,238,.75);
       box-shadow:
@@ -683,15 +786,13 @@
         0 0 24px rgba(34,211,238,.18);
       transform: translateY(-1px);
     }
+
     .honor-board-cta::before {
       content: "★";
       font-size: .9rem;
       opacity: .75;
     }
 
-    /* ══════════════════════════════════
-       HONOR MODAL
-    ══════════════════════════════════ */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -703,6 +804,7 @@
       z-index: 70;
       padding: 18px;
     }
+
     .modal-overlay.open { display: flex; }
 
     .modal-dialog {
@@ -728,7 +830,9 @@
       border-bottom: 1px solid rgba(51,65,85,.82);
       flex-shrink: 0;
     }
+
     .modal-header-copy { min-width: 0; }
+
     .modal-label {
       display: inline-block;
       margin-bottom: 8px;
@@ -737,12 +841,14 @@
       text-transform: uppercase;
       color: var(--accent-blue);
     }
+
     .modal-title {
       margin: 0 0 6px;
       font-family: "Montserrat", sans-serif;
       font-size: clamp(1.1rem, 3vw, 1.55rem);
       line-height: 1.2;
     }
+
     .modal-subtitle {
       margin: 0;
       color: var(--text-muted);
@@ -750,8 +856,10 @@
       line-height: 1.55;
       max-width: 720px;
     }
+
     .modal-close {
-      width: 42px; height: 42px;
+      width: 42px;
+      height: 42px;
       border-radius: 12px;
       border: 1px solid rgba(51,65,85,.9);
       background: rgba(15,23,42,.82);
@@ -761,6 +869,7 @@
       flex-shrink: 0;
       transition: border-color .15s ease;
     }
+
     .modal-close:hover { border-color: rgba(148,163,184,.55); }
 
     .modal-body {
@@ -769,9 +878,6 @@
       flex: 1;
     }
 
-    /* ══════════════════════════════════
-       FIX 7: доска почёта — разный вес колонок
-    ══════════════════════════════════ */
     .board-grid {
       display: grid;
       grid-template-columns: 1.3fr 1fr 0.85fr;
@@ -788,6 +894,7 @@
       min-width: 0;
       overflow: hidden;
     }
+
     .board-column::before {
       content: "";
       position: absolute;
@@ -796,7 +903,6 @@
       opacity: .8;
     }
 
-    /* Патроны — доминируют */
     .board-column.patrons {
       background:
         radial-gradient(circle at top, rgba(250,204,21,.18), transparent 45%),
@@ -806,11 +912,13 @@
         inset 0 0 0 1px rgba(250,204,21,.07),
         0 0 30px rgba(250,204,21,.06);
     }
+
     .board-column.patrons::before {
       background: linear-gradient(180deg, rgba(255,255,255,.03), transparent 28%);
     }
-    /* Заголовок патронов чуть крупнее */
+
     .board-column.patrons .board-tier-title { font-size: 1.12rem; }
+
     .board-column.patrons .donor-card {
       border-color: rgba(250,204,21,.18);
       background: rgba(8,7,2,.5);
@@ -829,7 +937,7 @@
         rgba(11,22,16,.74);
       border-color: rgba(34,197,94,.26);
     }
-    /* Участники — компактнее */
+
     .board-column.members .donor-card { padding: 10px 12px; }
     .board-column.members .donor-name { font-size: .86rem; }
 
@@ -842,6 +950,7 @@
       gap: 10px;
       margin-bottom: 10px;
     }
+
     .board-tier-title {
       margin: 0;
       font-family: "Montserrat", sans-serif;
@@ -849,6 +958,7 @@
       font-weight: 800;
       line-height: 1.2;
     }
+
     .board-tier-badge {
       display: inline-flex;
       align-items: center;
@@ -862,6 +972,7 @@
       opacity: .95;
       white-space: nowrap;
     }
+
     .patrons .board-tier-badge { color: #fcd34d; }
     .allies  .board-tier-badge { color: #67e8f9; }
     .members .board-tier-badge { color: #86efac; }
@@ -881,6 +992,7 @@
       display: grid;
       gap: 10px;
     }
+
     .donor-card {
       border-radius: 14px;
       padding: 12px;
@@ -888,6 +1000,7 @@
       border: 1px solid rgba(148,163,184,.16);
       box-shadow: inset 0 1px 0 rgba(255,255,255,.02);
     }
+
     .donor-name {
       display: block;
       margin-bottom: 4px;
@@ -895,6 +1008,7 @@
       font-size: .92rem;
       color: #f8fafc;
     }
+
     .donor-role {
       display: block;
       color: var(--text-muted);
@@ -909,9 +1023,6 @@
       line-height: 1.55;
     }
 
-    /* ══════════════════════════════════
-       FIX 8: FOOTER
-    ══════════════════════════════════ */
     footer {
       border-top: 1px solid rgba(31,41,55,.9);
       padding: 20px 16px 28px;
@@ -922,9 +1033,6 @@
       opacity: .65;
     }
 
-    /* ══════════════════════════════════
-       MOBILE
-    ══════════════════════════════════ */
     @media (max-width: 900px) {
       .board-grid { grid-template-columns: 1fr; }
     }
@@ -932,39 +1040,72 @@
     @media (max-width: 767px) {
       .container { padding: 14px 14px 56px; }
 
-      /* ── Hero: только заголовок + одна строка текста ── */
       .hero-support {
         padding: 16px 14px;
         border-radius: 16px;
         margin-top: 12px;
       }
+
       .hero-support h1 {
         font-size: 1.35rem;
-        margin-bottom: 8px;
+        margin-bottom: 10px;
         letter-spacing: -.01em;
       }
-      /* Длинный параграф скрываем, показываем короткий */
-      .hero-desc       { display: none; }
+
+      .hero-principle-card {
+        width: 100%;
+        margin-top: 0;
+        padding: 14px 14px 15px;
+        border-radius: 15px;
+      }
+
+      .hero-principle-card::before {
+        top: 14px;
+        bottom: 14px;
+        width: 2px;
+      }
+
+      .hero-principle-label {
+        font-size: .58rem;
+        letter-spacing: .13em;
+        margin-bottom: 8px;
+      }
+
+      .hero-principle-dot {
+        width: 7px;
+        height: 7px;
+      }
+
+      .hero-desc {
+        display: none;
+      }
+
       .hero-desc-short {
         display: block;
         font-size: .86rem;
-        line-height: 1.6;
+        line-height: 1.62;
         margin: 0;
-        color: var(--text-muted);
+        color: rgba(203,213,225,.88);
       }
-      .hero-meta { display: none; }
 
-      /* ── Секция форматов ── */
+      .hero-meta {
+        display: none;
+      }
+
       .section-block { margin-top: 20px; }
       .section-title { font-size: 1.1rem; margin-bottom: 6px; }
-      /* Убираем подзаголовок секции — он дублирует смысл карточек */
       .section-subtitle { display: none; }
 
-      /* ── Карточки поддержки ── */
-      .support-grid { grid-template-columns: 1fr; gap: 12px; }
-      .support-card { border-radius: 16px; padding: 14px; }
+      .support-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
 
-      /* Лейбл + бейдж в одну строку */
+      .support-card {
+        border-radius: 16px;
+        padding: 14px;
+      }
+
       .support-card-header {
         flex-direction: row;
         align-items: center;
@@ -973,30 +1114,52 @@
         margin-bottom: 8px;
       }
 
-      /* Цена компактнее */
       .support-price { margin-bottom: 12px; }
       .support-price strong { font-size: 1.55rem; }
 
-      /* Бонусные блоки: убираем заголовок "Что получает...",
-         оставляем только список */
-      .bonus-box { padding: 10px 12px; border-radius: 12px; }
-      .bonus-box-title { display: none; }
-      .bonus-list li { font-size: .82rem; gap: 7px; }
-      .bonus-list li::before { width: 6px; height: 6px; margin-top: .4em; }
+      .bonus-box {
+        padding: 10px 12px;
+        border-radius: 12px;
+      }
 
-      /* Блок "Что получает проект" скрываем на мобиле —
-         пользователь принимает решение по своей выгоде */
+      .bonus-box-title { display: none; }
+
+      .bonus-list li {
+        font-size: .82rem;
+        gap: 7px;
+      }
+
+      .bonus-list li::before {
+        width: 6px;
+        height: 6px;
+        margin-top: .4em;
+      }
+
       .bonus-box.project { display: none; }
 
-      .support-layout { gap: 0; margin-bottom: 14px; }
+      .support-layout {
+        gap: 0;
+        margin-bottom: 14px;
+      }
 
-      /* Поле ввода */
-      .support-input-row { flex-direction: row; gap: 8px; }
-      .support-input-row input[type="text"] { height: 44px; font-size: .88rem; }
-      .support-btn { min-height: 44px; font-size: .72rem; padding: 0 14px; }
+      .support-input-row {
+        flex-direction: row;
+        gap: 8px;
+      }
+
+      .support-input-row input[type="text"] {
+        height: 44px;
+        font-size: .88rem;
+      }
+
+      .support-btn {
+        min-height: 44px;
+        font-size: .72rem;
+        padding: 0 14px;
+      }
+
       .support-note { display: none; }
 
-      /* Кнопка доски почёта */
       .honor-board-cta {
         min-height: 48px;
         font-size: .74rem;
@@ -1004,20 +1167,40 @@
         margin-top: 14px;
       }
 
-      /* ── Модалка снизу ── */
-      .modal-overlay { padding: 0; align-items: flex-end; }
-      .modal-dialog  { width: 100%; max-height: 90vh; border-radius: 20px 20px 0 0; }
-      .modal-header  { padding: 14px 14px 10px; }
-      /* Подзаголовок модалки скрываем на мобиле */
+      .modal-overlay {
+        padding: 0;
+        align-items: flex-end;
+      }
+
+      .modal-dialog {
+        width: 100%;
+        max-height: 90vh;
+        border-radius: 20px 20px 0 0;
+      }
+
+      .modal-header { padding: 14px 14px 10px; }
       .modal-subtitle { display: none; }
-      .modal-body    { padding: 12px 14px 16px; }
-      .board-column  { padding: 12px; }
-      .board-tier    { align-items: flex-start; flex-direction: column; gap: 6px; }
-      /* Описание уровня в колонках скрываем */
+      .modal-body { padding: 12px 14px 16px; }
+      .board-column { padding: 12px; }
+
+      .board-tier {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+      }
+
       .board-tier-text { display: none; }
-      /* Донор-карточки компактнее */
-      .donor-card { padding: 9px 11px; border-radius: 11px; }
-      .donor-name { font-size: .86rem; margin-bottom: 2px; }
+
+      .donor-card {
+        padding: 9px 11px;
+        border-radius: 11px;
+      }
+
+      .donor-name {
+        font-size: .86rem;
+        margin-bottom: 2px;
+      }
+
       .donor-role { font-size: .72rem; }
     }
 
@@ -1030,6 +1213,7 @@
     }
   </style>
 </head>
+
 <body>
 
 <header>
@@ -1052,7 +1236,6 @@
         </div>
       </nav>
 
-      <!-- FIX 1: href на якорь, закрытие меню через JS -->
       <a class="support-button-desktop" href="#supportFormats" id="desktopSupportLink">Поддержать</a>
     </div>
     <div class="header-glow"></div>
@@ -1063,26 +1246,33 @@
 
   <section class="hero-support" id="support-top">
     <h1>Развитие стоит дорого<br>Независимость — бесценна</h1>
-    <p class="hero-desc">
-      Государство и медиахолдинги не финансируют «МЕДИА.СТРАЖ» —
-      <span class="hero-highlight">это принципиальная позиция</span>,
-      а не просто факт. Деньги сообщества — единственное, что позволяет алгоритму
-      называть манипуляцию манипуляцией, не оглядываясь ни на кого.
-    </p>
-    <p class="hero-desc hero-desc-short">
-      «МЕДИА.СТРАЖ» не берёт деньги у государства и медиахолдингов,
-      чтобы алгоритм оставался <span class="hero-highlight">максимально беспристрастным</span>
-    </p>
 
+    <div class="hero-principle-card">
+      <div class="hero-principle-label">
+        <span class="hero-principle-dot"></span>
+        Принцип независимости
+      </div>
+
+      <p class="hero-desc">
+        Государство и медиахолдинги не финансируют «МЕДИА.СТРАЖ» —
+        <span class="hero-highlight">это принципиальная позиция</span>,
+        а не просто факт. Деньги сообщества — единственное, что позволяет алгоритму
+        <span class="hero-highlight hero-highlight-gold">называть манипуляцию манипуляцией</span>,
+        не оглядываясь ни на кого.
+      </p>
+
+      <p class="hero-desc hero-desc-short">
+        «МЕДИА.СТРАЖ» не берёт деньги у государства и медиахолдингов,
+        чтобы алгоритм оставался <span class="hero-highlight">максимально беспристрастным</span>
+      </p>
+    </div>
   </section>
 
   <section class="section-block" id="supportFormats">
     <h2 class="section-title">Форматы поддержки</h2>
 
-
     <div class="support-grid">
 
-      <!-- КАРТОЧКА 1: разовый донат -->
       <article class="support-card">
         <div class="support-card-header">
           <span class="support-card-label">разовая поддержка</span>
@@ -1111,7 +1301,6 @@
           </div>
         </div>
 
-        <!-- FIX 2 + FIX 4: валидация + inputmode для iOS -->
         <div class="support-input-row" id="donateRow">
           <div class="amount-wrap">
             <span class="currency" aria-hidden="true">₽</span>
@@ -1136,7 +1325,6 @@
         </div>
       </article>
 
-      <!-- FIX 5: КАРТОЧКА 2 — подписка как приоритетный вариант -->
       <article class="support-card card-featured">
         <div class="support-card-header">
           <span class="support-card-label">ежемесячная поддержка</span>
@@ -1177,7 +1365,6 @@
 
     </div>
 
-    <!-- FIX 6: выразительная CTA кнопка доски почёта -->
     <button class="honor-board-cta" id="openHonorBoard" type="button">
       Открыть доску почёта
     </button>
@@ -1185,10 +1372,8 @@
 
 </div>
 
-<!-- FIX 8: footer -->
 <footer>© 2025 Проект «МЕДИА.СТРАЖ»</footer>
 
-<!-- HONOR BOARD MODAL -->
 <div class="modal-overlay" id="honorBoardModal" aria-hidden="true">
   <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="honorBoardTitle">
     <div class="modal-header">
@@ -1204,7 +1389,6 @@
     </div>
 
     <div class="modal-body">
-      <!-- FIX 7: разные пропорции колонок — патроны доминируют -->
       <div class="board-grid">
 
         <section class="board-column patrons">
@@ -1295,10 +1479,6 @@
 </div>
 
 <script>
-  /* ─────────────────────────────────────────
-     FIX 1: Бургер + якорная ссылка в хедере
-     Закрываем меню перед плавным скроллом
-  ───────────────────────────────────────── */
   const burgerBtn  = document.getElementById("burgerBtn");
   const navLinks   = document.getElementById("navLinks");
   const desktopLink = document.getElementById("desktopSupportLink");
@@ -1324,7 +1504,6 @@
     });
   }
 
-  // FIX 1: desktop-ссылка закрывает мобильное меню перед скроллом
   if (desktopLink) {
     desktopLink.addEventListener("click", () => closeNav());
   }
@@ -1336,15 +1515,11 @@
     }
   });
 
-  /* ─────────────────────────────────────────
-     FIX 2 + FIX 4: Валидация поля суммы
-  ───────────────────────────────────────── */
   const donateInput = document.getElementById("donateInput");
   const donateBtn   = document.getElementById("donateBtn");
   const donateHint  = document.getElementById("donateHint");
 
   function validateAmount(raw) {
-    // разрешаем только цифры
     const clean = raw.replace(/[^0-9]/g, "");
     const num   = parseInt(clean, 10);
     if (!clean || isNaN(num)) return { ok: false, msg: "Введите сумму" };
@@ -1355,7 +1530,6 @@
 
   if (donateInput && donateBtn) {
     donateInput.addEventListener("input", () => {
-      // FIX 4: оставляем только цифры в поле
       const cleaned = donateInput.value.replace(/[^0-9]/g, "");
       if (donateInput.value !== cleaned) donateInput.value = cleaned;
 
@@ -1373,20 +1547,16 @@
         donateInput.focus();
         return;
       }
-      // Здесь будет интеграция с платёжной системой
+
       alert(`Переход к оплате: ${parseInt(donateInput.value, 10).toLocaleString("ru-RU")} ₽`);
     });
 
-    // Снимаем ошибку при фокусе
     donateInput.addEventListener("focus", () => {
       donateInput.classList.remove("input-error");
       donateHint.textContent = "";
     });
   }
 
-  /* ─────────────────────────────────────────
-     Подписка (заглушка)
-  ───────────────────────────────────────── */
   const subscribeBtn = document.getElementById("subscribeBtn");
   if (subscribeBtn) {
     subscribeBtn.addEventListener("click", () => {
@@ -1394,9 +1564,6 @@
     });
   }
 
-  /* ─────────────────────────────────────────
-     HONOR BOARD MODAL
-  ───────────────────────────────────────── */
   const honorBoardModal    = document.getElementById("honorBoardModal");
   const openHonorBoardBtn  = document.getElementById("openHonorBoard");
   const closeHonorBoardBtn = document.getElementById("closeHonorBoard");
