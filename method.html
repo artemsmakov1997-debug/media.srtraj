@@ -294,7 +294,7 @@
     .live-card {
       position: relative;
       border-radius: 22px;
-      padding: 28px 28px 32px;
+      padding: 24px 28px 26px;
       background:
         radial-gradient(circle at top left,  rgba(34,211,238,.14), transparent 45%),
         radial-gradient(circle at bottom right, rgba(99,102,241,.10), transparent 45%),
@@ -319,7 +319,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       position: relative; z-index: 1;
     }
     .live-source-badge {
@@ -341,17 +341,17 @@
       letter-spacing: .1em;
     }
 
-    /* Тело новости — единый блок, фиксированная высота чтобы не дёргалось */
+    /* Тело новости — компактный блок без лишнего воздуха */
     .live-body-text {
       position: relative; z-index: 1;
-      margin: 0 0 20px;
-      padding: 18px 20px;
+      margin: 0 0 18px;
+      padding: 16px 18px;
       border-radius: 16px;
       background: rgba(2,6,23,.45);
       border: 1px solid rgba(31,41,55,.85);
-      font-size: 15px; line-height: 1.8;
+      font-size: 15px; line-height: 1.65;
       color: rgba(229,231,235,.94);
-      min-height: 200px;
+      min-height: 118px;
     }
 
     /* Триггеры */
@@ -423,6 +423,12 @@
       position: relative; z-index: 1;
       display: flex; flex-wrap: wrap; gap: 8px;
       align-items: center;
+    }
+
+    #liveTags {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
     @media (max-width: 767px) {
@@ -803,9 +809,8 @@
         flex-shrink: 0;
       }
 
-      .live-card { padding: 18px 16px 22px; border-radius: 18px; }
-      .live-body-text { font-size: 13px; min-height: 180px; }
-      .live-body-text { font-size: 13px; }
+      .live-card { padding: 16px 14px 18px; border-radius: 18px; }
+      .live-body-text { font-size: 13px; line-height: 1.65; padding: 14px; min-height: 0; }
 
       .manip-grid { grid-template-columns: 1fr; gap: 10px; }
       .manip-card-inner { padding: 14px 16px; gap: 12px; }
@@ -1218,9 +1223,8 @@
 
     document.getElementById('liveSource').textContent = h.source;
     document.getElementById('liveTime').textContent   = 'обновлено: ' + nowHHMM();
-    // Склеиваем заголовок + тело в один текст с подсветкой
-    const combined = h.title + ' — ' + h.body;
-    document.getElementById('liveBody').innerHTML     = buildHighlighted(combined, h.triggers);
+    // Показываем только само сообщение, без заголовка/служебного текста
+    document.getElementById('liveBody').innerHTML     = buildHighlighted(h.body, h.triggers);
 
     const tagsEl = document.getElementById('liveTags');
     tagsEl.innerHTML = h.tags.map(t => `<span class="trigger-tag">${escHtml(t)}</span>`).join('');
