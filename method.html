@@ -341,35 +341,17 @@
       letter-spacing: .1em;
     }
 
-    /* Заголовок новости */
-    .live-headline {
-      position: relative; z-index: 1;
-      font-family: 'Montserrat', sans-serif;
-      font-size: clamp(16px, 2.5vw, 22px);
-      font-weight: 700;
-      line-height: 1.45;
-      margin: 0 0 20px;
-      color: #f1f5f9;
-    }
-
-    /* Тело новости */
-    .live-body-wrap {
-      position: relative; z-index: 1;
-      padding: 14px 16px;
-      border-radius: 16px;
-      background: rgba(2,6,23,.5);
-      border: 1px solid rgba(31,41,55,.85);
-      margin-bottom: 20px;
-    }
-    .live-body-label {
-      font-size: 10px; text-transform: uppercase;
-      letter-spacing: .18em; color: rgba(148,163,184,.8);
-      margin-bottom: 8px;
-    }
+    /* Тело новости — единый блок, фиксированная высота чтобы не дёргалось */
     .live-body-text {
-      margin: 0;
-      font-size: 14px; line-height: 1.75;
-      color: rgba(229,231,235,.92);
+      position: relative; z-index: 1;
+      margin: 0 0 20px;
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: rgba(2,6,23,.45);
+      border: 1px solid rgba(31,41,55,.85);
+      font-size: 15px; line-height: 1.8;
+      color: rgba(229,231,235,.94);
+      min-height: 200px;
     }
 
     /* Триггеры */
@@ -425,11 +407,28 @@
       transform: translateY(-1px);
     }
     .live-next-btn:active { transform: translateY(0); }
+    .live-next-counter {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(34,211,238,.12);
+      border: 1px solid rgba(34,211,238,.25);
+      font-size: 10px;
+      color: rgba(34,211,238,.8);
+      letter-spacing: .1em;
+    }
     .live-next-arrow { font-size: 13px; opacity: .7; }
+
+    /* Подпись триггеров */
+    .live-triggers-row {
+      position: relative; z-index: 1;
+      display: flex; flex-wrap: wrap; gap: 8px;
+      align-items: center;
+    }
 
     @media (max-width: 767px) {
       .live-footer { flex-direction: column; align-items: flex-start; gap: 10px; }
-      .live-triggers-row { display: none; }
+      .live-triggers-row { display: none !important; }
+      .live-next-counter { display: none; }
       .live-next-btn { width: 100%; justify-content: center; }
     }
 
@@ -466,12 +465,7 @@
       color: rgba(229,231,235,.9);
     }
 
-    /* Подпись триггеров */
-    .live-triggers-row {
-      position: relative; z-index: 1;
-      display: flex; flex-wrap: wrap; gap: 8px;
-      align-items: center;
-    }
+    /* live-triggers-row moved above mobile query */
     .live-triggers-label {
       font-size: 11px; text-transform: uppercase;
       letter-spacing: .14em; color: var(--text-muted);
@@ -781,18 +775,36 @@
       .container { padding: 16px 14px 60px; }
       .section { margin-bottom: 40px; }
 
+      /* Pipeline: компактный горизонтальный скролл на мобиле */
       .pipeline-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+        grid-template-columns: none;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
       }
-      .pipeline-card:last-child {
-        grid-column: 1 / -1;
+      .pipeline-card {
+        padding: 11px 14px;
+        border-radius: 14px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
       }
-      .pipe-title { font-size: 13px; }
-      .pipe-text  { font-size: 11.5px; }
+      .pipeline-card:last-child { grid-column: auto; }
+      .pipe-step { margin-bottom: 0; font-size: 9px; flex-shrink: 0; }
+      .pipe-title { font-size: 13px; margin-bottom: 0; flex: 1; }
+      .pipe-text  { display: none; }
+      .pipe-num   { display: none; }
+      /* Кнопка подробнее — вписываем в строку */
+      .pipe-more {
+        position: static;
+        padding: 5px 10px;
+        font-size: 9px;
+        flex-shrink: 0;
+      }
 
       .live-card { padding: 18px 16px 22px; border-radius: 18px; }
-      .live-headline { font-size: 15px; }
+      .live-body-text { font-size: 13px; min-height: 180px; }
       .live-body-text { font-size: 13px; }
 
       .manip-grid { grid-template-columns: 1fr; gap: 10px; }
@@ -845,6 +857,7 @@
 
   <!-- ══ PIPELINE ══ -->
   <section class="section">
+    <div class="section-kicker">Конвейер</div>
     <h2 class="section-title">КОНВЕЙЕР АНАЛИЗА <span class="accent">НОВОСТИ</span></h2>
     <div class="section-rule"></div>
 
@@ -885,6 +898,7 @@
 
   <!-- ══ LIVE EXAMPLE ══ -->
   <section class="section">
+    <div class="section-kicker">Живой пример</div>
     <h2 class="section-title">КАК ИИ РАЗБИРАЕТ <span class="accent">СООБЩЕНИЕ</span></h2>
     <div class="section-rule"></div>
 
@@ -897,12 +911,7 @@
         <div class="live-time" id="liveTime">обновлено: только что</div>
       </div>
 
-      <h3 class="live-headline" id="liveTitle"></h3>
-
-      <div class="live-body-wrap">
-        <div class="live-body-label">Фрагмент сообщения</div>
-        <p class="live-body-text" id="liveBody"></p>
-      </div>
+      <p class="live-body-text" id="liveBody"></p>
 
       <div class="live-footer">
         <div class="live-triggers-row">
@@ -911,6 +920,7 @@
         </div>
         <button class="live-next-btn" id="liveNextBtn" type="button">
           <span>Следующий пример</span>
+          <span class="live-next-counter" id="liveCounter">1&nbsp;/&nbsp;4</span>
           <span class="live-next-arrow">→</span>
         </button>
       </div>
@@ -927,6 +937,7 @@
 
   <!-- ══ MANIP TYPES ══ -->
   <section class="section">
+    <div class="section-kicker">Техники</div>
     <h2 class="section-title">ЧТО ИМЕННО ИЩЕТ <span class="accent">ИИ</span></h2>
     <div class="section-rule"></div>
 
@@ -1207,11 +1218,15 @@
 
     document.getElementById('liveSource').textContent = h.source;
     document.getElementById('liveTime').textContent   = 'обновлено: ' + nowHHMM();
-    document.getElementById('liveTitle').innerHTML    = buildHighlighted(h.title, h.triggers);
-    document.getElementById('liveBody').innerHTML     = buildHighlighted(h.body,  h.triggers);
+    // Склеиваем заголовок + тело в один текст с подсветкой
+    const combined = h.title + ' — ' + h.body;
+    document.getElementById('liveBody').innerHTML     = buildHighlighted(combined, h.triggers);
 
     const tagsEl = document.getElementById('liveTags');
     tagsEl.innerHTML = h.tags.map(t => `<span class="trigger-tag">${escHtml(t)}</span>`).join('');
+
+    document.getElementById('liveCounter').textContent =
+      (liveIdx + 1) + ' / ' + headlines.length;
   }
 
   updateLive();
