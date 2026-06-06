@@ -3,1115 +3,426 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>МЕДИА.СТРАЖ | Архив сообщений</title>
-<!-- Favicon -->
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="manifest" href="site.webmanifest">
-<meta name="theme-color" content="#00c7df">
+  <title>МЕДИА.СТРАЖ — Архив сообщений</title>
+  <meta name="description" content="Архив сообщений российских СМИ с индексом манипулятивности." />
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#00c7df">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-
   <style>
     :root {
-      --bg-body: #05070b;
-      --bg-panel: #12141b;
+      --bg-body:       #05070b;
+      --bg-panel:      #12141b;
       --bg-panel-soft: #151821;
-      --border-color: #2c2f3b;
-
-      --text-main: #ffffff;
-      --text-muted: #8b8d96;
-
-      --accent-blue: #22d3ee;
-      --accent-cyan: #14b8a6;
-      --accent-red: #ef4444;
+      --text-main:     #ffffff;
+      --text-muted:    #8b8d96;
+      --accent-blue:   #22d3ee;
+      --accent-cyan:   #14b8a6;
+      --accent-red:    #ef4444;
       --accent-yellow: #eab308;
-      --accent-green: #22c55e;
-
-      --shadow-card: 0 16px 40px rgba(0,0,0,.55);
-      --radius-lg: 20px;
-      --radius-md: 16px;
-      --radius-sm: 12px;
-      --container: 1200px;
+      --accent-green:  #22c55e;
+      --shadow-card:   0 16px 40px rgba(0,0,0,.55);
+      --radius-lg:     20px;
+      --container:     1200px;
     }
-
-    * {
-      box-sizing: border-box;
-      outline: none;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    *, *::before, *::after { box-sizing: border-box; outline: none; }
+    html { scroll-behavior: smooth; }
     body {
-      margin: 0;
-      min-height: 100vh;
+      margin: 0; min-height: 100vh;
       font-family: "Roboto", sans-serif;
       color: var(--text-main);
       background:
-        radial-gradient(circle at 20% 0%, rgba(34,211,238,.14), transparent 25%),
-        radial-gradient(circle at 80% 10%, rgba(239,68,68,.12), transparent 25%),
-        radial-gradient(circle at bottom, rgba(15,23,42,.7), transparent 60%),
+        radial-gradient(circle at 20% 0%,  rgba(34,211,238,.14), transparent 25%),
+        radial-gradient(circle at 80% 10%, rgba(239,68,68,.12),  transparent 25%),
+        radial-gradient(circle at bottom,  rgba(15,23,42,.7),    transparent 60%),
         var(--bg-body);
       -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
     }
+    button, a, input { -webkit-tap-highlight-color: transparent; }
+    .container { width: min(100%, var(--container)); margin: 0 auto; padding: 20px 16px 72px; }
 
-    button, a, input {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .container {
-      width: min(100%, var(--container));
-      margin: 0 auto;
-      padding: 20px 16px 72px;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-    }
-
+    /* ══ HEADER ══ */
+    header { position: sticky; top: 0; z-index: 40; }
     .header-inner {
       background: linear-gradient(180deg, rgba(15,23,42,.96), rgba(15,23,42,.88));
       backdrop-filter: blur(18px);
       border-bottom: 1px solid rgba(30,41,59,.85);
       box-shadow: 0 12px 24px rgba(0,0,0,.5);
     }
-
     .navbar {
-      width: min(100%, var(--container));
-      margin: 0 auto;
-      min-height: 64px;
-      padding: 10px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      position: relative;
+      width: min(100%, var(--container)); margin: 0 auto;
+      min-height: 64px; padding: 10px 16px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; position: relative;
     }
-
     .brand-title {
-      font-family: "Montserrat", sans-serif;
-      font-weight: 800;
-      font-size: .95rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: #e5e7eb;
-      line-height: 1.15;
-      max-width: 170px;
+      font-family: "Montserrat", sans-serif; font-weight: 800;
+      font-size: .95rem; letter-spacing: .12em; text-transform: uppercase;
+      color: #e5e7eb; line-height: 1.15; max-width: 170px;
     }
-
-    .brand-title span {
-      color: var(--accent-blue);
-    }
-
-    .header-glow {
-      height: 2px;
-      background: radial-gradient(circle at center, rgba(34,211,238,.75), transparent 70%);
-      opacity: .45;
-    }
-
-    .site-nav {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      margin-left: auto;
-    }
-
+    .brand-title span { color: var(--accent-blue); }
+    .header-glow { height: 2px; background: radial-gradient(circle at center, rgba(34,211,238,.75), transparent 70%); opacity: .45; }
+    .site-nav { display: flex; align-items: center; justify-content: flex-end; margin-left: auto; }
     .burger {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      border: 1px solid rgba(148,163,184,.35);
-      background: rgba(15,23,42,.65);
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      padding: 10px;
-      cursor: pointer;
+      width: 44px; height: 44px; border-radius: 12px;
+      border: 1px solid rgba(148,163,184,.35); background: rgba(15,23,42,.65);
+      display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 5px; padding: 10px; cursor: pointer;
     }
-
-    .burger span {
-      display: block;
-      width: 100%;
-      height: 2px;
-      background: rgba(229,231,235,.95);
-      border-radius: 999px;
-      transition: .2s ease;
-    }
-
-    .burger[aria-expanded="true"] span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
-    }
-
-    .burger[aria-expanded="true"] span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .burger[aria-expanded="true"] span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
-    }
-
+    .burger span { display: block; width: 100%; height: 2px; background: rgba(229,231,235,.95); border-radius: 999px; transition: .2s ease; }
+    .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
     .nav-links {
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 16px;
-      left: 16px;
-      display: none;
-      flex-direction: column;
-      gap: 8px;
-      padding: 12px;
-      border-radius: 18px;
-      background: rgba(2,6,23,.96);
-      border: 1px solid rgba(51,65,85,.92);
-      box-shadow: 0 24px 60px rgba(0,0,0,.65);
-      backdrop-filter: blur(14px);
+      position: absolute; top: calc(100% + 8px); right: 16px; left: 16px;
+      display: none; flex-direction: column; gap: 8px; padding: 12px;
+      border-radius: 18px; background: rgba(2,6,23,.96);
+      border: 1px solid rgba(51,65,85,.92); box-shadow: 0 24px 60px rgba(0,0,0,.65); backdrop-filter: blur(14px);
     }
-
-    .nav-links.open {
-      display: flex;
+    .nav-links.open { display: flex; }
+    .nav-link, .support-button-mobile {
+      display: flex; align-items: center; justify-content: space-between;
+      min-height: 48px; padding: 12px 14px; border-radius: 12px;
+      text-decoration: none; text-transform: uppercase; letter-spacing: .12em; font-size: .82rem;
     }
-
-    .nav-link,
-    .support-button-mobile {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 48px;
-      padding: 12px 14px;
-      border-radius: 12px;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      font-size: .82rem;
+    .nav-link { color: var(--text-muted); background: rgba(15,23,42,.65); border: 1px solid rgba(30,41,59,.85); }
+    .nav-link.nav-active { color: #f9fafb; border-color: rgba(45,212,191,.7); box-shadow: 0 0 0 1px rgba(45,212,191,.25) inset; }
+    .support-button-mobile, .support-button-desktop {
+      font-weight: 700; background: linear-gradient(135deg, #facc15, #f97316); color: #020617; box-shadow: 0 10px 22px rgba(0,0,0,.45);
     }
-
-    .nav-link {
-      color: var(--text-muted);
-      background: rgba(15,23,42,.65);
-      border: 1px solid rgba(30,41,59,.85);
-    }
-
-    .nav-link.nav-active {
-      color: #f9fafb;
-      border-color: rgba(45,212,191,.7);
-      box-shadow: 0 0 0 1px rgba(45,212,191,.25) inset;
-    }
-
-    .support-button-mobile,
     .support-button-desktop {
-      font-weight: 700;
-      background: linear-gradient(135deg, #facc15, #f97316);
-      color: #020617;
-      box-shadow: 0 10px 22px rgba(0,0,0,.45);
+      display: none; text-decoration: none; align-items: center; justify-content: center;
+      white-space: nowrap; min-height: 42px; padding: 0 16px; border-radius: 999px;
+      font-size: .78rem; letter-spacing: .12em; text-transform: uppercase;
+    }
+    @media (min-width: 1024px) {
+      .burger { display: none; }
+      .site-nav { flex: 1; justify-content: center; }
+      .nav-links {
+        position: static; display: inline-flex !important; flex-direction: row;
+        gap: 4px; padding: 4px 8px;
+        background: radial-gradient(circle at top, rgba(31,41,55,.9), transparent 70%);
+        border: none; box-shadow: none; backdrop-filter: none;
+      }
+      .nav-link, .support-button-mobile { min-height: 40px; padding: 8px 14px; border-radius: 999px; }
+      .nav-link { background: transparent; }
+      .support-button-mobile { display: none; }
+      .support-button-desktop { display: inline-flex; }
     }
 
-    .support-button-desktop {
-      display: none;
-      text-decoration: none;
-      align-items: center;
-      justify-content: center;
-      white-space: nowrap;
-      min-height: 42px;
-      padding: 0 16px;
-      border-radius: 999px;
-      font-size: .78rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .archive-section {
-      margin: 18px auto 0;
-    }
-
+    /* ══ ARCHIVE ══ */
+    .archive-section { margin: 18px auto 0; }
     .archive-shell {
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
       background: linear-gradient(180deg, rgba(12,18,32,.92), rgba(6,10,18,.92));
-      border: 1px solid rgba(31,41,55,.9);
-      border-radius: var(--radius-lg);
-      padding: 18px;
-      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(31,41,55,.9); border-radius: var(--radius-lg);
+      padding: 18px; box-shadow: var(--shadow-card);
     }
-
     .archive-shell::before {
-      content: "";
-      position: absolute;
-      inset: -40% auto auto -10%;
-      width: 180px;
-      height: 180px;
-      background: radial-gradient(circle, rgba(34,211,238,.18), transparent 70%);
-      pointer-events: none;
+      content: ""; position: absolute; inset: -40% auto auto -10%;
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, rgba(34,211,238,.18), transparent 70%); pointer-events: none;
     }
-
-    .archive-top-row {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 6px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .section-title {
-      margin: 0;
-      font-family: "Montserrat", sans-serif;
-      font-weight: 800;
-      font-size: clamp(1.35rem, 4vw, 1.85rem);
-      line-height: 1.1;
-      letter-spacing: -.02em;
-    }
-
-    .section-ai {
-      color: var(--accent-blue);
-    }
-
-    .section-subtitle {
-      position: relative;
-      z-index: 1;
-      font-size: .92rem;
-      line-height: 1.6;
-      color: var(--text-muted);
-      margin: 0 0 18px;
-      max-width: 820px;
-    }
-
-    .manip-counter {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 4px;
-      min-width: 180px;
-    }
-
-    .manip-counter-label {
-      font-size: .7rem;
-      line-height: 1.4;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      text-align: right;
-    }
-
-    .manip-counter-value {
-      font-family: "Montserrat", sans-serif;
-      font-size: 1.5rem;
-      font-weight: 900;
-      line-height: 1;
-      color: var(--accent-blue);
-      text-shadow: 0 0 16px rgba(34,211,238,.28);
-    }
-
-    .archive-filters {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-      margin-bottom: 14px;
-    }
-
+    .archive-top-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 6px; position: relative; z-index: 1; }
+    .section-title { margin: 0; font-family: "Montserrat", sans-serif; font-weight: 800; font-size: clamp(1.35rem,4vw,1.85rem); line-height: 1.1; letter-spacing: -.02em; }
+    .section-ai { color: var(--accent-blue); }
+    .section-subtitle { position: relative; z-index: 1; font-size: .92rem; line-height: 1.6; color: var(--text-muted); margin: 0 0 18px; max-width: 820px; }
+    .manip-counter { display: inline-flex; flex-direction: column; align-items: flex-end; gap: 4px; min-width: 180px; }
+    .manip-counter-label { font-size: .7rem; line-height: 1.4; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); text-align: right; }
+    .manip-counter-value { font-family: "Montserrat", sans-serif; font-size: 1.5rem; font-weight: 900; line-height: 1; color: var(--accent-blue); text-shadow: 0 0 16px rgba(34,211,238,.28); }
+    .archive-filters { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 14px; }
     .archive-search {
-      flex: 1 1 320px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      height: 52px;
-      min-height: 52px;
-      padding: 0 16px 0 48px;
-      border-radius: 16px;
-      background:
-        radial-gradient(circle at 0% 50%, rgba(34,211,238,.16), transparent 38%),
-        linear-gradient(180deg, rgba(15,23,42,.98), rgba(5,10,22,.98));
+      flex: 1 1 320px; position: relative; display: flex; align-items: center;
+      height: 52px; min-height: 52px; padding: 0 16px 0 48px; border-radius: 16px;
+      background: radial-gradient(circle at 0% 50%, rgba(34,211,238,.16), transparent 38%), linear-gradient(180deg, rgba(15,23,42,.98), rgba(5,10,22,.98));
       border: 1px solid rgba(34,211,238,.38);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.05),
-        0 14px 34px rgba(0,0,0,.34),
-        0 0 24px rgba(34,211,238,.08);
-      overflow: hidden;
-      transition:
-        border-color .2s ease,
-        box-shadow .2s ease,
-        background .2s ease;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 14px 34px rgba(0,0,0,.34), 0 0 24px rgba(34,211,238,.08);
+      overflow: hidden; transition: border-color .2s ease, box-shadow .2s ease;
     }
-
     .archive-search::before {
-      content: "";
-      position: absolute;
-      left: 18px;
-      top: 50%;
-      width: 14px;
-      height: 14px;
-      border: 2px solid rgba(34,211,238,.86);
-      border-radius: 999px;
-      transform: translateY(-50%);
-      box-shadow: 0 0 14px rgba(34,211,238,.35);
-      pointer-events: none;
+      content: ""; position: absolute; left: 18px; top: 50%; width: 14px; height: 14px;
+      border: 2px solid rgba(34,211,238,.86); border-radius: 999px;
+      transform: translateY(-50%); box-shadow: 0 0 14px rgba(34,211,238,.35); pointer-events: none;
     }
-
     .archive-search::after {
-      content: "";
-      position: absolute;
-      left: 31px;
-      top: 50%;
-      width: 8px;
-      height: 2px;
-      border-radius: 999px;
-      background: rgba(34,211,238,.86);
-      transform: translateY(7px) rotate(45deg);
-      transform-origin: left center;
-      box-shadow: 0 0 12px rgba(34,211,238,.35);
-      pointer-events: none;
+      content: ""; position: absolute; left: 31px; top: 50%; width: 8px; height: 2px;
+      border-radius: 999px; background: rgba(34,211,238,.86);
+      transform: translateY(7px) rotate(45deg); transform-origin: left center; pointer-events: none;
     }
-
-    .archive-search:focus-within {
-      border-color: rgba(34,211,238,.95);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.08),
-        0 16px 42px rgba(0,0,0,.46),
-        0 0 0 1px rgba(34,211,238,.16),
-        0 0 30px rgba(34,211,238,.24);
-    }
-
-    .archive-search input {
-      width: 100%;
-      height: 100%;
-      border: none;
-      background: transparent;
-      color: #e5e7eb;
-      font-size: .94rem;
-      font-weight: 500;
-      line-height: 1;
-      letter-spacing: .01em;
-      padding: 0;
-      margin: 0;
-    }
-
-    .archive-search input::placeholder {
-      color: rgba(186,230,253,.72);
-    }
-
-    .status-chips-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-left: auto;
-    }
-
-    .status-chips {
-      display: inline-flex;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    .chip {
-      min-height: 40px;
-      border-radius: 999px;
-      padding: 0 14px;
-      font-size: .74rem;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      border: 1px solid rgba(51,65,85,.9);
-      background-color: rgba(15,23,42,.96);
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: .2s ease;
-      white-space: nowrap;
-    }
-
-    .chip:hover {
-      border-color: var(--accent-blue);
-      color: #e5e7eb;
-    }
-
-    .chip-active {
-      background: radial-gradient(circle at top, rgba(34,211,238,.28), transparent 70%);
-      border-color: rgba(56,189,248,.9);
-      color: #f9fafb;
-      box-shadow: 0 0 18px rgba(56,189,248,.32);
-    }
-
-    .archive-header-row {
-      display: grid;
-      grid-template-columns: 1.05fr .85fr 2.6fr .65fr 1fr .8fr;
-      gap: 12px;
-      padding: 10px 16px;
-      margin-top: 4px;
-      margin-bottom: 8px;
-      font-size: .72rem;
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      color: var(--text-muted);
-      border-bottom: 1px solid rgba(31,41,55,.9);
-    }
-
-    .archive-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      max-height: 560px;
-      overflow-y: auto;
-      padding-right: 4px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .archive-list::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    .archive-list::-webkit-scrollbar-track {
-      background: rgba(15,23,42,.8);
-      border-radius: 999px;
-    }
-
-    .archive-list::-webkit-scrollbar-thumb {
-      background: rgba(51,65,85,.9);
-      border-radius: 999px;
-    }
-
-    .archive-list::-webkit-scrollbar-thumb:hover {
-      background: rgba(71,85,105,1);
-    }
-
+    .archive-search:focus-within { border-color: rgba(34,211,238,.95); box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 0 0 1px rgba(34,211,238,.16), 0 0 30px rgba(34,211,238,.24); }
+    .archive-search input { width: 100%; height: 100%; border: none; background: transparent; color: #e5e7eb; font-size: .94rem; font-weight: 500; padding: 0; margin: 0; }
+    .archive-search input::placeholder { color: rgba(186,230,253,.72); }
+    .status-chips-wrapper { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+    .status-chips { display: inline-flex; gap: 6px; flex-wrap: wrap; }
+    .chip { min-height: 40px; border-radius: 999px; padding: 0 14px; font-size: .74rem; text-transform: uppercase; letter-spacing: .12em; border: 1px solid rgba(51,65,85,.9); background: rgba(15,23,42,.96); color: var(--text-muted); cursor: pointer; transition: .2s ease; white-space: nowrap; }
+    .chip:hover { border-color: var(--accent-blue); color: #e5e7eb; }
+    .chip-active { background: radial-gradient(circle at top, rgba(34,211,238,.28), transparent 70%); border-color: rgba(56,189,248,.9); color: #f9fafb; box-shadow: 0 0 18px rgba(56,189,248,.32); }
+    .archive-header-row { display: grid; grid-template-columns: 1.05fr .85fr 2.6fr .65fr 1fr .8fr; gap: 12px; padding: 10px 16px; margin: 4px 0 8px; font-size: .72rem; text-transform: uppercase; letter-spacing: .16em; color: var(--text-muted); border-bottom: 1px solid rgba(31,41,55,.9); }
+    .archive-list { display: flex; flex-direction: column; gap: 10px; max-height: 560px; overflow-y: auto; padding-right: 4px; position: relative; z-index: 1; }
+    .archive-list::-webkit-scrollbar { width: 6px; }
+    .archive-list::-webkit-scrollbar-track { background: rgba(15,23,42,.8); border-radius: 999px; }
+    .archive-list::-webkit-scrollbar-thumb { background: rgba(51,65,85,.9); border-radius: 999px; }
     .archive-item {
-      position: relative;
-      border-radius: 18px;
-      background:
-        radial-gradient(circle at 100% 0%, rgba(255,255,255,.06), transparent 28%),
-        radial-gradient(circle at bottom, rgba(34,211,238,.14), transparent 60%),
-        var(--bg-panel-soft);
-      border: 1px solid rgba(31,41,55,.92);
-      box-shadow: 0 16px 40px rgba(0,0,0,.42);
-      overflow: hidden;
-      transition:
-        border-color .22s ease-out,
-        box-shadow .22s ease-out,
-        transform .22s ease-out,
-        opacity .25s ease-out;
-      opacity: 1;
+      position: relative; border-radius: 18px;
+      background: radial-gradient(circle at 100% 0%, rgba(255,255,255,.06), transparent 28%), radial-gradient(circle at bottom, rgba(34,211,238,.14), transparent 60%), var(--bg-panel-soft);
+      border: 1px solid rgba(31,41,55,.92); box-shadow: 0 16px 40px rgba(0,0,0,.42); overflow: hidden;
+      transition: border-color .22s ease-out, box-shadow .22s ease-out, transform .22s ease-out, opacity .25s ease-out;
     }
-
-    .archive-item:hover {
-      transform: translateY(-2px);
-      border-color: rgba(56,189,248,.9);
-      box-shadow:
-        0 26px 70px rgba(0,0,0,.8),
-        0 0 28px rgba(56,189,248,.24);
-    }
-
-    .archive-summary {
-      padding: 15px 18px;
-      display: grid;
-      grid-template-columns: 1.05fr .85fr 2.6fr .65fr 1fr .8fr;
-      gap: 12px;
-      align-items: center;
-      cursor: pointer;
-    }
-
-    .cell-media {
-      font-size: .9rem;
-      font-weight: 500;
-      color: #f3f4f6;
-    }
-
-    .cell-time {
-      font-size: .82rem;
-      color: var(--text-muted);
-    }
-
-    .cell-title {
-      font-size: .92rem;
-      line-height: 1.55;
-      color: #e5e7eb;
-    }
-
-    .cell-index {
-      font-family: "Montserrat", sans-serif;
-      font-weight: 800;
-      font-size: 1rem;
-    }
-
-    .index-red { color: var(--accent-red); }
+    .archive-item:hover { transform: translateY(-2px); border-color: rgba(56,189,248,.9); box-shadow: 0 26px 70px rgba(0,0,0,.8), 0 0 28px rgba(56,189,248,.24); }
+    .archive-item.fade-out { opacity: 0; transform: translateY(4px); }
+    .archive-item.fade-in  { opacity: 1; transform: translateY(0); }
+    .archive-summary { padding: 15px 18px; display: grid; grid-template-columns: 1.05fr .85fr 2.6fr .65fr 1fr .8fr; gap: 12px; align-items: center; cursor: pointer; }
+    .cell-media   { font-size: .9rem; font-weight: 500; color: #f3f4f6; }
+    .cell-time    { font-size: .82rem; color: var(--text-muted); }
+    .cell-title   { font-size: .92rem; line-height: 1.55; color: #e5e7eb; }
+    .cell-index   { font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 1rem; }
+    .index-red    { color: var(--accent-red); }
     .index-yellow { color: var(--accent-yellow); }
-    .index-green { color: var(--accent-green); }
+    .index-green  { color: var(--accent-green); }
+    .cell-category { display: inline-flex; align-items: center; justify-content: center; width: fit-content; max-width: 100%; font-size: .72rem; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(75,85,99,.9); background: rgba(15,23,42,.96); color: var(--text-muted); white-space: normal; line-height: 1.35; text-align: center; }
+    .cell-category.danger  { border-color: rgba(239,68,68,.85); color: #fecaca; }
+    .cell-category.risky   { border-color: rgba(234,179,8,.85);  color: #fef3c7; }
+    .cell-category.neutral { border-color: rgba(22,163,74,.75);  color: #bbf7d0; }
+    .cell-button { text-align: right; }
+    .more-btn { appearance: none; min-height: 38px; padding: 0 14px; border-radius: 999px; border: 1px solid rgba(148,163,184,.35); background: rgba(15,23,42,.95); color: #e5e7eb; font-size: .7rem; text-transform: uppercase; letter-spacing: .14em; cursor: pointer; transition: .2s ease; white-space: nowrap; }
+    .more-btn:hover { border-color: rgba(56,189,248,.9); color: var(--accent-blue); }
+    .realtime-note { font-size: .76rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px; margin-top: 14px; position: relative; z-index: 1; }
+    .rt-dot { width: 7px; height: 7px; border-radius: 999px; background: var(--accent-green); box-shadow: 0 0 12px rgba(34,197,94,.85); animation: rtpulse 1.4s ease-out infinite; flex-shrink: 0; }
+    @keyframes rtpulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.4); opacity: .6; } }
+    .empty-state { border: 1px dashed rgba(51,65,85,.9); border-radius: 16px; padding: 18px; color: var(--text-muted); font-size: .92rem; background: rgba(15,23,42,.55); }
 
-    .cell-category {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: fit-content;
-      max-width: 100%;
-      font-size: .72rem;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(75,85,99,.9);
-      background-color: rgba(15,23,42,.96);
-      color: var(--text-muted);
-      white-space: normal;
-      line-height: 1.35;
-      text-align: center;
-    }
-
-    .cell-category.danger {
-      border-color: rgba(239,68,68,.85);
-      color: #fecaca;
-    }
-
-    .cell-category.risky {
-      border-color: rgba(234,179,8,.85);
-      color: #fef3c7;
-    }
-
-    .cell-category.neutral {
-      border-color: rgba(22,163,74,.75);
-      color: #bbf7d0;
-    }
-
-    .cell-button {
-      text-align: right;
-    }
-
-    .more-btn {
-      appearance: none;
-      min-height: 38px;
-      padding: 0 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,.35);
-      background: rgba(15,23,42,.95);
-      color: #e5e7eb;
-      font-size: .7rem;
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      cursor: pointer;
-      transition: .2s ease;
-      white-space: nowrap;
-    }
-
-    .more-btn:hover {
-      border-color: rgba(56,189,248,.9);
-      color: var(--accent-blue);
-    }
-
-    .archive-item.fade-out {
-      opacity: 0;
-      transform: translateY(4px);
-    }
-
-    .archive-item.fade-in {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .realtime-note {
-      font-size: .76rem;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 14px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .rt-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background-color: var(--accent-green);
-      box-shadow: 0 0 12px rgba(34,197,94,.85);
-      animation: pulse 1.4s ease-out infinite;
-      flex-shrink: 0;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.4); opacity: .6; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    .empty-state {
-      border: 1px dashed rgba(51,65,85,.9);
-      border-radius: 16px;
-      padding: 18px;
-      color: var(--text-muted);
-      font-size: .92rem;
-      background: rgba(15,23,42,.55);
-    }
-
+    /* ══ MODAL ══ */
     .message-modal-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 70;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
-      background: rgba(2,6,23,.84);
-      backdrop-filter: blur(10px);
+      position: fixed; inset: 0; z-index: 70;
+      display: none; align-items: center; justify-content: center;
+      padding: 18px; background: rgba(2,6,23,.88); backdrop-filter: blur(14px);
     }
-
-    .message-modal-overlay.open {
-      display: flex;
-    }
+    .message-modal-overlay.open { display: flex; }
 
     .message-modal {
-      width: min(100%, 920px);
-      max-height: min(88vh, 920px);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      border-radius: 22px;
-      border: 1px solid rgba(51,65,85,.9);
+      width: min(100%, 760px);
+      max-height: min(90vh, 860px);
+      overflow: hidden; display: flex; flex-direction: column;
+      border-radius: 24px;
+      border: 1px solid rgba(56,189,248,.35);
       background:
-        radial-gradient(circle at top, rgba(34,211,238,.12), transparent 42%),
-        linear-gradient(180deg, rgba(12,18,32,.98), rgba(4,8,15,.98));
-      box-shadow: 0 30px 90px rgba(0,0,0,.78);
+        radial-gradient(circle at top left,  rgba(34,211,238,.16), transparent 40%),
+        radial-gradient(circle at bottom right, rgba(99,102,241,.10), transparent 40%),
+        linear-gradient(180deg, rgba(10,16,30,.99), rgba(3,6,14,.99));
+      box-shadow:
+        0 0 0 1px rgba(34,211,238,.08) inset,
+        0 32px 100px rgba(0,0,0,.85),
+        0 0 60px rgba(34,211,238,.12);
+    }
+
+    /* Скан-линии — лёгкая текстура */
+    .message-modal::before {
+      content: "";
+      position: absolute; inset: 0; border-radius: inherit;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(255,255,255,.016) 0px, rgba(255,255,255,.016) 1px,
+        transparent 2px, transparent 7px
+      );
+      opacity: .35; mix-blend-mode: overlay; pointer-events: none; z-index: 0;
     }
 
     .message-modal-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 18px 18px 14px;
-      border-bottom: 1px solid rgba(51,65,85,.82);
+      position: relative; z-index: 1;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 14px;
+      padding: 20px 22px 16px;
+      border-bottom: 1px solid rgba(34,211,238,.15);
+      background: linear-gradient(180deg, rgba(34,211,238,.06), transparent);
+      flex-shrink: 0;
     }
-
-    .message-modal-title-wrap {
-      min-width: 0;
-    }
-
     .message-modal-label {
-      display: inline-block;
-      margin-bottom: 8px;
-      font-size: .72rem;
-      line-height: 1.3;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--accent-blue);
+      display: inline-block; margin-bottom: 6px;
+      font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--accent-blue); opacity: .85;
     }
-
     .message-modal-title {
-      margin: 0;
-      font-family: "Montserrat", sans-serif;
-      font-size: clamp(1rem, 2.6vw, 1.4rem);
-      line-height: 1.3;
-      color: #f8fafc;
+      margin: 0; font-family: "Montserrat", sans-serif;
+      font-size: clamp(.95rem, 2.4vw, 1.3rem);
+      line-height: 1.35; color: #f8fafc;
     }
-
     .message-close {
-      width: 42px;
-      height: 42px;
-      flex: 0 0 42px;
-      border-radius: 12px;
-      border: 1px solid rgba(51,65,85,.9);
-      background: rgba(15,23,42,.82);
-      color: #e5e7eb;
-      font-size: 1.25rem;
-      cursor: pointer;
+      width: 38px; height: 38px; flex: 0 0 38px;
+      border-radius: 10px;
+      border: 1px solid rgba(56,189,248,.3);
+      background: rgba(15,23,42,.85); color: rgba(229,231,235,.9);
+      font-size: 1.15rem; cursor: pointer;
+      transition: border-color .18s, box-shadow .18s, background .18s;
+    }
+    .message-close:hover { border-color: rgba(34,211,238,.75); box-shadow: 0 0 14px rgba(34,211,238,.25); background: rgba(34,211,238,.08); }
+
+    .message-modal-body { overflow-y: auto; padding: 20px 22px 24px; position: relative; z-index: 1; }
+
+    /* ── 1. Полное сообщение ── */
+    .modal-fulltext-wrap {
+      position: relative; margin-bottom: 18px;
+      padding: 18px 20px 20px;
+      border-radius: 18px;
+      border: 1px solid rgba(56,189,248,.2);
+      background:
+        radial-gradient(circle at top left, rgba(34,211,238,.08), transparent 55%),
+        rgba(8,14,26,.7);
+      overflow: hidden;
+    }
+    .modal-fulltext-wrap::before {
+      content: "";
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent-blue), rgba(34,211,238,.3), transparent);
+      opacity: .6;
+    }
+    .modal-fulltext-label {
+      display: block; margin-bottom: 12px;
+      font-size: .68rem; text-transform: uppercase; letter-spacing: .2em;
+      color: var(--accent-blue); opacity: .8;
+    }
+    .modal-fulltext {
+      margin: 0; font-size: .96rem; line-height: 1.82;
+      color: rgba(229,231,235,.94); white-space: pre-line;
     }
 
-    .message-modal-body {
-      overflow-y: auto;
-      padding: 16px 18px 18px;
+    /* ── 2. Мета-карточки ── */
+    .modal-meta-row {
+      display: grid; grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 10px; margin-bottom: 16px;
     }
-
-    .modal-meta-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
     .modal-meta-card {
-      border: 1px solid rgba(51,65,85,.8);
-      border-radius: 14px;
-      background: rgba(15,23,42,.62);
-      padding: 12px;
-      min-width: 0;
+      padding: 12px 14px; border-radius: 14px;
+      border: 1px solid rgba(51,65,85,.7);
+      background: rgba(15,23,42,.65);
+      transition: border-color .18s;
     }
+    .modal-meta-card:hover { border-color: rgba(34,211,238,.3); }
+    .modal-meta-label { display: block; margin-bottom: 5px; font-size: .64rem; text-transform: uppercase; letter-spacing: .14em; color: var(--text-muted); }
+    .modal-meta-value { font-size: .88rem; line-height: 1.4; color: #f8fafc; word-break: break-word; }
+    .modal-meta-value.score { font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 1.1rem; }
 
-    .modal-meta-label {
-      display: block;
-      margin-bottom: 6px;
-      font-size: .68rem;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      color: var(--text-muted);
-    }
-
-    .modal-meta-value {
-      font-size: .92rem;
-      line-height: 1.45;
-      color: #f8fafc;
-      word-break: break-word;
-    }
-
-    .modal-meta-value.score {
-      font-family: "Montserrat", sans-serif;
-      font-weight: 800;
-      font-size: 1.15rem;
-    }
-
-    .message-section {
-      margin-bottom: 16px;
-      padding: 14px;
+    /* ── 3. Почему пометили ── */
+    .modal-why-wrap {
+      position: relative; margin-bottom: 18px;
+      padding: 16px 18px;
       border-radius: 16px;
-      border: 1px solid rgba(51,65,85,.72);
+      border: 1px solid rgba(51,65,85,.65);
       background: rgba(15,23,42,.45);
     }
+    .modal-why-label { display: block; margin-bottom: 8px; font-family: "Montserrat", sans-serif; font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--text-muted); }
+    .modal-why-text { margin: 0; font-size: .9rem; line-height: 1.72; color: #d1d5db; }
 
-    .message-section:last-child {
-      margin-bottom: 0;
+    /* Теги */
+    .modal-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 16px; }
+    .tag-pill { display: inline-flex; align-items: center; min-height: 27px; padding: 4px 10px; border-radius: 999px; background: rgba(15,23,42,.95); border: 1px solid rgba(75,85,99,.9); color: #d1d5db; font-size: .67rem; line-height: 1.25; word-break: break-word; }
+    .tag-pill.alert { border-color: rgba(239,68,68,.7); color: #fecaca; background: rgba(239,68,68,.06); }
+    .tag-pill.soft  { border-color: rgba(56,189,248,.6); color: #e0f2fe; background: rgba(56,189,248,.05); }
+
+    /* ── Кнопка на методику ── */
+    .modal-method-link {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 14px; padding: 14px 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(34,211,238,.35);
+      background:
+        radial-gradient(circle at left, rgba(34,211,238,.12), transparent 55%),
+        rgba(15,23,42,.75);
+      text-decoration: none;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+      cursor: pointer;
     }
-
-    .message-section-title {
-      margin: 0 0 10px;
-      font-family: "Montserrat", sans-serif;
-      font-size: .78rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--text-muted);
+    .modal-method-link:hover {
+      border-color: rgba(34,211,238,.75);
+      box-shadow: 0 0 28px rgba(34,211,238,.18);
+      transform: translateY(-1px);
     }
-
-    .message-full-text {
-      margin: 0;
-      font-size: .96rem;
-      line-height: 1.75;
-      color: #e5e7eb;
-      white-space: pre-line;
+    .modal-method-copy { min-width: 0; }
+    .modal-method-label { display: block; font-size: .66rem; text-transform: uppercase; letter-spacing: .16em; color: rgba(34,211,238,.7); margin-bottom: 4px; }
+    .modal-method-title { font-family: "Montserrat", sans-serif; font-weight: 700; font-size: .9rem; color: #e5e7eb; }
+    .modal-method-arrow {
+      flex-shrink: 0; width: 34px; height: 34px; border-radius: 999px;
+      border: 1px solid rgba(34,211,238,.4); background: rgba(34,211,238,.08);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent-blue); font-size: 14px;
+      transition: background .18s, border-color .18s;
     }
+    .modal-method-link:hover .modal-method-arrow { background: rgba(34,211,238,.18); border-color: rgba(34,211,238,.75); }
 
-    .message-explain {
-      margin: 0;
-      font-size: .9rem;
-      line-height: 1.7;
-      color: #d1d5db;
-    }
+    /* Подсветка слов */
+    .highlight-word { padding: 0 .18em; border-radius: .3em; background: linear-gradient(180deg, rgba(239,68,68,.32), rgba(239,68,68,.18)); color: #fff5f5; box-shadow: inset 0 0 0 1px rgba(248,113,113,.22); }
+    .highlight-word.soft { background: linear-gradient(180deg, rgba(234,179,8,.28), rgba(234,179,8,.16)); color: #fff8db; box-shadow: inset 0 0 0 1px rgba(234,179,8,.18); }
 
-    .highlight-word {
-      padding: 0 .18em;
-      border-radius: .3em;
-      background: linear-gradient(180deg, rgba(239,68,68,.32), rgba(239,68,68,.18));
-      color: #fff5f5;
-      box-shadow: inset 0 0 0 1px rgba(248,113,113,.22);
-    }
-
-    .highlight-word.soft {
-      background: linear-gradient(180deg, rgba(234,179,8,.28), rgba(234,179,8,.16));
-      color: #fff8db;
-      box-shadow: inset 0 0 0 1px rgba(234,179,8,.18);
-    }
-
+    /* ══ RESPONSIVE ══ */
     @media (max-width: 900px) {
-      .archive-header-row {
-        display: none;
-      }
-
-      .archive-summary {
-        grid-template-columns: minmax(0, 1fr) auto;
-        grid-template-areas:
-          "media time"
-          "title title"
-          "meta1 meta2"
-          "button button";
-        row-gap: 8px;
-        column-gap: 10px;
-      }
-
-      .cell-media {
-        grid-area: media;
-      }
-
-      .cell-time {
-        grid-area: time;
-        justify-self: end;
-        text-align: right;
-        font-size: .75rem;
-      }
-
-      .cell-title {
-        grid-area: title;
-      }
-
-      .cell-index {
-        grid-area: meta1;
-        align-self: center;
-      }
-
-      .cell-category {
-        grid-area: meta2;
-        justify-self: end;
-        align-self: center;
-      }
-
-      .cell-button {
-        grid-area: button;
-        text-align: left;
-      }
-
-      .modal-meta-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .archive-header-row { display: none; }
+      .archive-summary { grid-template-columns: minmax(0,1fr) auto; grid-template-areas: "media time" "title title" "meta1 meta2" "button button"; row-gap: 8px; column-gap: 10px; }
+      .cell-media  { grid-area: media; }
+      .cell-time   { grid-area: time; justify-self: end; text-align: right; font-size: .75rem; }
+      .cell-title  { grid-area: title; }
+      .cell-index  { grid-area: meta1; align-self: center; }
+      .cell-category { grid-area: meta2; justify-self: end; align-self: center; }
+      .cell-button { grid-area: button; text-align: left; }
+      .modal-meta-row { grid-template-columns: repeat(2, minmax(0,1fr)); }
     }
-
     @media (max-width: 767px) {
-      .container {
-        padding: 18px 16px 64px;
-      }
-
-      .archive-shell {
-        padding: 16px;
-        border-radius: 18px;
-      }
-
-      .archive-top-row {
-        flex-direction: column;
-        align-items: center;
-        gap: 0;
-        margin-bottom: 14px;
-        text-align: center;
-      }
-
-      .section-title {
-        width: 100%;
-        text-align: center;
-      }
-
-      .manip-counter {
-        display: none;
-      }
-
-      .section-subtitle {
-        display: none;
-      }
-
-      .archive-filters {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
-      }
-
-      .archive-search,
-      .status-chips-wrapper {
-        width: 100%;
-      }
-
-      .archive-search {
-        flex: 0 0 auto;
-        height: 50px;
-        min-height: 50px;
-        border-radius: 15px;
-        padding: 0 12px 0 42px;
-      }
-
-      .archive-search::before {
-        left: 15px;
-        width: 13px;
-        height: 13px;
-      }
-
-      .archive-search::after {
-        left: 27px;
-        width: 7px;
-      }
-
-      .archive-search input {
-        font-size: .86rem;
-        min-width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .archive-search input::placeholder {
-        font-size: .82rem;
-        letter-spacing: 0;
-      }
-
-      .status-chips-wrapper {
-        margin-left: 0;
-      }
-
-      .status-chips {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        width: 100%;
-        gap: 8px;
-      }
-
-      .chip {
-        width: 100%;
-        min-height: 42px;
-        padding: 0 10px;
-        font-size: .68rem;
-        letter-spacing: .1em;
-      }
-
-      .archive-list {
-        max-height: none;
-        overflow: visible;
-        padding-right: 0;
-        gap: 8px;
-      }
-
-      .archive-item {
-        border-radius: 16px;
-      }
-
-      .archive-summary {
-        padding: 12px 12px 10px;
-        row-gap: 7px;
-        column-gap: 8px;
-      }
-
-      .cell-media {
-        font-size: .85rem;
-        line-height: 1.3;
-      }
-
-      .cell-time {
-        font-size: .72rem;
-        line-height: 1.2;
-      }
-
-      .cell-title {
-        font-size: .85rem;
-        line-height: 1.45;
-      }
-
-      .cell-index {
-        font-size: .92rem;
-        line-height: 1;
-      }
-
-      .cell-category {
-        font-size: .66rem;
-        padding: 4px 9px;
-        min-height: 26px;
-      }
-
-      .cell-button {
-        margin-top: 2px;
-      }
-
-      .more-btn {
-        width: 100%;
-        min-height: 38px;
-        font-size: .66rem;
-        letter-spacing: .12em;
-      }
-
-      .message-modal-overlay {
-        padding: 0;
-        align-items: flex-end;
-      }
-
-      .message-modal {
-        width: 100%;
-        max-height: 92vh;
-        border-radius: 20px 20px 0 0;
-      }
-
-      .message-modal-header {
-        padding: 16px 16px 12px;
-      }
-
-      .message-modal-body {
-        padding: 14px 16px 18px;
-      }
-
-      .modal-meta-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .message-full-text {
-        font-size: .92rem;
-        line-height: 1.7;
-      }
+      .container { padding: 18px 16px 64px; }
+      .archive-shell { padding: 14px; border-radius: 18px; }
+      .archive-top-row { flex-direction: column; align-items: center; gap: 0; margin-bottom: 14px; text-align: center; }
+      .section-title { width: 100%; text-align: center; }
+      .manip-counter { display: none; }
+      .section-subtitle { display: none; }
+      .archive-filters { flex-direction: column; align-items: stretch; gap: 10px; }
+      .archive-search, .status-chips-wrapper { width: 100%; }
+      .archive-search { flex: 0 0 auto; height: 50px; min-height: 50px; border-radius: 15px; padding: 0 12px 0 42px; }
+      .archive-search::before { left: 15px; width: 13px; height: 13px; }
+      .archive-search::after  { left: 27px; width: 7px; }
+      .archive-search input { font-size: .86rem; }
+      .archive-search input::placeholder { font-size: .82rem; letter-spacing: 0; }
+      .status-chips-wrapper { margin-left: 0; }
+      .status-chips { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); width: 100%; gap: 8px; }
+      .chip { width: 100%; min-height: 42px; padding: 0 10px; font-size: .68rem; letter-spacing: .1em; }
+      .archive-list { max-height: none; overflow: visible; padding-right: 0; gap: 8px; }
+      .archive-item { border-radius: 16px; }
+      .archive-summary { padding: 12px 12px 10px; row-gap: 7px; column-gap: 8px; }
+      .cell-media  { font-size: .85rem; }
+      .cell-time   { font-size: .72rem; }
+      .cell-title  { font-size: .84rem; line-height: 1.45; }
+      .cell-index  { font-size: .92rem; }
+      .cell-category { font-size: .66rem; padding: 4px 9px; }
+      .more-btn { width: 100%; min-height: 38px; font-size: .66rem; letter-spacing: .12em; }
+      .message-modal-overlay { padding: 0; align-items: flex-end; }
+      .message-modal { width: 100%; max-height: 92vh; border-radius: 22px 22px 0 0; }
+      .message-modal-header { padding: 16px 16px 12px; }
+      .message-modal-body { padding: 14px 16px 20px; }
+      .modal-fulltext-wrap { padding: 14px 14px; }
+      .modal-fulltext { font-size: .9rem; }
+      .modal-meta-row { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .modal-method-link { padding: 12px 14px; }
+      .modal-method-title { font-size: .84rem; }
     }
-
-    @media (min-width: 1024px) {
-      .burger {
-        display: none;
-      }
-
-      .site-nav {
-        flex: 1;
-        justify-content: center;
-      }
-
-      .nav-links {
-        position: static;
-        display: inline-flex !important;
-        flex-direction: row;
-        gap: 4px;
-        padding: 4px 8px;
-        background: radial-gradient(circle at top, rgba(31,41,55,.9), transparent 70%);
-        border: none;
-        box-shadow: none;
-        backdrop-filter: none;
-      }
-
-      .nav-link,
-      .support-button-mobile {
-        min-height: 40px;
-        padding: 8px 14px;
-        border-radius: 999px;
-      }
-
-      .nav-link {
-        background: transparent;
-      }
-
-      .support-button-mobile {
-        display: none;
-      }
-
-      .support-button-desktop {
-        display: inline-flex;
-      }
-    }
-
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation: none !important;
-        transition: none !important;
-        scroll-behavior: auto !important;
-      }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
     }
   </style>
 </head>
-
 <body>
 
 <header>
   <div class="header-inner">
     <div class="navbar">
       <div class="brand-title">МЕДИА.<span>СТРАЖ</span></div>
-
       <nav class="site-nav" aria-label="Навигация">
         <button class="burger" id="burgerBtn" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks">
           <span></span><span></span><span></span>
         </button>
-
         <div class="nav-links" id="navLinks">
-          <a href="index.html" class="nav-link">Рейтинг</a>
-          <a href="about.html" class="nav-link">О проекте</a>
-          <a href="method.html" class="nav-link">Методика</a>
+          <a href="index.html"   class="nav-link">Рейтинг</a>
+          <a href="about.html"   class="nav-link">О проекте</a>
+          <a href="method.html"  class="nav-link">Методика</a>
           <a href="archive.html" class="nav-link nav-active">Архив</a>
-          <a href="help.html" class="support-button-mobile">Поддержать проект</a>
+          <a href="help.html"    class="support-button-mobile">Поддержать проект</a>
         </div>
       </nav>
-
       <a class="support-button-desktop" href="help.html">Поддержать</a>
     </div>
     <div class="header-glow"></div>
@@ -1128,37 +439,25 @@
           <span class="manip-counter-value" id="manipCounter">0</span>
         </div>
       </div>
-
-      <p class="section-subtitle">
-        Используйте поиск и фильтры, чтобы посмотреть, как разные издания формулируют свою повестку
-      </p>
-
+      <p class="section-subtitle">Используйте поиск и фильтры, чтобы посмотреть, как разные издания формулируют свою повестку</p>
       <div class="archive-filters">
         <div class="archive-search">
-          <input id="searchInput" type="text" placeholder="Найти по СМИ, заголовку или типу манипуляции" aria-label="Поиск по архиву сообщений">
+          <input id="searchInput" type="text" placeholder="Найти по СМИ, заголовку или типу манипуляции" aria-label="Поиск по архиву">
         </div>
-
         <div class="status-chips-wrapper">
           <div class="status-chips">
-            <button class="chip chip-active" data-status="all" type="button">Все</button>
-            <button class="chip" data-status="danger" type="button">Опасные</button>
-            <button class="chip" data-status="risky" type="button">Спорные</button>
-            <button class="chip" data-status="neutral" type="button">Нейтральные</button>
+            <button class="chip chip-active" data-status="all"     type="button">Все</button>
+            <button class="chip"             data-status="danger"  type="button">Опасные</button>
+            <button class="chip"             data-status="risky"   type="button">Спорные</button>
+            <button class="chip"             data-status="neutral" type="button">Нейтральные</button>
           </div>
         </div>
       </div>
-
       <div class="archive-header-row">
-        <div>СМИ</div>
-        <div>Время</div>
-        <div>Сообщение</div>
-        <div>Индекс</div>
-        <div>Категория</div>
-        <div></div>
+        <div>СМИ</div><div>Время</div><div>Сообщение</div>
+        <div>Индекс</div><div>Категория</div><div></div>
       </div>
-
       <div class="archive-list" id="archiveList"></div>
-
       <div class="realtime-note">
         <span class="rt-dot"></span>
         <span id="rtText">Поток обновляется в демо-режиме каждые несколько секунд.</span>
@@ -1167,48 +466,64 @@
   </section>
 </div>
 
+<!-- MODAL -->
 <div class="message-modal-overlay" id="messageModalOverlay" aria-hidden="true">
   <div class="message-modal" role="dialog" aria-modal="true" aria-labelledby="messageModalTitle">
+
     <div class="message-modal-header">
-      <div class="message-modal-title-wrap">
-        <span class="message-modal-label">Подробнее</span>
-        <h3 class="message-modal-title" id="messageModalTitle">Детали сообщения</h3>
+      <div>
+        <span class="message-modal-label">Разбор сообщения</span>
+        <h3 class="message-modal-title" id="messageModalTitle"></h3>
       </div>
-      <button class="message-close" id="messageCloseBtn" type="button" aria-label="Закрыть окно">×</button>
+      <button class="message-close" id="messageCloseBtn" type="button" aria-label="Закрыть">×</button>
     </div>
 
     <div class="message-modal-body">
-      <section class="message-section">
-        <h4 class="message-section-title">Полное сообщение</h4>
-        <p class="message-full-text" id="modalFullText"></p>
-      </section>
 
-      <div class="modal-meta-grid">
+      <!-- 1. Полное сообщение с подсветкой -->
+      <div class="modal-fulltext-wrap">
+        <span class="modal-fulltext-label">Полное сообщение</span>
+        <p class="modal-fulltext" id="modalFullText"></p>
+      </div>
+
+      <!-- 2. Мета: СМИ, время, индекс, категория -->
+      <div class="modal-meta-row">
         <div class="modal-meta-card">
           <span class="modal-meta-label">СМИ</span>
           <div class="modal-meta-value" id="modalMedia"></div>
         </div>
-
         <div class="modal-meta-card">
           <span class="modal-meta-label">Время</span>
           <div class="modal-meta-value" id="modalTime"></div>
         </div>
-
         <div class="modal-meta-card">
           <span class="modal-meta-label">Индекс</span>
           <div class="modal-meta-value score" id="modalIndex"></div>
         </div>
-
         <div class="modal-meta-card">
           <span class="modal-meta-label">Категория</span>
           <div class="modal-meta-value" id="modalCategory"></div>
         </div>
       </div>
 
-      <section class="message-section">
-        <h4 class="message-section-title">Почему система пометила текст</h4>
-        <p class="message-explain" id="modalExplain"></p>
-      </section>
+      <!-- Теги -->
+      <div class="modal-tags" id="modalTags"></div>
+
+      <!-- 3. Почему система пометила -->
+      <div class="modal-why-wrap">
+        <span class="modal-why-label">Почему система пометила текст</span>
+        <p class="modal-why-text" id="modalExplain"></p>
+      </div>
+
+      <!-- Кнопка на методику -->
+      <a class="modal-method-link" href="method.html">
+        <div class="modal-method-copy">
+          <span class="modal-method-label">Хотите понять, как это работает?</span>
+          <span class="modal-method-title">Смотреть методику анализа →</span>
+        </div>
+        <div class="modal-method-arrow">→</div>
+      </a>
+
     </div>
   </div>
 </div>
@@ -1216,400 +531,255 @@
 <script>
   const messages = [
     {
-      media: "«Пример.ТВ»",
-      time: "только что",
+      media: "«Пример.ТВ»", time: "только что",
       title: "«Власти в панике: эксперты предупреждают о катастрофе уже завтра»",
       fullText: "Власти в панике: эксперты предупреждают о катастрофе уже завтра. По словам собеседников канала, ситуация якобы выходит из-под контроля, а последствия могут оказаться необратимыми уже в ближайшие часы. Авторы материала не приводят проверяемых данных, но усиливают тревожный эффект через срочные формулировки и эмоциональные оценки.",
-      manipulativeWords: ["в панике", "катастрофе", "уже завтра", "выходит из-под контроля", "необратимыми", "в ближайшие часы"],
-      index: 82,
-      indexClass: "index-red",
-      category: "Опасное сообщение",
-      status: "danger",
-      tags: ["давление страхом", "апокалиптический тон", "отсутствие фактов"],
+      manipulativeWords: ["в панике","катастрофе","уже завтра","выходит из-под контроля","необратимыми","в ближайшие часы"],
+      index: 82, indexClass: "index-red", category: "Опасное сообщение", status: "danger",
+      tags: ["давление страхом","апокалиптический тон","отсутствие фактов"],
       explain: "Модель фиксирует сочетание гипербол и срочного тайм-прессинга, при этом в тексте нет конкретных данных и ссылок на источники.",
-      meta: "Категория: политика · Формат: заголовок к новостному сюжету"
     },
     {
-      media: "«Новости.РУ»",
-      time: "1 минута назад",
+      media: "«Новости.РУ»", time: "1 минута назад",
       title: "«Экономика рухнула: цены взлетели до небес из-за нового решения»",
       fullText: "Экономика рухнула: цены взлетели до небес из-за нового решения. В публикации утверждается, что именно новое решение стало главным триггером происходящего, хотя конкретные расчёты и сопоставление факторов не приводятся. Вместо этого читателю предлагается эмоциональная картина резкого обвала и тотальной ценовой паники.",
-      manipulativeWords: ["рухнула", "взлетели до небес", "из-за нового решения", "главным триггером", "резкого обвала", "ценовой паники"],
-      index: 76,
-      indexClass: "index-red",
-      category: "Опасное сообщение",
-      status: "danger",
-      tags: ["гиперболы", "поиск виноватых", "оценочная лексика"],
-      explain: "Слова вроде «рухнула» и «взлетели до небес» отмечены как гиперболы. Причина названа категорично, но без разборов альтернативных факторов и без цифр.",
-      meta: "Категория: экономика · Формат: новостной текст"
+      manipulativeWords: ["рухнула","взлетели до небес","из-за нового решения","главным триггером","резкого обвала","ценовой паники"],
+      index: 76, indexClass: "index-red", category: "Опасное сообщение", status: "danger",
+      tags: ["гиперболы","поиск виноватых","оценочная лексика"],
+      explain: "Слова «рухнула» и «взлетели до небес» отмечены как гиперболы. Причина названа категорично, но без разбора альтернативных факторов и без цифр.",
     },
     {
-      media: "«Город Online»",
-      time: "3 минуты назад",
+      media: "«Город Online»", time: "3 минуты назад",
       title: "«По данным опроса, большинство горожан счастливы»",
-      fullText: "По данным опроса, большинство горожан счастливы. Материал ссылается на исследование без описания выборки, формулировок вопросов и даты проведения. Формула большинство горожан создаёт впечатление полной репрезентативности, хотя источник не раскрывает методологию.",
-      manipulativeWords: ["большинство горожан", "счастливы", "без описания выборки", "полной репрезентативности"],
-      index: 48,
-      indexClass: "index-yellow",
-      category: "Спорное сообщение",
-      status: "risky",
-      tags: ["обобщение", "неполная ссылка на источник"],
+      fullText: "По данным опроса, большинство горожан счастливы. Материал ссылается на исследование без описания выборки, формулировок вопросов и даты проведения. Формула «большинство горожан» создаёт впечатление полной репрезентативности, хотя источник не раскрывает методологию.",
+      manipulativeWords: ["большинство горожан","счастливы","без описания выборки","полной репрезентативности"],
+      index: 48, indexClass: "index-yellow", category: "Спорное сообщение", status: "risky",
+      tags: ["обобщение","неполная ссылка на источник"],
       explain: "Упоминается опрос, но нет информации о методике и выборке. Формулировка «большинство горожан» помечается как потенциальное обобщение.",
-      meta: "Категория: общество · Формат: заметка"
     },
     {
-      media: "«Агентство.Инфо»",
-      time: "5 минут назад",
+      media: "«Агентство.Инфо»", time: "5 минут назад",
       title: "«Минфин опубликовал отчёт о росте доходов бюджета за год»",
       fullText: "Минфин опубликовал отчёт о росте доходов бюджета за год. В тексте описывается факт публикации документа и перечисляются основные показатели без эмоциональных оценок, давления на читателя или попытки навязать вывод.",
       manipulativeWords: [],
-      index: 18,
-      indexClass: "index-green",
-      category: "Нейтральное сообщение",
-      status: "neutral",
-      tags: ["официальный источник", "описание факта"],
+      index: 18, indexClass: "index-green", category: "Нейтральное сообщение", status: "neutral",
+      tags: ["официальный источник","описание факта"],
       explain: "В заголовке нет оценочной лексики, эмоциональных триггеров и скрытой причинности. Описывается факт публикации отчёта.",
-      meta: "Категория: экономика · Формат: новостная заметка"
     },
     {
-      media: "«Полит.Лента»",
-      time: "8 минут назад",
+      media: "«Полит.Лента»", time: "8 минут назад",
       title: "«Паникёры снова пытаются сорвать стабильность в стране»",
       fullText: "Паникёры снова пытаются сорвать стабильность в стране. Авторы текста используют ярлык по отношению к неназванной группе и создают ощущение постоянной угрозы, не уточняя, кто именно имеется в виду и какие действия считаются попыткой срыва стабильности.",
-      manipulativeWords: ["Паникёры", "снова", "сорвать стабильность", "постоянной угрозы"],
-      index: 84,
-      indexClass: "index-red",
-      category: "Опасное сообщение",
-      status: "danger",
-      tags: ["образ врага", "ярлык «паникёры»", "поляризация"],
-      explain: "Текст строит разделение «мы — они», использует ярлык и не уточняет, о ком именно речь.",
-      meta: "Категория: политика · Формат: авторская колонка"
+      manipulativeWords: ["Паникёры","снова","сорвать стабильность","постоянной угрозы"],
+      index: 84, indexClass: "index-red", category: "Опасное сообщение", status: "danger",
+      tags: ["образ врага","ярлык «паникёры»","поляризация"],
+      explain: "Текст строит разделение «мы — они», использует ярлык и не уточняет, о ком именно идёт речь.",
     },
     {
-      media: "«Эксперт+»",
-      time: "10 минут назад",
+      media: "«Эксперт+»", time: "10 минут назад",
       title: "«После нового закона люди массово беднеют»",
       fullText: "После нового закона люди массово беднеют. Сообщение выстраивает прямую причинно-следственную связь между законом и ухудшением положения людей, хотя статистических данных, сравнения периодов и анализа сопутствующих причин в тексте нет.",
-      manipulativeWords: ["После нового закона", "массово беднеют", "прямую причинно-следственную связь"],
-      index: 61,
-      indexClass: "index-yellow",
-      category: "Спорное сообщение",
-      status: "risky",
-      tags: ["ложная причинность", "обобщение"],
-      explain: "Фраза подаётся как доказанная причинность, но без статистики и без анализа альтернативных факторов.",
-      meta: "Категория: экономика · Формат: аналитическая статья"
+      manipulativeWords: ["После нового закона","массово беднеют","прямую причинно-следственную связь"],
+      index: 61, indexClass: "index-yellow", category: "Спорное сообщение", status: "risky",
+      tags: ["ложная причинность","обобщение"],
+      explain: "Фраза подаётся как доказанная причинность, но без статистики и анализа альтернативных факторов.",
     },
     {
-      media: "«Репортёр»",
-      time: "12 минут назад",
+      media: "«Репортёр»", time: "12 минут назад",
       title: "«90% жителей поддержали реформу, показал опрос»",
       fullText: "90% жителей поддержали реформу, показал опрос. Текст опирается на очень конкретную цифру, но не раскрывает источник, заказчика исследования, размер выборки и формулировку вопроса. За счёт этого создаётся эффект неопровержимого консенсуса.",
-      manipulativeWords: ["90% жителей", "поддержали реформу", "не раскрывает источник", "неопровержимого консенсуса"],
-      index: 54,
-      indexClass: "index-yellow",
-      category: "Спорное сообщение",
-      status: "risky",
-      tags: ["псевдостатистика", "нет источника"],
+      manipulativeWords: ["90% жителей","поддержали реформу","не раскрывает источник","неопровержимого консенсуса"],
+      index: 54, indexClass: "index-yellow", category: "Спорное сообщение", status: "risky",
+      tags: ["псевдостатистика","нет источника"],
       explain: "Указана точная цифра поддержки, но отсутствует ссылка на исследование и методику опроса.",
-      meta: "Категория: общество · Формат: новость"
     },
     {
-      media: "«Независимый взгляд»",
-      time: "15 минут назад",
+      media: "«Независимый взгляд»", time: "15 минут назад",
       title: "«Минфин опубликовал подробную расшифровку расходов бюджета»",
       fullText: "Минфин опубликовал подробную расшифровку расходов бюджета. Сообщение фиксирует факт и перечисляет документальные детали без эмоциональной окраски, ярлыков или подталкивания читателя к заранее заданному выводу.",
       manipulativeWords: [],
-      index: 22,
-      indexClass: "index-green",
-      category: "Нейтральное сообщение",
-      status: "neutral",
-      tags: ["конкретное действие", "отсутствие оценки"],
+      index: 22, indexClass: "index-green", category: "Нейтральное сообщение", status: "neutral",
+      tags: ["конкретное действие","отсутствие оценки"],
       explain: "Сообщение фиксирует факт и не делает дополнительных оценочных выводов.",
-      meta: "Категория: экономика · Формат: новость"
-    }
+    },
   ];
 
-  const archiveList = document.getElementById("archiveList");
-  const searchInput = document.getElementById("searchInput");
-  const SEARCH_PLACEHOLDER_DESKTOP = "Найти по СМИ, заголовку или типу манипуляции";
-  const SEARCH_PLACEHOLDER_MOBILE = "Поиск: СМИ, заголовок, приём";
-
-  function syncSearchPlaceholder() {
-    if (!searchInput) return;
-    const isMobile = window.matchMedia("(max-width: 767px)").matches;
-    searchInput.placeholder = isMobile ? SEARCH_PLACEHOLDER_MOBILE : SEARCH_PLACEHOLDER_DESKTOP;
-  }
-
-  syncSearchPlaceholder();
-  window.addEventListener("resize", syncSearchPlaceholder, { passive: true });
-
-  const chips = document.querySelectorAll(".chip");
-  const rtText = document.getElementById("rtText");
-  const manipCounterEl = document.getElementById("manipCounter");
-
-  const modalOverlay = document.getElementById("messageModalOverlay");
-  const modalMedia = document.getElementById("modalMedia");
-  const modalTime = document.getElementById("modalTime");
-  const modalIndex = document.getElementById("modalIndex");
-  const modalCategory = document.getElementById("modalCategory");
-  const modalFullText = document.getElementById("modalFullText");
-  const modalExplain = document.getElementById("modalExplain");
+  /* ── Refs ── */
+  const archiveList     = document.getElementById("archiveList");
+  const searchInput     = document.getElementById("searchInput");
+  const chips           = document.querySelectorAll(".chip");
+  const rtText          = document.getElementById("rtText");
+  const manipCounterEl  = document.getElementById("manipCounter");
+  const modalOverlay    = document.getElementById("messageModalOverlay");
+  const modalTitle      = document.getElementById("messageModalTitle");
+  const modalMedia      = document.getElementById("modalMedia");
+  const modalTime       = document.getElementById("modalTime");
+  const modalIndex      = document.getElementById("modalIndex");
+  const modalCategory   = document.getElementById("modalCategory");
+  const modalTags       = document.getElementById("modalTags");
+  const modalFullText   = document.getElementById("modalFullText");
+  const modalExplain    = document.getElementById("modalExplain");
   const messageCloseBtn = document.getElementById("messageCloseBtn");
-
-  const burgerBtn = document.getElementById("burgerBtn");
-  const navLinks = document.getElementById("navLinks");
+  const burgerBtn       = document.getElementById("burgerBtn");
+  const navLinks        = document.getElementById("navLinks");
 
   let currentStatusFilter = "all";
   let currentSearch = "";
   let visiblePool = [...messages];
   let lastUpdateIdx = 0;
 
-  function escapeHtml(str) {
-    return String(str)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
+  function esc(s) {
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
   }
+  function escRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"); }
+  function getStatusClass(s) { return s === "danger" ? "danger" : s === "risky" ? "risky" : "neutral"; }
 
-  function escapeRegExp(str) {
-    return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  }
-
-  function getStatusClass(status) {
-    if (status === "danger") return "danger";
-    if (status === "risky") return "risky";
-    return "neutral";
-  }
-
-  function getHighlightClass(status) {
-    return status === "danger" ? "highlight-word" : status === "risky" ? "highlight-word soft" : "highlight-word";
-  }
-
-  function highlightManipulativeWords(text, words, status) {
-    let safeText = escapeHtml(text);
-
-    if (!Array.isArray(words) || !words.length) {
-      return safeText;
-    }
-
-    const sortedWords = [...words].sort((a, b) => b.length - a.length);
-    const cssClass = getHighlightClass(status);
-
-    sortedWords.forEach(word => {
-      const escapedWord = escapeHtml(word);
-      const pattern = new RegExp(escapeRegExp(escapedWord), "gi");
-      safeText = safeText.replace(pattern, match => `<mark class="${cssClass}">${match}</mark>`);
+  function highlight(text, words, status) {
+    let t = esc(text);
+    if (!words || !words.length) return t;
+    const cls = status === "risky" ? "highlight-word soft" : "highlight-word";
+    [...words].sort((a,b)=>b.length-a.length).forEach(w => {
+      t = t.replace(new RegExp(escRe(esc(w)),"gi"), m => `<mark class="${cls}">${m}</mark>`);
     });
-
-    return safeText;
+    return t;
   }
 
-  function openMessageModal(msg) {
-    modalFullText.innerHTML = highlightManipulativeWords(msg.fullText, msg.manipulativeWords, msg.status);
-
-    modalMedia.textContent = msg.media;
-    modalTime.textContent = msg.time;
-    modalIndex.textContent = msg.index;
-    modalIndex.className = `modal-meta-value score ${msg.indexClass}`;
+  function openModal(msg) {
+    modalTitle.textContent    = msg.title;
+    modalFullText.innerHTML   = highlight(msg.fullText, msg.manipulativeWords, msg.status);
+    modalMedia.textContent    = msg.media;
+    modalTime.textContent     = msg.time;
+    modalIndex.textContent    = msg.index;
+    modalIndex.className      = `modal-meta-value score ${msg.indexClass}`;
     modalCategory.textContent = msg.category;
-
-    modalExplain.textContent = msg.explain;
-
+    modalExplain.textContent  = msg.explain;
+    const tagCls = msg.status === "danger" ? "alert" : "soft";
+    modalTags.innerHTML = msg.tags.map(t => `<span class="tag-pill ${tagCls}">${esc(t)}</span>`).join("");
     modalOverlay.classList.add("open");
-    modalOverlay.setAttribute("aria-hidden", "false");
+    modalOverlay.setAttribute("aria-hidden","false");
     document.body.style.overflow = "hidden";
+    messageCloseBtn.focus();
   }
 
-  function closeMessageModal() {
+  function closeModal() {
     modalOverlay.classList.remove("open");
-    modalOverlay.setAttribute("aria-hidden", "true");
+    modalOverlay.setAttribute("aria-hidden","true");
     document.body.style.overflow = "";
   }
 
-  function createArchiveItem(msg) {
+  function createItem(msg) {
     const item = document.createElement("article");
     item.className = "archive-item";
-
     item.innerHTML = `
-      <div class="archive-summary" role="button" tabindex="0" aria-label="Открыть полное сообщение">
-        <div class="cell-media">${escapeHtml(msg.media)}</div>
-        <div class="cell-time">${escapeHtml(msg.time)}</div>
-        <div class="cell-title">${escapeHtml(msg.title)}</div>
-        <div class="cell-index ${msg.indexClass}">${escapeHtml(msg.index)}</div>
-        <div class="cell-category ${getStatusClass(msg.status)}">${escapeHtml(msg.category)}</div>
-        <div class="cell-button">
-          <button class="more-btn" type="button">Подробнее</button>
-        </div>
-      </div>
-    `;
-
-    const summary = item.querySelector(".archive-summary");
-    const btn = item.querySelector(".more-btn");
-
-    const openHandler = (e) => {
+      <div class="archive-summary" role="button" tabindex="0" aria-label="Открыть разбор сообщения">
+        <div class="cell-media">${esc(msg.media)}</div>
+        <div class="cell-time">${esc(msg.time)}</div>
+        <div class="cell-title">${esc(msg.title)}</div>
+        <div class="cell-index ${msg.indexClass}">${msg.index}</div>
+        <div class="cell-category ${getStatusClass(msg.status)}">${esc(msg.category)}</div>
+        <div class="cell-button"><button class="more-btn" type="button">Подробнее</button></div>
+      </div>`;
+    const handler = e => {
       if (e.type === "keydown" && e.key !== "Enter" && e.key !== " ") return;
-      e.preventDefault();
-      openMessageModal(msg);
+      e.preventDefault(); openModal(msg);
     };
-
-    summary.addEventListener("click", openHandler);
-    summary.addEventListener("keydown", openHandler);
-
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      openMessageModal(msg);
-    });
-
+    item.querySelector(".archive-summary").addEventListener("click", handler);
+    item.querySelector(".archive-summary").addEventListener("keydown", handler);
+    item.querySelector(".more-btn").addEventListener("click", e => { e.stopPropagation(); openModal(msg); });
     return item;
   }
 
   function updateCounter() {
-    const manipCount = visiblePool.filter(m => m.status === "danger" || m.status === "risky").length;
-    manipCounterEl.textContent = manipCount;
+    manipCounterEl.textContent = visiblePool.filter(m => m.status === "danger" || m.status === "risky").length;
   }
 
-  function renderList(withAnimation = false) {
+  function renderList(anim = false) {
     archiveList.innerHTML = "";
-
     if (!visiblePool.length) {
-      const empty = document.createElement("div");
-      empty.className = "empty-state";
-      empty.textContent = "Сообщения по заданным условиям не найдены.";
-      archiveList.appendChild(empty);
-      return;
+      const e = document.createElement("div");
+      e.className = "empty-state";
+      e.textContent = "Сообщения по заданным условиям не найдены.";
+      archiveList.appendChild(e); return;
     }
-
     visiblePool.forEach(msg => {
-      const item = createArchiveItem(msg);
-
-      if (withAnimation) {
-        item.classList.add("fade-in");
-        setTimeout(() => item.classList.remove("fade-in"), 350);
-      }
-
+      const item = createItem(msg);
+      if (anim) { item.classList.add("fade-in"); setTimeout(() => item.classList.remove("fade-in"), 350); }
       archiveList.appendChild(item);
     });
   }
 
   function applyFilters() {
     const term = currentSearch.trim().toLowerCase();
-
     visiblePool = messages.filter(msg => {
       const matchStatus = currentStatusFilter === "all" || msg.status === currentStatusFilter;
-      const fullText = [
-        msg.media,
-        msg.title,
-        msg.fullText,
-        msg.category,
-        msg.tags.join(" "),
-        msg.explain,
-        msg.meta
-      ].join(" ").toLowerCase();
-
-      const matchSearch = !term || fullText.includes(term);
-
-      return matchStatus && matchSearch;
+      const full = [msg.media, msg.title, msg.fullText, msg.category, msg.tags.join(" "), msg.explain].join(" ").toLowerCase();
+      return matchStatus && (!term || full.includes(term));
     });
-
-    updateCounter();
-    renderList(true);
+    updateCounter(); renderList(true);
   }
 
   function rotateOneRow() {
     const items = archiveList.querySelectorAll(".archive-item");
-
     if (!items.length || visiblePool.length <= 1) return;
     if (window.matchMedia("(max-width: 767px)").matches) return;
-
-    const idx = lastUpdateIdx % items.length;
-    lastUpdateIdx++;
-
-    const targetItem = items[idx];
-    targetItem.classList.add("fade-out");
-
+    const idx = lastUpdateIdx++ % items.length;
+    const target = items[idx];
+    target.classList.add("fade-out");
     setTimeout(() => {
-      const replacementIdx = Math.floor(Math.random() * visiblePool.length);
-      const msg = visiblePool[replacementIdx];
-      const newItem = createArchiveItem(msg);
+      const msg = visiblePool[Math.floor(Math.random() * visiblePool.length)];
+      const newItem = createItem(msg);
       newItem.classList.add("fade-in");
-
-      if (targetItem.parentNode === archiveList) {
-        archiveList.replaceChild(newItem, targetItem);
-      }
-
+      if (target.parentNode === archiveList) archiveList.replaceChild(newItem, target);
       setTimeout(() => newItem.classList.remove("fade-in"), 350);
-
-      const now = new Date();
-      const timeStr = now.toLocaleTimeString("ru-RU", {
-        hour: "2-digit",
-        minute: "2-digit"
-      });
-
-      rtText.textContent = "Последнее обновление списка — " + timeStr + " (демо-режим).";
+      const t = new Date().toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"});
+      rtText.textContent = "Последнее обновление — " + t + " (демо-режим).";
     }, 260);
   }
 
-  chips.forEach(chip => {
-    chip.addEventListener("click", () => {
-      chips.forEach(c => c.classList.remove("chip-active"));
-      chip.classList.add("chip-active");
-      currentStatusFilter = chip.getAttribute("data-status");
-      applyFilters();
-    });
-  });
-
-  searchInput.addEventListener("input", (e) => {
-    currentSearch = e.target.value;
+  chips.forEach(chip => chip.addEventListener("click", () => {
+    chips.forEach(c => c.classList.remove("chip-active"));
+    chip.classList.add("chip-active");
+    currentStatusFilter = chip.dataset.status;
     applyFilters();
-  });
+  }));
 
-  messageCloseBtn.addEventListener("click", closeMessageModal);
+  searchInput.addEventListener("input", e => { currentSearch = e.target.value; applyFilters(); });
 
-  modalOverlay.addEventListener("click", (e) => {
-    if (e.target === modalOverlay) {
-      closeMessageModal();
-    }
-  });
+  function syncPlaceholder() {
+    searchInput.placeholder = window.matchMedia("(max-width:767px)").matches
+      ? "Поиск: СМИ, заголовок, приём"
+      : "Найти по СМИ, заголовку или типу манипуляции";
+  }
+  syncPlaceholder();
+  window.addEventListener("resize", syncPlaceholder, { passive: true });
+
+  messageCloseBtn.addEventListener("click", closeModal);
+  modalOverlay.addEventListener("click", e => { if (e.target === modalOverlay) closeModal(); });
 
   if (burgerBtn && navLinks) {
     burgerBtn.addEventListener("click", () => {
-      const isOpen = navLinks.classList.toggle("open");
-      burgerBtn.setAttribute("aria-expanded", String(isOpen));
+      const open = navLinks.classList.toggle("open");
+      burgerBtn.setAttribute("aria-expanded", String(open));
     });
-
-    navLinks.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        burgerBtn.setAttribute("aria-expanded", "false");
-      });
-    });
-
-    document.addEventListener("click", (e) => {
-      const target = e.target;
-
-      if (!navLinks.contains(target) && !burgerBtn.contains(target)) {
-        navLinks.classList.remove("open");
-        burgerBtn.setAttribute("aria-expanded", "false");
+    navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+      navLinks.classList.remove("open"); burgerBtn.setAttribute("aria-expanded","false");
+    }));
+    document.addEventListener("click", e => {
+      if (!navLinks.contains(e.target) && !burgerBtn.contains(e.target)) {
+        navLinks.classList.remove("open"); burgerBtn.setAttribute("aria-expanded","false");
       }
     });
   }
 
-  document.addEventListener("keydown", (e) => {
+  document.addEventListener("keydown", e => {
     if (e.key === "Escape") {
-      closeMessageModal();
-
-      if (navLinks && burgerBtn) {
-        navLinks.classList.remove("open");
-        burgerBtn.setAttribute("aria-expanded", "false");
-      }
+      closeModal();
+      if (navLinks) { navLinks.classList.remove("open"); burgerBtn?.setAttribute("aria-expanded","false"); }
     }
   });
 
   applyFilters();
   setInterval(rotateOneRow, 5000);
 </script>
-
 </body>
 </html>
