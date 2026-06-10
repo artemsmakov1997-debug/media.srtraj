@@ -4,13 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>МЕДИА.СТРАЖ — Методика</title>
-  <!-- Favicon -->
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="manifest" href="site.webmanifest">
-<meta name="theme-color" content="#00c7df">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#00c7df">
   <meta name="description" content="Методика «МЕДИА.СТРАЖ»: как ИИ анализирует заголовки и тексты российских СМИ и формирует рейтинг манипулятивности." />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
@@ -28,17 +27,11 @@
       --container:     1200px;
     }
 
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       font-family: 'Roboto', sans-serif;
       background:
         radial-gradient(circle at top, rgba(15,23,42,.6), transparent 60%),
@@ -49,15 +42,38 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    button,
-    a {
-      -webkit-tap-highlight-color: transparent;
-    }
+    button, a { -webkit-tap-highlight-color: transparent; }
 
     .container {
       width: min(100%, var(--container));
       margin: 0 auto;
-      padding: 40px 20px 80px;
+      padding: 0 20px 80px;
+    }
+
+    /* ── HERO CANVAS ── */
+    .hero-canvas-section {
+      width: calc(100% + 40px);
+      margin: 0 -20px 52px;
+      height: 230px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-canvas-section::after {
+      content: "";
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--bg-body));
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    #heroCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
     }
 
     header {
@@ -95,9 +111,7 @@
       white-space: nowrap;
     }
 
-    .brand-title span {
-      color: var(--accent-blue);
-    }
+    .brand-title span { color: var(--accent-blue); }
 
     .header-glow {
       height: 2px;
@@ -113,8 +127,7 @@
     }
 
     .burger {
-      width: 44px;
-      height: 44px;
+      width: 44px; height: 44px;
       border-radius: 12px;
       border: 1px solid rgba(148,163,184,.35);
       background: rgba(15,23,42,.65);
@@ -129,30 +142,20 @@
 
     .burger span {
       display: block;
-      width: 100%;
-      height: 2px;
+      width: 100%; height: 2px;
       background: rgba(229,231,235,.95);
       border-radius: 999px;
       transition: .2s ease;
     }
 
-    .burger[aria-expanded="true"] span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
-    }
-
-    .burger[aria-expanded="true"] span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .burger[aria-expanded="true"] span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
-    }
+    .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     .nav-links {
       position: absolute;
       top: calc(100% + 8px);
-      right: 20px;
-      left: 20px;
+      right: 20px; left: 20px;
       display: none;
       flex-direction: column;
       gap: 8px;
@@ -164,12 +167,9 @@
       backdrop-filter: blur(14px);
     }
 
-    .nav-links.open {
-      display: flex;
-    }
+    .nav-links.open { display: flex; }
 
-    .nav-link,
-    .support-button-mobile {
+    .nav-link, .support-button-mobile {
       display: flex;
       align-items: center;
       min-height: 48px;
@@ -193,8 +193,7 @@
       box-shadow: 0 0 0 1px rgba(45,212,191,.25) inset;
     }
 
-    .support-button-mobile,
-    .support-button-desktop {
+    .support-button-mobile, .support-button-desktop {
       font-weight: 700;
       background: linear-gradient(135deg, #facc15, #f97316);
       color: #020617;
@@ -215,15 +214,8 @@
     }
 
     @media (min-width: 1024px) {
-      .burger {
-        display: none;
-      }
-
-      .site-nav {
-        flex: 1;
-        justify-content: center;
-      }
-
+      .burger { display: none; }
+      .site-nav { flex: 1; justify-content: center; }
       .nav-links {
         position: static;
         display: inline-flex !important;
@@ -231,34 +223,17 @@
         gap: 4px;
         padding: 4px 8px;
         background: radial-gradient(circle at top, rgba(31,41,55,.9), transparent 70%);
-        border: none;
-        box-shadow: none;
-        backdrop-filter: none;
+        border: none; box-shadow: none; backdrop-filter: none;
       }
-
-      .nav-link,
-      .support-button-mobile {
-        min-height: 40px;
-        padding: 8px 14px;
-        border-radius: 999px;
+      .nav-link, .support-button-mobile {
+        min-height: 40px; padding: 8px 14px; border-radius: 999px;
       }
-
-      .nav-link {
-        background: transparent;
-      }
-
-      .support-button-mobile {
-        display: none;
-      }
-
-      .support-button-desktop {
-        display: inline-flex;
-      }
+      .nav-link { background: transparent; }
+      .support-button-mobile { display: none; }
+      .support-button-desktop { display: inline-flex; }
     }
 
-    .section {
-      margin-bottom: 60px;
-    }
+    .section { margin-bottom: 60px; }
 
     .section-kicker {
       font-size: 11px;
@@ -278,9 +253,7 @@
       color: #e5e7eb;
     }
 
-    .section-title .accent {
-      color: var(--accent-blue);
-    }
+    .section-title .accent { color: var(--accent-blue); }
 
     .section-rule {
       height: 1px;
@@ -294,10 +267,8 @@
     .section-rule::after {
       content: "";
       position: absolute;
-      top: -8px;
-      left: -20%;
-      width: 40%;
-      height: 18px;
+      top: -8px; left: -20%;
+      width: 40%; height: 18px;
       background: radial-gradient(circle, rgba(34,211,238,.25), transparent 70%);
       filter: blur(2px);
       animation: ruleSweep 3.6s ease-in-out infinite;
@@ -332,25 +303,20 @@
 
     .pipeline-card::before {
       content: '';
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background: radial-gradient(circle at top, rgba(148,163,184,.3), transparent 70%);
       opacity: 0;
       transition: opacity .22s ease;
       pointer-events: none;
     }
 
-    .pipeline-card.is-active,
-    .pipeline-card:hover {
+    .pipeline-card.is-active, .pipeline-card:hover {
       transform: translateY(-3px);
       border-color: rgba(56,189,248,.85);
       box-shadow: 0 28px 70px rgba(0,0,0,1), 0 0 32px rgba(56,189,248,.55);
     }
 
-    .pipeline-card.is-active::before,
-    .pipeline-card:hover::before {
-      opacity: .4;
-    }
+    .pipeline-card.is-active::before, .pipeline-card:hover::before { opacity: .4; }
 
     .pipe-step {
       font-size: 10px;
@@ -362,10 +328,8 @@
 
     .pipe-title {
       font-family: 'Montserrat', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      line-height: 1.3;
+      font-size: 14px; font-weight: 700;
+      margin-bottom: 8px; line-height: 1.3;
     }
 
     .pipe-text {
@@ -377,15 +341,13 @@
 
     .pipe-num {
       font-family: 'Montserrat', sans-serif;
-      font-size: 18px;
-      font-weight: 700;
+      font-size: 18px; font-weight: 700;
       color: rgba(34,211,238,.85);
     }
 
     .pipe-more {
       position: absolute;
-      right: 14px;
-      bottom: 14px;
+      right: 14px; bottom: 14px;
       padding: 6px 11px;
       border-radius: 999px;
       border: 1px solid rgba(148,163,184,.6);
@@ -419,14 +381,12 @@
 
     .live-card::before {
       content: "";
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background: repeating-linear-gradient(
         0deg,
         rgba(255,255,255,.018) 0px,
         rgba(255,255,255,.018) 1px,
-        transparent 2px,
-        transparent 7px
+        transparent 2px, transparent 7px
       );
       opacity: .3;
       mix-blend-mode: overlay;
@@ -439,8 +399,7 @@
       justify-content: space-between;
       gap: 12px;
       margin-bottom: 16px;
-      position: relative;
-      z-index: 1;
+      position: relative; z-index: 1;
     }
 
     .live-source-badge {
@@ -451,34 +410,26 @@
       border-radius: 999px;
       border: 1px solid rgba(75,85,99,.85);
       background: rgba(15,23,42,.9);
-      font-size: 12px;
-      color: #e5e7eb;
+      font-size: 12px; color: #e5e7eb;
     }
 
     .live-source-dot {
-      width: 7px;
-      height: 7px;
+      width: 7px; height: 7px;
       border-radius: 999px;
       background: var(--accent-green);
       box-shadow: 0 0 10px rgba(34,197,94,.8);
     }
 
-    .live-time {
-      font-size: 11px;
-      color: var(--text-muted);
-      letter-spacing: .1em;
-    }
+    .live-time { font-size: 11px; color: var(--text-muted); letter-spacing: .1em; }
 
     .live-body-text {
-      position: relative;
-      z-index: 1;
+      position: relative; z-index: 1;
       margin: 0 0 18px;
       padding: 16px 18px;
       border-radius: 16px;
       background: rgba(2,6,23,.45);
       border: 1px solid rgba(31,41,55,.85);
-      font-size: 15px;
-      line-height: 1.65;
+      font-size: 15px; line-height: 1.65;
       color: rgba(229,231,235,.94);
       min-height: 118px;
     }
@@ -503,13 +454,11 @@
     }
 
     .live-footer {
-      position: relative;
-      z-index: 1;
+      position: relative; z-index: 1;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
+      gap: 12px; flex-wrap: wrap;
     }
 
     .live-next-btn {
@@ -522,12 +471,9 @@
       background: rgba(15,23,42,.88);
       color: var(--accent-blue);
       font-family: 'Montserrat', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      cursor: pointer;
-      white-space: nowrap;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      cursor: pointer; white-space: nowrap;
       transition: border-color .18s, box-shadow .18s, transform .18s;
       flex-shrink: 0;
     }
@@ -538,53 +484,34 @@
       transform: translateY(-1px);
     }
 
-    .live-next-btn:active {
-      transform: translateY(0);
-    }
+    .live-next-btn:active { transform: translateY(0); }
 
     .live-next-counter {
       padding: 3px 8px;
       border-radius: 999px;
       background: rgba(34,211,238,.12);
       border: 1px solid rgba(34,211,238,.25);
-      font-size: 10px;
-      color: rgba(34,211,238,.8);
-      letter-spacing: .1em;
+      font-size: 10px; color: rgba(34,211,238,.8); letter-spacing: .1em;
     }
 
-    .live-next-arrow {
-      font-size: 13px;
-      opacity: .7;
-    }
+    .live-next-arrow { font-size: 13px; opacity: .7; }
 
     .live-triggers-row {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
+      position: relative; z-index: 1;
+      display: flex; flex-wrap: wrap;
+      gap: 8px; align-items: center;
     }
 
-    #liveTags {
-      display: inline-flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
+    #liveTags { display: inline-flex; flex-wrap: wrap; gap: 8px; }
 
     .trigger-tooltip {
-      position: fixed;
-      z-index: 200;
+      position: fixed; z-index: 200;
       pointer-events: none;
-      opacity: 0;
-      transform: translateY(4px);
+      opacity: 0; transform: translateY(4px);
       transition: opacity .18s ease, transform .18s ease;
     }
 
-    .trigger-tooltip.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .trigger-tooltip.show { opacity: 1; transform: translateY(0); }
 
     .trigger-tooltip-inner {
       padding: 10px 13px;
@@ -592,50 +519,33 @@
       border: 1px solid rgba(34,211,238,.55);
       background: rgba(5,8,18,.96);
       box-shadow: 0 16px 48px rgba(0,0,0,.85), 0 0 24px rgba(34,211,238,.18);
-      max-width: 260px;
-      min-width: 180px;
+      max-width: 260px; min-width: 180px;
     }
 
     .tt-type {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      color: var(--accent-blue);
-      margin-bottom: 5px;
+      font-size: 10px; text-transform: uppercase;
+      letter-spacing: .16em; color: var(--accent-blue); margin-bottom: 5px;
     }
 
-    .tt-desc {
-      font-size: 12px;
-      line-height: 1.6;
-      color: rgba(229,231,235,.9);
-    }
+    .tt-desc { font-size: 12px; line-height: 1.6; color: rgba(229,231,235,.9); }
 
     .live-triggers-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      color: var(--text-muted);
-      margin-right: 4px;
+      font-size: 11px; text-transform: uppercase;
+      letter-spacing: .14em; color: var(--text-muted); margin-right: 4px;
     }
 
     .trigger-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 10px;
-      border-radius: 999px;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 10px; border-radius: 999px;
       border: 1px solid rgba(34,211,238,.35);
       background: rgba(15,23,42,.85);
-      font-size: 11px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: rgba(34,211,238,.9);
+      font-size: 11px; letter-spacing: .1em;
+      text-transform: uppercase; color: rgba(34,211,238,.9);
     }
 
     .trigger-tag::before {
       content: "";
-      width: 6px;
-      height: 6px;
+      width: 6px; height: 6px;
       border-radius: 999px;
       background: var(--accent-blue);
       box-shadow: 0 0 8px rgba(34,211,238,.7);
@@ -652,8 +562,7 @@
       border-radius: 18px;
       border: 1px solid rgba(31,41,55,.9);
       background: linear-gradient(145deg, #050816, #050b13);
-      overflow: hidden;
-      cursor: pointer;
+      overflow: hidden; cursor: pointer;
       transition: border-color .2s, box-shadow .2s, transform .2s;
     }
 
@@ -665,94 +574,54 @@
 
     .manip-card::before {
       content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
       background: var(--card-color, var(--accent-blue));
-      opacity: .6;
-      transition: opacity .2s;
+      opacity: .6; transition: opacity .2s;
     }
 
-    .manip-card:hover::before {
-      opacity: 1;
-    }
+    .manip-card:hover::before { opacity: 1; }
 
-    .manip-card[data-color="red"] {
-      --card-color: var(--accent-red);
-    }
-
-    .manip-card[data-color="yellow"] {
-      --card-color: var(--accent-yellow);
-    }
-
-    .manip-card[data-color="blue"] {
-      --card-color: var(--accent-blue);
-    }
-
-    .manip-card[data-color="cyan"] {
-      --card-color: var(--accent-cyan);
-    }
+    .manip-card[data-color="red"]    { --card-color: var(--accent-red); }
+    .manip-card[data-color="yellow"] { --card-color: var(--accent-yellow); }
+    .manip-card[data-color="blue"]   { --card-color: var(--accent-blue); }
+    .manip-card[data-color="cyan"]   { --card-color: var(--accent-cyan); }
 
     .manip-card-inner {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 18px 20px;
+      display: flex; align-items: flex-start;
+      gap: 16px; padding: 18px 20px;
     }
 
     .manip-num {
       font-family: 'Montserrat', sans-serif;
-      font-weight: 900;
-      font-size: 22px;
+      font-weight: 900; font-size: 22px;
       color: var(--card-color, var(--accent-blue));
-      opacity: .75;
-      flex-shrink: 0;
-      line-height: 1;
-      margin-top: 2px;
+      opacity: .75; flex-shrink: 0;
+      line-height: 1; margin-top: 2px;
     }
 
-    .manip-info {
-      flex: 1;
-      min-width: 0;
-    }
+    .manip-info { flex: 1; min-width: 0; }
 
     .manip-label {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: .18em;
-      color: var(--text-muted);
-      margin-bottom: 5px;
+      font-size: 10px; text-transform: uppercase;
+      letter-spacing: .18em; color: var(--text-muted); margin-bottom: 5px;
     }
 
     .manip-title {
       font-family: 'Montserrat', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 1.3;
-      margin-bottom: 7px;
-      color: #e5e7eb;
+      font-size: 14px; font-weight: 700;
+      line-height: 1.3; margin-bottom: 7px; color: #e5e7eb;
     }
 
-    .manip-preview {
-      font-size: 12.5px;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
+    .manip-preview { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; }
 
     .manip-arrow {
       flex-shrink: 0;
-      width: 28px;
-      height: 28px;
+      width: 28px; height: 28px;
       border-radius: 999px;
       border: 1px solid rgba(148,163,184,.35);
       background: rgba(15,23,42,.85);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      color: var(--text-muted);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: var(--text-muted);
       transition: border-color .18s, color .18s;
       margin-top: 2px;
     }
@@ -763,28 +632,19 @@
     }
 
     .modal-overlay {
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background: rgba(2,6,23,.85);
       backdrop-filter: blur(12px);
       display: none;
-      align-items: flex-end;
-      justify-content: center;
-      z-index: 60;
-      padding: 0;
+      align-items: flex-end; justify-content: center;
+      z-index: 60; padding: 0;
     }
 
-    .modal-overlay.open {
-      display: flex;
-    }
+    .modal-overlay.open { display: flex; }
 
     .modal-dialog {
-      width: 100%;
-      max-width: 680px;
-      max-height: 88vh;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      width: 100%; max-width: 680px; max-height: 88vh;
+      overflow: hidden; display: flex; flex-direction: column;
       border-radius: 24px 24px 0 0;
       border: 1px solid rgba(51,65,85,.9);
       background:
@@ -794,109 +654,75 @@
     }
 
     .modal-header {
-      display: flex;
-      align-items: flex-start;
+      display: flex; align-items: flex-start;
       justify-content: space-between;
-      gap: 14px;
-      padding: 18px 20px 14px;
+      gap: 14px; padding: 18px 20px 14px;
       border-bottom: 1px solid rgba(51,65,85,.82);
       flex-shrink: 0;
     }
 
     .modal-type-label {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: .2em;
-      color: var(--accent-blue);
-      margin-bottom: 5px;
+      font-size: 10px; text-transform: uppercase;
+      letter-spacing: .2em; color: var(--accent-blue); margin-bottom: 5px;
     }
 
     .modal-title {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
       font-size: clamp(15px, 3vw, 18px);
-      font-weight: 800;
-      line-height: 1.25;
-      color: #e5e7eb;
+      font-weight: 800; line-height: 1.25; color: #e5e7eb;
     }
 
     .modal-close {
-      width: 38px;
-      height: 38px;
+      width: 38px; height: 38px;
       border-radius: 10px;
       border: 1px solid rgba(51,65,85,.9);
       background: rgba(15,23,42,.85);
-      color: #e5e7eb;
-      font-size: 1.2rem;
-      cursor: pointer;
-      flex-shrink: 0;
+      color: #e5e7eb; font-size: 1.2rem;
+      cursor: pointer; flex-shrink: 0;
       transition: border-color .15s;
     }
 
-    .modal-close:hover {
-      border-color: rgba(148,163,184,.55);
-    }
+    .modal-close:hover { border-color: rgba(148,163,184,.55); }
 
-    .modal-body {
-      overflow-y: auto;
-      padding: 18px 20px 24px;
-      flex: 1;
-    }
+    .modal-body { overflow-y: auto; padding: 18px 20px 24px; flex: 1; }
 
     .modal-desc {
-      font-size: 14px;
-      line-height: 1.7;
-      color: rgba(229,231,235,.88);
-      margin: 0 0 18px;
+      font-size: 14px; line-height: 1.7;
+      color: rgba(229,231,235,.88); margin: 0 0 18px;
     }
 
     .modal-signs-title {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: .18em;
-      color: var(--text-muted);
-      margin-bottom: 10px;
+      font-size: 10px; text-transform: uppercase;
+      letter-spacing: .18em; color: var(--text-muted); margin-bottom: 10px;
     }
 
     .modal-signs {
-      list-style: none;
-      margin: 0 0 20px;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+      list-style: none; margin: 0 0 20px; padding: 0;
+      display: flex; flex-direction: column; gap: 8px;
     }
 
     .modal-signs li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
+      display: flex; align-items: flex-start; gap: 10px;
       padding: 10px 12px;
       border-radius: 12px;
       background: rgba(15,23,42,.7);
       border: 1px solid rgba(31,41,55,.85);
-      font-size: 13px;
-      line-height: 1.5;
-      color: #e5e7eb;
+      font-size: 13px; line-height: 1.5; color: #e5e7eb;
     }
 
     .modal-signs li::before {
       content: "";
-      width: 7px;
-      height: 7px;
+      width: 7px; height: 7px;
       border-radius: 999px;
       background: var(--accent-blue);
-      flex-shrink: 0;
-      margin-top: .35em;
+      flex-shrink: 0; margin-top: .35em;
       box-shadow: 0 0 8px rgba(34,211,238,.65);
     }
 
     .modal-example-label {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: .18em;
-      color: var(--text-muted);
-      margin-bottom: 8px;
+      font-size: 10px; text-transform: uppercase;
+      letter-spacing: .18em; color: var(--text-muted); margin-bottom: 8px;
     }
 
     .modal-example {
@@ -904,34 +730,24 @@
       border-radius: 12px;
       border: 1px solid rgba(34,211,238,.3);
       background: rgba(2,6,23,.55);
-      font-size: 13px;
-      line-height: 1.65;
-      color: rgba(229,231,235,.92);
-      font-style: italic;
+      font-size: 13px; line-height: 1.65;
+      color: rgba(229,231,235,.92); font-style: italic;
     }
 
     .rating-modal-overlay {
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background: rgba(2,6,23,.85);
       backdrop-filter: blur(12px);
       display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 60;
-      padding: 18px;
+      align-items: center; justify-content: center;
+      z-index: 60; padding: 18px;
     }
 
-    .rating-modal-overlay.open {
-      display: flex;
-    }
+    .rating-modal-overlay.open { display: flex; }
 
     .rating-modal-dialog {
-      width: min(100%, 700px);
-      max-height: 86vh;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      width: min(100%, 700px); max-height: 86vh;
+      overflow: hidden; display: flex; flex-direction: column;
       border-radius: 24px;
       border: 1px solid rgba(51,65,85,.9);
       background:
@@ -940,17 +756,10 @@
       box-shadow: 0 30px 90px rgba(0,0,0,.9);
     }
 
-    .flow-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
+    .flow-steps { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
 
     .flow-step {
-      display: flex;
-      gap: 14px;
-      padding: 14px 16px;
+      display: flex; gap: 14px; padding: 14px 16px;
       border-radius: 16px;
       background: rgba(15,23,42,.85);
       border: 1px solid rgba(31,41,55,.85);
@@ -958,39 +767,20 @@
 
     .flow-num {
       font-family: 'Montserrat', sans-serif;
-      font-weight: 900;
-      font-size: 1.4rem;
+      font-weight: 900; font-size: 1.4rem;
       color: rgba(34,211,238,.8);
-      min-width: 36px;
-      line-height: 1;
-      margin-top: 2px;
+      min-width: 36px; line-height: 1; margin-top: 2px;
     }
 
-    .flow-title {
-      font-weight: 600;
-      margin-bottom: 4px;
-      color: #e5e7eb;
-    }
+    .flow-title { font-weight: 600; margin-bottom: 4px; color: #e5e7eb; }
+    .flow-text  { font-size: .88rem; color: var(--text-muted); line-height: 1.6; }
 
-    .flow-text {
-      font-size: .88rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    .scale-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
+    .scale-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 
     .scale-item {
-      padding: 12px;
-      border-radius: 14px;
+      padding: 12px; border-radius: 14px;
       text-align: center;
-      font-size: .78rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
+      font-size: .78rem; letter-spacing: .12em; text-transform: uppercase;
       border: 1px solid rgba(148,163,184,.4);
       background: rgba(15,23,42,.9);
     }
@@ -998,176 +788,80 @@
     .scale-item span {
       display: block;
       font-family: 'Montserrat', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 900;
-      margin-bottom: 4px;
+      font-size: 1.1rem; font-weight: 900; margin-bottom: 4px;
     }
 
-    .scale-item.green {
-      color: rgba(134,239,172,.95);
-      border-color: rgba(34,197,94,.55);
-    }
-
-    .scale-item.yellow {
-      color: rgba(253,224,71,.95);
-      border-color: rgba(234,179,8,.55);
-    }
-
-    .scale-item.red {
-      color: rgba(254,202,202,.95);
-      border-color: rgba(239,68,68,.55);
-    }
+    .scale-item.green  { color: rgba(134,239,172,.95); border-color: rgba(34,197,94,.55); }
+    .scale-item.yellow { color: rgba(253,224,71,.95);  border-color: rgba(234,179,8,.55); }
+    .scale-item.red    { color: rgba(254,202,202,.95); border-color: rgba(239,68,68,.55); }
 
     footer {
       border-top: 1px solid rgba(31,41,55,.9);
-      padding: 20px 0;
-      text-align: center;
-      opacity: .55;
-      font-size: .85rem;
-      margin-top: 44px;
+      padding: 20px 0; text-align: center;
+      opacity: .55; font-size: .85rem; margin-top: 44px;
     }
 
+    /* ── MOBILE ── */
     @media (max-width: 767px) {
-      .container {
-        padding: 16px 14px 60px;
+      .hero-canvas-section {
+        width: calc(100% + 28px);
+        margin: 0 -14px 32px;
+        height: 170px;
       }
 
-      .section {
-        margin-bottom: 40px;
-      }
+      .container { padding: 0 14px 60px; }
+      .section { margin-bottom: 40px; }
 
       .pipeline-grid {
         grid-template-columns: none;
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
+        display: flex; flex-direction: column; gap: 6px;
       }
 
       .pipeline-card {
-        padding: 11px 14px;
-        border-radius: 14px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 12px;
+        padding: 11px 14px; border-radius: 14px;
+        display: flex; flex-direction: row;
+        align-items: center; gap: 12px;
       }
 
-      .pipeline-card:last-child {
-        grid-column: auto;
-      }
+      .pipe-step   { margin-bottom: 0; font-size: 9px; flex-shrink: 0; }
+      .pipe-title  { font-size: 13px; margin-bottom: 0; flex: 1; }
+      .pipe-text   { display: none; }
+      .pipe-num    { display: none; }
+      .pipe-more   { position: static; padding: 5px 10px; font-size: 9px; flex-shrink: 0; }
 
-      .pipe-step {
-        margin-bottom: 0;
-        font-size: 9px;
-        flex-shrink: 0;
-      }
-
-      .pipe-title {
-        font-size: 13px;
-        margin-bottom: 0;
-        flex: 1;
-      }
-
-      .pipe-text {
-        display: none;
-      }
-
-      .pipe-num {
-        display: none;
-      }
-
-      .pipe-more {
-        position: static;
-        padding: 5px 10px;
-        font-size: 9px;
-        flex-shrink: 0;
-      }
-
-      .live-card {
-        padding: 16px 14px 18px;
-        border-radius: 18px;
-      }
+      .live-card   { padding: 16px 14px 18px; border-radius: 18px; }
 
       .live-body-text {
-        font-size: 13px;
-        line-height: 1.65;
-        padding: 14px;
-        min-height: 0;
+        font-size: 13px; line-height: 1.65;
+        padding: 14px; min-height: 0;
       }
 
-      .live-footer {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
+      .live-footer { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .live-triggers-row { display: none !important; }
+      .live-next-counter { display: none; }
+      .live-next-btn { width: 100%; justify-content: center; }
 
-      .live-triggers-row {
-        display: none !important;
-      }
+      .manip-grid { grid-template-columns: 1fr; gap: 10px; }
+      .manip-card-inner { padding: 14px 16px; gap: 12px; }
+      .manip-num   { font-size: 18px; }
+      .manip-title { font-size: 13px; }
+      .manip-preview { font-size: 12px; }
 
-      .live-next-counter {
-        display: none;
-      }
+      .modal-dialog { border-radius: 20px 20px 0 0; max-height: 90vh; }
 
-      .live-next-btn {
-        width: 100%;
-        justify-content: center;
-      }
+      .rating-modal-overlay { padding: 0; align-items: flex-end; }
+      .rating-modal-dialog  { border-radius: 20px 20px 0 0; max-height: 90vh; width: 100%; }
 
-      .manip-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-
-      .manip-card-inner {
-        padding: 14px 16px;
-        gap: 12px;
-      }
-
-      .manip-num {
-        font-size: 18px;
-      }
-
-      .manip-title {
-        font-size: 13px;
-      }
-
-      .manip-preview {
-        font-size: 12px;
-      }
-
-      .modal-dialog {
-        border-radius: 20px 20px 0 0;
-        max-height: 90vh;
-      }
-
-      .rating-modal-overlay {
-        padding: 0;
-        align-items: flex-end;
-      }
-
-      .rating-modal-dialog {
-        border-radius: 20px 20px 0 0;
-        max-height: 90vh;
-        width: 100%;
-      }
-
-      .scale-row {
-        grid-template-columns: 1fr;
-      }
+      .scale-row { grid-template-columns: 1fr; }
     }
 
     @media (min-width: 768px) and (max-width: 1023px) {
-      .pipeline-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
+      .pipeline-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation: none !important;
-        transition: none !important;
-      }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .hero-canvas-section { display: none; }
     }
   </style>
 </head>
@@ -1200,6 +894,11 @@
 </header>
 
 <div class="container">
+
+  <!-- ── HERO CANVAS ── -->
+  <section class="hero-canvas-section" aria-hidden="true">
+    <canvas id="heroCanvas"></canvas>
+  </section>
 
   <section class="section">
     <div class="section-kicker">Конвейер</div>
@@ -1347,6 +1046,7 @@
 
 <footer>© 2025 Проект «МЕДИА.СТРАЖ»</footer>
 
+<!-- Manip modal -->
 <div class="modal-overlay" id="manipModal" aria-hidden="true">
   <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="manipModalTitle">
     <div class="modal-header">
@@ -1356,7 +1056,6 @@
       </div>
       <button class="modal-close" id="manipModalClose" type="button" aria-label="Закрыть">×</button>
     </div>
-
     <div class="modal-body">
       <p class="modal-desc" id="manipModalDesc"></p>
       <div class="modal-signs-title">Признаки в тексте</div>
@@ -1367,6 +1066,7 @@
   </div>
 </div>
 
+<!-- Pipeline modal -->
 <div class="rating-modal-overlay" id="ratingModal" aria-hidden="true">
   <div class="rating-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="ratingModalTitle">
     <div class="modal-header">
@@ -1376,7 +1076,6 @@
       </div>
       <button class="modal-close" id="ratingModalClose" type="button" aria-label="Закрыть">×</button>
     </div>
-
     <div class="modal-body">
       <p class="modal-desc" id="ratingModalDesc"></p>
       <div class="flow-steps" id="ratingModalFlow"></div>
@@ -1386,21 +1085,22 @@
 </div>
 
 <script>
-  const burgerBtn = document.getElementById('burgerBtn');
-  const navLinks = document.getElementById('navLinks');
+  /* ── Nav burger ── */
+  var burgerBtn = document.getElementById('burgerBtn');
+  var navLinks  = document.getElementById('navLinks');
 
   if (burgerBtn && navLinks) {
-    burgerBtn.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
+    burgerBtn.addEventListener('click', function () {
+      var open = navLinks.classList.toggle('open');
       burgerBtn.setAttribute('aria-expanded', String(open));
     });
-
-    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      burgerBtn.setAttribute('aria-expanded', 'false');
-    }));
-
-    document.addEventListener('click', e => {
+    navLinks.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        navLinks.classList.remove('open');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+    document.addEventListener('click', function (e) {
       if (!navLinks.contains(e.target) && !burgerBtn.contains(e.target)) {
         navLinks.classList.remove('open');
         burgerBtn.setAttribute('aria-expanded', 'false');
@@ -1408,307 +1108,194 @@
     });
   }
 
-  const pipeCards = document.querySelectorAll('.pipeline-card');
-  let pipeStep = 0;
+  /* ── Pipeline ticker ── */
+  var pipeCards = document.querySelectorAll('.pipeline-card');
+  var pipeStep  = 0;
 
   function tickPipeline() {
-    pipeCards.forEach((c, i) => c.classList.toggle('is-active', i === pipeStep));
+    pipeCards.forEach(function (c, i) { c.classList.toggle('is-active', i === pipeStep); });
     pipeStep = (pipeStep + 1) % pipeCards.length;
   }
 
-  if (pipeCards.length) {
-    tickPipeline();
-    setInterval(tickPipeline, 2200);
-  }
+  if (pipeCards.length) { tickPipeline(); setInterval(tickPipeline, 2200); }
 
-  const headlines = [
+  /* ── Live examples ── */
+  var headlines = [
     {
       source: '«Пример.ТВ»',
-      title: 'Власти в панике: эксперты предупреждают о катастрофе уже завтра',
       body: 'По словам источников, ситуация может ухудшиться уже завтра. Эксперты предупреждают о возможной катастрофе и призывают срочно принять меры. Многие уверены: власти в панике и скрывают истинные масштабы угрозы.',
       triggers: [
-        { phrase: 'в панике', type: 'Давление страхом', desc: 'Эмоциональное слово без доказательств — создаёт тревогу у читателя.' },
-        { phrase: 'катастрофе', type: 'Катастрофизация', desc: 'Гипербола, преувеличивающая масштаб угрозы.' },
-        { phrase: 'уже завтра', type: 'Тайм-прессинг', desc: 'Искусственная срочность, давящая на принятие решений.' },
-        { phrase: 'источников', type: 'Анонимный источник', desc: 'Ссылка без конкретики — нельзя проверить.' },
-        { phrase: 'срочно', type: 'Тайм-прессинг', desc: 'Требование немедленных действий без обоснования.' },
+        { phrase: 'в панике',    type: 'Давление страхом',   desc: 'Эмоциональное слово без доказательств — создаёт тревогу у читателя.' },
+        { phrase: 'катастрофе',  type: 'Катастрофизация',     desc: 'Гипербола, преувеличивающая масштаб угрозы.' },
+        { phrase: 'уже завтра',  type: 'Тайм-прессинг',       desc: 'Искусственная срочность, давящая на принятие решений.' },
+        { phrase: 'источников',  type: 'Анонимный источник',  desc: 'Ссылка без конкретики — нельзя проверить.' },
+        { phrase: 'срочно',      type: 'Тайм-прессинг',       desc: 'Требование немедленных действий без обоснования.' },
       ],
       tags: ['давление страхом', 'тайм-прессинг', 'анонимный источник'],
     },
     {
       source: '«Новости.РУ»',
-      title: 'Экономика рухнула: цены взлетели до небес из-за очередного решения',
       body: 'Эксперты утверждают, что экономика рухнула, а цены взлетели до небес. По данным источников, последствия будут катастрофическими. Люди в шоке и требуют немедленных действий.',
       triggers: [
-        { phrase: 'рухнула', type: 'Гипербола', desc: 'Сильное слово вместо точных данных о падении.' },
-        { phrase: 'взлетели до небес', type: 'Гипербола', desc: 'Образное преувеличение без цифр.' },
-        { phrase: 'катастрофическими', type: 'Страх', desc: 'Нагнетание без конкретного прогноза.' },
-        { phrase: 'в шоке', type: 'Коллективная эмоция', desc: 'Приписывание эмоции большой группе без доказательств.' },
-        { phrase: 'немедленных', type: 'Тайм-прессинг', desc: 'Искусственная срочность.' },
+        { phrase: 'рухнула',         type: 'Гипербола',          desc: 'Сильное слово вместо точных данных о падении.' },
+        { phrase: 'взлетели до небес',type: 'Гипербола',          desc: 'Образное преувеличение без цифр.' },
+        { phrase: 'катастрофическими',type: 'Страх',              desc: 'Нагнетание без конкретного прогноза.' },
+        { phrase: 'в шоке',           type: 'Коллективная эмоция',desc: 'Приписывание эмоции большой группе без доказательств.' },
+        { phrase: 'немедленных',      type: 'Тайм-прессинг',      desc: 'Искусственная срочность.' },
       ],
       tags: ['гиперболы', 'образ виноватого', 'тайм-прессинг'],
     },
     {
       source: '«Город Online»',
-      title: 'По данным опроса, большинство горожан счастливы',
       body: 'По данным опроса, большинство горожан счастливы и поддерживают новые меры. Эксперты уверены: это явный успех. Однако методика исследования не раскрывается.',
       triggers: [
-        { phrase: 'по данным опроса', type: 'Псевдостатистика', desc: 'Ссылка на опрос без методики и источника.' },
-        { phrase: 'большинство', type: 'Обобщение', desc: 'Неопределённое «большинство» вместо точной цифры.' },
-        { phrase: 'явный успех', type: 'Оценочная лексика', desc: 'Мнение автора подано как очевидный факт.' },
-        { phrase: 'не раскрывается', type: 'Непрозрачность', desc: 'Прямое признание отсутствия верифицируемых данных.' },
+        { phrase: 'по данным опроса', type: 'Псевдостатистика',   desc: 'Ссылка на опрос без методики и источника.' },
+        { phrase: 'большинство',      type: 'Обобщение',           desc: 'Неопределённое «большинство» вместо точной цифры.' },
+        { phrase: 'явный успех',      type: 'Оценочная лексика',   desc: 'Мнение автора подано как очевидный факт.' },
+        { phrase: 'не раскрывается',  type: 'Непрозрачность',      desc: 'Прямое признание отсутствия верифицируемых данных.' },
       ],
       tags: ['псевдостатистика', 'обобщение', 'оценочная лексика'],
     },
     {
       source: '«Агентство.Инфо»',
-      title: 'Минфин опубликовал отчёт о росте доходов бюджета за год',
       body: 'Минфин опубликовал официальный отчёт о росте доходов бюджета за год. Документ доступен на сайте ведомства. В отчёте приведены первичные данные и методика расчётов.',
       triggers: [
         { phrase: 'официальный', type: 'Верифицируемый источник', desc: 'Ссылка на конкретный институт — можно проверить.' },
-        { phrase: 'методика', type: 'Прозрачность', desc: 'Указана методика расчётов — признак надёжности.' },
+        { phrase: 'методика',    type: 'Прозрачность',            desc: 'Указана методика расчётов — признак надёжности.' },
       ],
       tags: ['нейтральный заголовок', 'официальный источник'],
     },
   ];
 
   function escHtml(s) {
-    return String(s)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   }
-
   function escAttr(s) {
-    return String(s)
-      .replace(/&/g, '&amp;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
+    return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#039;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   }
-
-  function escRegExp(s) {
-    return String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  }
+  function escRegExp(s) { return String(s).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
 
   function buildHighlighted(text, triggers) {
-    const source = String(text);
-
-    if (!Array.isArray(triggers) || !triggers.length) {
-      return escHtml(source);
-    }
-
-    const matches = [];
-
-    triggers.forEach(trigger => {
-      const phrase = String(trigger.phrase || '').trim();
+    var source = String(text);
+    if (!Array.isArray(triggers) || !triggers.length) return escHtml(source);
+    var matches = [];
+    triggers.forEach(function (trigger) {
+      var phrase = String(trigger.phrase || '').trim();
       if (!phrase) return;
-
-      const re = new RegExp(escRegExp(phrase), 'gi');
-      let match;
-
+      var re = new RegExp(escRegExp(phrase), 'gi');
+      var match;
       while ((match = re.exec(source)) !== null) {
-        matches.push({
-          start: match.index,
-          end: match.index + match[0].length,
-          text: match[0],
-          trigger
-        });
-
-        if (match[0].length === 0) {
-          re.lastIndex++;
-        }
+        matches.push({ start: match.index, end: match.index + match[0].length, text: match[0], trigger: trigger });
+        if (match[0].length === 0) re.lastIndex++;
       }
     });
-
-    matches.sort((a, b) => {
-      const lenA = a.end - a.start;
-      const lenB = b.end - b.start;
-      return lenB - lenA || a.start - b.start;
-    });
-
-    const picked = [];
-
-    matches.forEach(match => {
-      const overlaps = picked.some(item => match.start < item.end && match.end > item.start);
+    matches.sort(function (a, b) { return (b.end-b.start)-(a.end-a.start) || a.start-b.start; });
+    var picked = [];
+    matches.forEach(function (match) {
+      var overlaps = picked.some(function (item) { return match.start < item.end && match.end > item.start; });
       if (!overlaps) picked.push(match);
     });
-
-    picked.sort((a, b) => a.start - b.start);
-
-    let html = '';
-    let cursor = 0;
-
-    picked.forEach(match => {
+    picked.sort(function (a, b) { return a.start - b.start; });
+    var html = '', cursor = 0;
+    picked.forEach(function (match) {
       html += escHtml(source.slice(cursor, match.start));
-      html += `<mark class="trigger" data-type="${escAttr(match.trigger.type)}" data-desc="${escAttr(match.trigger.desc)}">${escHtml(match.text)}</mark>`;
+      html += '<mark class="trigger" data-type="' + escAttr(match.trigger.type) + '" data-desc="' + escAttr(match.trigger.desc) + '">' + escHtml(match.text) + '</mark>';
       cursor = match.end;
     });
-
     html += escHtml(source.slice(cursor));
-
     return html;
   }
 
   function nowHHMM() {
-    const d = new Date();
-    return d.getHours().toString().padStart(2, '0') + ':' + d.getMinutes().toString().padStart(2, '0');
+    var d = new Date();
+    return d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
   }
 
-  const tooltip = document.getElementById('triggerTooltip');
-  const ttType = document.getElementById('ttType');
-  const ttDesc = document.getElementById('ttDesc');
-  let tooltipTarget = null;
+  var tooltip    = document.getElementById('triggerTooltip');
+  var ttType     = document.getElementById('ttType');
+  var ttDesc     = document.getElementById('ttDesc');
+  var tooltipTarget = null;
 
   function showTooltip(el) {
     tooltipTarget = el;
     ttType.textContent = el.dataset.type || '';
     ttDesc.textContent = el.dataset.desc || '';
-
     tooltip.classList.remove('show');
     void tooltip.offsetWidth;
-
-    const r = el.getBoundingClientRect();
-    const tw = 270;
-    const th = 80;
-
-    let left = r.left + r.width / 2 - tw / 2;
-    let top = r.top - th - 10 + window.scrollY;
-
+    var r = el.getBoundingClientRect();
+    var tw = 270, th = 80;
+    var left = r.left + r.width/2 - tw/2;
+    var top  = r.top - th - 10 + window.scrollY;
     left = Math.max(10, Math.min(left, window.innerWidth - tw - 10));
-
-    if (top < window.scrollY + 10) {
-      top = r.bottom + 10 + window.scrollY;
-    }
-
-    tooltip.style.left = left + 'px';
-    tooltip.style.top = top + 'px';
-    tooltip.style.width = tw + 'px';
+    if (top < window.scrollY + 10) top = r.bottom + 10 + window.scrollY;
+    tooltip.style.left  = left + 'px';
+    tooltip.style.top   = top  + 'px';
+    tooltip.style.width = tw   + 'px';
     tooltip.classList.add('show');
   }
 
-  function hideTooltip() {
-    tooltip.classList.remove('show');
-    tooltipTarget = null;
-  }
+  function hideTooltip() { tooltip.classList.remove('show'); tooltipTarget = null; }
 
-  document.addEventListener('mouseover', e => {
-    const t = e.target.closest('.trigger');
-    if (t) {
-      showTooltip(t);
-    } else {
-      hideTooltip();
-    }
+  document.addEventListener('mouseover', function (e) {
+    var t = e.target.closest('.trigger');
+    if (t) showTooltip(t); else hideTooltip();
   });
-
-  document.addEventListener('click', e => {
-    const t = e.target.closest('.trigger');
-
-    if (t) {
-      if (tooltipTarget === t) {
-        hideTooltip();
-      } else {
-        showTooltip(t);
-      }
-    } else {
-      hideTooltip();
-    }
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('.trigger');
+    if (t) { if (tooltipTarget === t) hideTooltip(); else showTooltip(t); } else hideTooltip();
   });
-
   document.addEventListener('scroll', hideTooltip, { passive: true });
 
-  let liveIdx = 0;
+  var liveIdx = 0;
 
   function updateLive() {
-    const h = headlines[liveIdx];
-
+    var h = headlines[liveIdx];
     hideTooltip();
-
     document.getElementById('liveSource').textContent = h.source;
-    document.getElementById('liveTime').textContent = 'обновлено: ' + nowHHMM();
-    document.getElementById('liveBody').innerHTML = buildHighlighted(h.body, h.triggers);
-
-    const tagsEl = document.getElementById('liveTags');
-    tagsEl.innerHTML = h.tags.map(t => `<span class="trigger-tag">${escHtml(t)}</span>`).join('');
-
-    document.getElementById('liveCounter').textContent =
-      (liveIdx + 1) + ' / ' + headlines.length;
+    document.getElementById('liveTime').textContent   = 'обновлено: ' + nowHHMM();
+    document.getElementById('liveBody').innerHTML     = buildHighlighted(h.body, h.triggers);
+    var tagsEl = document.getElementById('liveTags');
+    tagsEl.innerHTML = h.tags.map(function (t) { return '<span class="trigger-tag">' + escHtml(t) + '</span>'; }).join('');
+    document.getElementById('liveCounter').textContent = (liveIdx + 1) + ' / ' + headlines.length;
   }
 
   updateLive();
-
-  document.getElementById('liveNextBtn').addEventListener('click', () => {
+  document.getElementById('liveNextBtn').addEventListener('click', function () {
     liveIdx = (liveIdx + 1) % headlines.length;
     updateLive();
   });
 
-  const manipData = [
-    {
-      id: 0,
-      label: 'тип 01',
-      title: 'Страх, паника и ощущение неминуемой угрозы',
-      desc: 'Фокус — не на фактах, а на ощущении немедленной опасности. Такие тексты блокируют критическое мышление, включая инстинктивную реакцию.',
-      signs: [
-        'Гиперболы катастрофы — «обрушится», «рухнет», «конец близко»',
-        'Тайм-прессинг — «уже завтра», «прямо сейчас», «в любую минуту»',
-        'Обобщённая угроза — «все останутся без…», «страна на грани…»',
-      ],
-      example: '«Экономика рушится: эксперты предупреждают о коллапсе уже завтра»',
-    },
-    {
-      id: 1,
-      label: 'тип 02',
-      title: 'Эмоциональная подмена фактов',
-      desc: 'Мнение маскируется под факт через яркие прилагательные и моральные приговоры. Реальность подменяется авторской оценкой, упакованной как очевидная истина.',
-      signs: [
-        'Оценочные прилагательные — «позорный закон», «гениальное решение»',
-        'Скрытый субъект оценки — «все знают», «никого не удивляет»',
-        'Моральный приговор — «предатель», «герой» без контекста',
-      ],
-      example: '«Власти снова приняли позорный закон против обычных людей»',
-    },
-    {
-      id: 2,
-      label: 'тип 03',
-      title: 'Фрейминг и навязанная повестка',
-      desc: 'Выбор ракурса задаёт эмоцию и повестку вокруг события. Один и тот же факт можно подать как «успех», «провал» или «угрозу».',
-      signs: [
-        'Выбор выгодного ракурса — акцент только на удобных последствиях',
-        'Подмена темы — обсуждаются эмоции и конфликты вместо сути',
-        'Отбор акторов — одни герои звучат постоянно, другие исчезают',
-      ],
-      example: '«Жители возмущены…» вместо «10% опрошенных недовольны новым тарифом»',
-    },
-    {
-      id: 3,
-      label: 'тип 04',
-      title: 'Псевдостатистика и «опросы без опросов»',
-      desc: 'Цифры есть, но проверить их нельзя: нет методики, выборки, источника данных. Такой текст выглядит как доказательство, но им не является.',
-      signs: [
-        '«Большинство» без числа — «большинство россиян…», «почти все эксперты…»',
-        'Точные цифры без источника — «92% поддержали» без ссылки',
-        'Нечестные сравнения — несопоставимые периоды или выборки',
-      ],
-      example: '«90% жителей поддержали реформу, показал опрос» — без указания, кто и как опрашивал',
-    },
+  /* ── Manip cards & modal ── */
+  var manipData = [
+    { id:0, label:'тип 01', title:'Страх, паника и ощущение неминуемой угрозы',
+      desc:'Фокус — не на фактах, а на ощущении немедленной опасности. Такие тексты блокируют критическое мышление, включая инстинктивную реакцию.',
+      signs:['Гиперболы катастрофы — «обрушится», «рухнет», «конец близко»','Тайм-прессинг — «уже завтра», «прямо сейчас», «в любую минуту»','Обобщённая угроза — «все останутся без…», «страна на грани…»'],
+      example:'«Экономика рушится: эксперты предупреждают о коллапсе уже завтра»' },
+    { id:1, label:'тип 02', title:'Эмоциональная подмена фактов',
+      desc:'Мнение маскируется под факт через яркие прилагательные и моральные приговоры. Реальность подменяется авторской оценкой, упакованной как очевидная истина.',
+      signs:['Оценочные прилагательные — «позорный закон», «гениальное решение»','Скрытый субъект оценки — «все знают», «никого не удивляет»','Моральный приговор — «предатель», «герой» без контекста'],
+      example:'«Власти снова приняли позорный закон против обычных людей»' },
+    { id:2, label:'тип 03', title:'Фрейминг и навязанная повестка',
+      desc:'Выбор ракурса задаёт эмоцию и повестку вокруг события. Один и тот же факт можно подать как «успех», «провал» или «угрозу».',
+      signs:['Выбор выгодного ракурса — акцент только на удобных последствиях','Подмена темы — обсуждаются эмоции и конфликты вместо сути','Отбор акторов — одни герои звучат постоянно, другие исчезают'],
+      example:'«Жители возмущены…» вместо «10% опрошенных недовольны новым тарифом»' },
+    { id:3, label:'тип 04', title:'Псевдостатистика и «опросы без опросов»',
+      desc:'Цифры есть, но проверить их нельзя: нет методики, выборки, источника данных. Такой текст выглядит как доказательство, но им не является.',
+      signs:['«Большинство» без числа — «большинство россиян…», «почти все эксперты…»','Точные цифры без источника — «92% поддержали» без ссылки','Нечестные сравнения — несопоставимые периоды или выборки'],
+      example:'«90% жителей поддержали реформу, показал опрос» — без указания, кто и как опрашивал' },
   ];
 
-  const manipModal = document.getElementById('manipModal');
-  const mClose = document.getElementById('manipModalClose');
+  var manipModal = document.getElementById('manipModal');
+  var mClose     = document.getElementById('manipModalClose');
 
   function openManipModal(id) {
-    const d = manipData.find(x => x.id === id);
+    var d = manipData.find(function (x) { return x.id === id; });
     if (!d) return;
-
-    document.getElementById('manipModalLabel').textContent = d.label;
-    document.getElementById('manipModalTitle').textContent = d.title;
-    document.getElementById('manipModalDesc').textContent = d.desc;
+    document.getElementById('manipModalLabel').textContent   = d.label;
+    document.getElementById('manipModalTitle').textContent   = d.title;
+    document.getElementById('manipModalDesc').textContent    = d.desc;
     document.getElementById('manipModalExample').textContent = d.example;
-
-    const signs = document.getElementById('manipModalSigns');
-    signs.innerHTML = d.signs.map(s => `<li>${escHtml(s)}</li>`).join('');
-
+    document.getElementById('manipModalSigns').innerHTML     = d.signs.map(function (s) { return '<li>' + escHtml(s) + '</li>'; }).join('');
     manipModal.classList.add('open');
     manipModal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -1721,158 +1308,58 @@
     document.body.style.overflow = '';
   }
 
-  document.querySelectorAll('.manip-card').forEach(card => {
-    card.addEventListener('click', () => openManipModal(+card.dataset.id));
+  document.querySelectorAll('.manip-card').forEach(function (card) {
+    card.addEventListener('click', function () { openManipModal(+card.dataset.id); });
   });
-
   mClose.addEventListener('click', closeManipModal);
+  manipModal.addEventListener('click', function (e) { if (e.target === manipModal) closeManipModal(); });
 
-  manipModal.addEventListener('click', e => {
-    if (e.target === manipModal) closeManipModal();
-  });
-
-  const pipelineDetails = [
-    {
-      label: 'шаг 01',
-      title: 'Сбор новостей',
-      desc: 'Система собирает публикации из подключённых источников и готовит поток материалов для последующего анализа.',
-      flow: [
-        {
-          title: 'Источники данных',
-          text: 'Используются RSS-ленты, открытые API и парсинг страниц СМИ, где это технически возможно.'
-        },
-        {
-          title: 'Единый формат',
-          text: 'Каждая публикация приводится к общей структуре: источник, время, заголовок, текст и ссылка.'
-        },
-        {
-          title: 'Фильтрация дублей',
-          text: 'Повторяющиеся материалы и технический мусор отсеиваются до этапа анализа.'
-        }
-      ]
-    },
-    {
-      label: 'шаг 02',
-      title: 'Предобработка текста',
-      desc: 'Текст очищается и нормализуется, чтобы модель анализировала смысл сообщения, а не технические артефакты страницы.',
-      flow: [
-        {
-          title: 'Очистка',
-          text: 'Удаляются лишняя разметка, рекламные вставки, технические подписи и повторяющиеся элементы.'
-        },
-        {
-          title: 'Нормализация',
-          text: 'Текст приводится к аккуратному виду: заголовок, подзаголовок и основной фрагмент отделяются друг от друга.'
-        },
-        {
-          title: 'Подготовка к NLP',
-          text: 'Система выделяет слова, устойчивые выражения, эмоциональные маркеры и смысловые конструкции.'
-        }
-      ]
-    },
-    {
-      label: 'шаг 03',
-      title: 'Поиск триггеров',
-      desc: 'ИИ ищет в тексте признаки манипулятивной подачи: страх, давление срочностью, обобщения, фрейминг и псевдостатистику.',
-      flow: [
-        {
-          title: 'Эмоциональные маркеры',
-          text: 'Отмечаются слова и обороты вроде «катастрофа», «в панике», «срочно», «уже завтра».'
-        },
-        {
-          title: 'Смысловые приёмы',
-          text: 'Система ищет не только отдельные слова, но и конструкции: ложную причинность, ярлыки, анонимные ссылки, навязанный вывод.'
-        },
-        {
-          title: 'Контекстная проверка',
-          text: 'Один и тот же термин может быть нейтральным или манипулятивным — модель учитывает соседние фразы и общий тон сообщения.'
-        }
-      ]
-    },
-    {
-      label: 'шаг 04',
-      title: 'Расчёт индексов',
-      desc: 'После поиска признаков система рассчитывает индексы манипулятивности, эмоционального накала и опоры на факты.',
-      flow: [
-        {
-          title: 'Все публикации за сутки',
-          text: 'ИИ анализирует каждое текстовое сообщение, которое СМИ публикует в течение дня — без ручной выборки.'
-        },
-        {
-          title: 'Подсчёт манипуляций',
-          text: 'Для каждого сообщения определяется наличие манипулятивных приёмов и считается доля таких публикаций от общего числа.'
-        },
-        {
-          title: 'Итоговый цветовой рейтинг',
-          text: 'По итогам суток изданию присваивается цветовой уровень, отражающий общий уровень манипулятивности.'
-        }
-      ],
-      scale: [
-        { color: 'green', range: '0–25%', label: 'Низкий уровень' },
-        { color: 'yellow', range: '25–50%', label: 'Средний уровень' },
-        { color: 'red', range: '50%+', label: 'Высокий уровень' }
-      ]
-    },
-    {
-      label: 'шаг 05',
-      title: 'Обновление рейтинга',
-      desc: 'Результаты анализа агрегируются по изданиям и времени, после чего обновляются рейтинг, архив и динамика показателей.',
-      flow: [
-        {
-          title: 'Агрегация',
-          text: 'Индексы отдельных сообщений собираются в показатели по СМИ, категориям и временным периодам.'
-        },
-        {
-          title: 'Архив',
-          text: 'Каждое сообщение сохраняется в архиве, чтобы можно было открыть текст и увидеть, почему система его пометила.'
-        },
-        {
-          title: 'Обновление витрины',
-          text: 'Рейтинг и визуальные статусы пересчитываются после поступления новых публикаций.'
-        }
-      ]
-    }
+  /* ── Pipeline modal ── */
+  var pipelineDetails = [
+    { label:'шаг 01', title:'Сбор новостей',
+      desc:'Система собирает публикации из подключённых источников и готовит поток материалов для последующего анализа.',
+      flow:[{title:'Источники данных',text:'Используются RSS-ленты, открытые API и парсинг страниц СМИ, где это технически возможно.'},{title:'Единый формат',text:'Каждая публикация приводится к общей структуре: источник, время, заголовок, текст и ссылка.'},{title:'Фильтрация дублей',text:'Повторяющиеся материалы и технический мусор отсеиваются до этапа анализа.'}] },
+    { label:'шаг 02', title:'Предобработка текста',
+      desc:'Текст очищается и нормализуется, чтобы модель анализировала смысл сообщения, а не технические артефакты страницы.',
+      flow:[{title:'Очистка',text:'Удаляются лишняя разметка, рекламные вставки, технические подписи и повторяющиеся элементы.'},{title:'Нормализация',text:'Текст приводится к аккуратному виду: заголовок, подзаголовок и основной фрагмент отделяются друг от друга.'},{title:'Подготовка к NLP',text:'Система выделяет слова, устойчивые выражения, эмоциональные маркеры и смысловые конструкции.'}] },
+    { label:'шаг 03', title:'Поиск триггеров',
+      desc:'ИИ ищет в тексте признаки манипулятивной подачи: страх, давление срочностью, обобщения, фрейминг и псевдостатистику.',
+      flow:[{title:'Эмоциональные маркеры',text:'Отмечаются слова и обороты вроде «катастрофа», «в панике», «срочно», «уже завтра».'},{title:'Смысловые приёмы',text:'Система ищет не только отдельные слова, но и конструкции: ложную причинность, ярлыки, анонимные ссылки, навязанный вывод.'},{title:'Контекстная проверка',text:'Один и тот же термин может быть нейтральным или манипулятивным — модель учитывает соседние фразы и общий тон сообщения.'}] },
+    { label:'шаг 04', title:'Расчёт индексов',
+      desc:'После поиска признаков система рассчитывает индексы манипулятивности, эмоционального накала и опоры на факты.',
+      flow:[{title:'Все публикации за сутки',text:'ИИ анализирует каждое текстовое сообщение, которое СМИ публикует в течение дня — без ручной выборки.'},{title:'Подсчёт манипуляций',text:'Для каждого сообщения определяется наличие манипулятивных приёмов и считается доля таких публикаций от общего числа.'},{title:'Итоговый цветовой рейтинг',text:'По итогам суток изданию присваивается цветовой уровень, отражающий общий уровень манипулятивности.'}],
+      scale:[{color:'green',range:'0–25%',label:'Низкий уровень'},{color:'yellow',range:'25–50%',label:'Средний уровень'},{color:'red',range:'50%+',label:'Высокий уровень'}] },
+    { label:'шаг 05', title:'Обновление рейтинга',
+      desc:'Результаты анализа агрегируются по изданиям и времени, после чего обновляются рейтинг, архив и динамика показателей.',
+      flow:[{title:'Агрегация',text:'Индексы отдельных сообщений собираются в показатели по СМИ, категориям и временным периодам.'},{title:'Архив',text:'Каждое сообщение сохраняется в архиве, чтобы можно было открыть текст и увидеть, почему система его пометила.'},{title:'Обновление витрины',text:'Рейтинг и визуальные статусы пересчитываются после поступления новых публикаций.'}] },
   ];
 
-  const ratingModal = document.getElementById('ratingModal');
-  const rClose = document.getElementById('ratingModalClose');
-  const ratingModalLabel = document.getElementById('ratingModalLabel');
-  const ratingModalTitle = document.getElementById('ratingModalTitle');
-  const ratingModalDesc = document.getElementById('ratingModalDesc');
-  const ratingModalFlow = document.getElementById('ratingModalFlow');
-  const ratingModalScale = document.getElementById('ratingModalScale');
+  var ratingModal      = document.getElementById('ratingModal');
+  var rClose           = document.getElementById('ratingModalClose');
+  var ratingModalLabel = document.getElementById('ratingModalLabel');
+  var ratingModalTitle = document.getElementById('ratingModalTitle');
+  var ratingModalDesc  = document.getElementById('ratingModalDesc');
+  var ratingModalFlow  = document.getElementById('ratingModalFlow');
+  var ratingModalScale = document.getElementById('ratingModalScale');
 
   function openPipelineModal(id) {
-    const d = pipelineDetails[id];
+    var d = pipelineDetails[id];
     if (!d) return;
-
     ratingModalLabel.textContent = d.label;
     ratingModalTitle.textContent = d.title;
-    ratingModalDesc.textContent = d.desc;
-
-    ratingModalFlow.innerHTML = d.flow.map((item, index) => `
-      <div class="flow-step">
-        <div class="flow-num">${String(index + 1).padStart(2, '0')}</div>
-        <div>
-          <div class="flow-title">${escHtml(item.title)}</div>
-          <div class="flow-text">${escHtml(item.text)}</div>
-        </div>
-      </div>
-    `).join('');
-
+    ratingModalDesc.textContent  = d.desc;
+    ratingModalFlow.innerHTML = d.flow.map(function (item, index) {
+      return '<div class="flow-step"><div class="flow-num">' + String(index+1).padStart(2,'0') + '</div><div><div class="flow-title">' + escHtml(item.title) + '</div><div class="flow-text">' + escHtml(item.text) + '</div></div></div>';
+    }).join('');
     if (Array.isArray(d.scale) && d.scale.length) {
-      ratingModalScale.innerHTML = d.scale.map(item => `
-        <div class="scale-item ${escAttr(item.color)}">
-          <span>${escHtml(item.range)}</span>
-          ${escHtml(item.label)}
-        </div>
-      `).join('');
+      ratingModalScale.innerHTML = d.scale.map(function (item) {
+        return '<div class="scale-item ' + escAttr(item.color) + '"><span>' + escHtml(item.range) + '</span>' + escHtml(item.label) + '</div>';
+      }).join('');
       ratingModalScale.style.display = '';
     } else {
-      ratingModalScale.innerHTML = '';
+      ratingModalScale.innerHTML    = '';
       ratingModalScale.style.display = 'none';
     }
-
     ratingModal.classList.add('open');
     ratingModal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -1885,31 +1372,243 @@
     document.body.style.overflow = '';
   }
 
-  document.querySelectorAll('.pipe-more').forEach(btn => {
-    btn.addEventListener('click', e => {
+  document.querySelectorAll('.pipe-more').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
       e.stopPropagation();
       openPipelineModal(Number(btn.dataset.pipelineId));
     });
   });
-
   rClose.addEventListener('click', closeRatingModal);
+  ratingModal.addEventListener('click', function (e) { if (e.target === ratingModal) closeRatingModal(); });
 
-  ratingModal.addEventListener('click', e => {
-    if (e.target === ratingModal) closeRatingModal();
-  });
-
-  document.addEventListener('keydown', e => {
+  document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
-      closeManipModal();
-      closeRatingModal();
-      hideTooltip();
-
+      closeManipModal(); closeRatingModal(); hideTooltip();
       if (navLinks && burgerBtn) {
         navLinks.classList.remove('open');
         burgerBtn.setAttribute('aria-expanded', 'false');
       }
     }
   });
+
+  /* ══════════════════════════════════════════════
+     HERO CANVAS ANIMATION
+  ══════════════════════════════════════════════ */
+  (function () {
+    var canvas = document.getElementById('heroCanvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var dpr = window.devicePixelRatio || 1;
+
+    function W() { return canvas.offsetWidth; }
+    function H() { return canvas.offsetHeight; }
+
+    function resize() {
+      canvas.width  = W() * dpr;
+      canvas.height = H() * dpr;
+      ctx.setTransform(1,0,0,1,0,0);
+      ctx.scale(dpr, dpr);
+    }
+
+    new ResizeObserver(resize).observe(canvas);
+    resize();
+
+    var LABELS = [
+      'ОрбитаНЬЮС','СеверПульс','ИнфоЛуч','ГрадусДня','СигналНОВА',
+      'КомпасВест','МеридианТВ','ВолнаИнфо','ЭфирПлюс','КронНьюс',
+      'РадарМедиа','ПрессОкно','ВидеоФакт','ЛентаПрайм','НовостьПРО',
+      'ДаймондТВ','ЗенитИнфо','ПиксельНЬЮС','АтласМедиа','ВесторТВ',
+      'ФорсажТВ','ПрямойЭфир'
+    ];
+
+    var COLORS = [
+      '#ef4444','#eab308','#f97316',
+      '#a855f7','#22c55e','#22d3ee',
+      '#e879f9','#38bdf8','#fb923c'
+    ];
+
+    var NODE_COUNT = 22;
+    var nodes = [];
+
+    for (var i = 0; i < NODE_COUNT; i++) {
+      nodes.push({
+        x:    0.05 + Math.random() * 0.90,
+        y:    0.06 + Math.random() * 0.88,
+        vx:   (Math.random() - 0.5) * 0.00013,
+        vy:   (Math.random() - 0.5) * 0.00013,
+        r:    3.5 + Math.random() * 5.5,
+        label: LABELS[i % LABELS.length],
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        alpha: 0.5 + Math.random() * 0.45,
+        pulse: Math.random() * Math.PI * 2,
+        pspd:  0.019 + Math.random() * 0.018,
+        firing: false,
+        fireT: 0,
+      });
+    }
+
+    /* Центральный хаб */
+    var HUB = 0;
+    nodes[HUB].x = 0.5; nodes[HUB].y = 0.5;
+    nodes[HUB].r = 11; nodes[HUB].color = '#22d3ee'; nodes[HUB].label = 'АЛГОРИТМ';
+
+    var signals = [];
+
+    function parseHex(hex) {
+      return [parseInt(hex.slice(1,3),16), parseInt(hex.slice(3,5),16), parseInt(hex.slice(5,7),16)];
+    }
+
+    function spawnSignal(srcIdx) {
+      var s = nodes[srcIdx], d = nodes[HUB];
+      signals.push({
+        x:s.x, y:s.y, tx:d.x, ty:d.y,
+        progress: 0,
+        speed: 0.008 + Math.random() * 0.009,
+        rgb: parseHex(s.color),
+        size: 2 + Math.random() * 2.2,
+      });
+      s.firing = true; s.fireT = 40;
+    }
+
+    var fireTimer = 0, frame = 0;
+
+    function draw() {
+      var w = W(), h = H();
+      ctx.clearRect(0, 0, w, h);
+      frame++;
+
+      /* Сетка */
+      ctx.save();
+      ctx.strokeStyle = 'rgba(34,211,238,0.038)';
+      ctx.lineWidth = 0.5;
+      var gs = 34;
+      for (var gx = 0; gx < w; gx += gs) { ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,h); ctx.stroke(); }
+      for (var gy = 0; gy < h; gy += gs) { ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(w,gy); ctx.stroke(); }
+      ctx.restore();
+
+      /* Автосигналы */
+      fireTimer++;
+      if (fireTimer % 48 === 0) spawnSignal(1 + Math.floor(Math.random() * (NODE_COUNT - 1)));
+
+      var cx = nodes[HUB].x * w, cy = nodes[HUB].y * h;
+
+      /* Рёбра */
+      for (var i = 1; i < nodes.length; i++) {
+        var n = nodes[i];
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < 0.03 || n.x > 0.97) n.vx *= -1;
+        if (n.y < 0.03 || n.y > 0.97) n.vy *= -1;
+        n.pulse += n.pspd;
+        if (n.fireT > 0) n.fireT--; else n.firing = false;
+
+        var nx = n.x * w, ny = n.y * h;
+        var dist = Math.sqrt((nx-cx)*(nx-cx)+(ny-cy)*(ny-cy));
+        if (dist < 340) {
+          ctx.save();
+          ctx.strokeStyle = 'rgba(34,211,238,' + (Math.max(0,(1-dist/340))*0.10) + ')';
+          ctx.lineWidth = 0.5;
+          ctx.setLineDash([3,7]);
+          ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(nx,ny); ctx.stroke();
+          ctx.restore();
+        }
+      }
+
+      /* Сигналы */
+      for (var si = signals.length - 1; si >= 0; si--) {
+        var sg = signals[si];
+        sg.progress = Math.min(1, sg.progress + sg.speed);
+        var sx = (sg.x + (sg.tx - sg.x) * sg.progress) * w;
+        var sy = (sg.y + (sg.ty - sg.y) * sg.progress) * h;
+        var rgb = sg.rgb;
+
+        for (var t = 0; t < 8; t++) {
+          var tp = Math.max(0, sg.progress - t * 0.022);
+          var tx2 = (sg.x + (sg.tx - sg.x)*tp)*w;
+          var ty2 = (sg.y + (sg.ty - sg.y)*tp)*h;
+          ctx.beginPath();
+          ctx.arc(tx2, ty2, sg.size*(1-t/8)*0.85, 0, Math.PI*2);
+          ctx.fillStyle = 'rgba('+rgb[0]+','+rgb[1]+','+rgb[2]+','+(0.5*(1-t/8))+')';
+          ctx.fill();
+        }
+
+        ctx.beginPath();
+        ctx.arc(sx, sy, sg.size, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba('+rgb[0]+','+rgb[1]+','+rgb[2]+',1)';
+        ctx.shadowColor = 'rgb('+rgb[0]+','+rgb[1]+','+rgb[2]+')';
+        ctx.shadowBlur = 12;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+
+        if (sg.progress >= 1) signals.splice(si, 1);
+      }
+
+      /* Узлы */
+      for (var j = 0; j < nodes.length; j++) {
+        var nd = nodes[j];
+        var ndx = nd.x * w, ndy = nd.y * h;
+        var rgb2 = parseHex(nd.color);
+
+        if (j === HUB) {
+          var ps = 1 + 0.1 * Math.sin(frame * 0.036);
+          var ringsR = [3.4, 2.2, 1.15];
+          var ringsA = [0.08, 0.16, 0.28];
+          for (var ri = 0; ri < ringsR.length; ri++) {
+            ctx.beginPath();
+            ctx.arc(ndx, ndy, nd.r * ps * ringsR[ri], 0, Math.PI*2);
+            ctx.strokeStyle = 'rgba('+rgb2[0]+','+rgb2[1]+','+rgb2[2]+','+ringsA[ri]+')';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+          ctx.beginPath();
+          ctx.arc(ndx, ndy, nd.r * ps, 0, Math.PI*2);
+          ctx.fillStyle = 'rgba('+rgb2[0]+','+rgb2[1]+','+rgb2[2]+',0.95)';
+          ctx.shadowColor = nd.color;
+          ctx.shadowBlur = 22;
+          ctx.fill();
+          ctx.shadowBlur = 0;
+          ctx.fillStyle = '#05070b';
+          ctx.font = 'bold 6.5px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(nd.label, ndx, ndy);
+        } else {
+          var pa = nd.alpha * (0.6 + 0.4 * Math.sin(nd.pulse));
+          ctx.beginPath();
+          ctx.arc(ndx, ndy, nd.r, 0, Math.PI*2);
+          ctx.fillStyle = 'rgba('+rgb2[0]+','+rgb2[1]+','+rgb2[2]+','+pa+')';
+          ctx.shadowColor = nd.color;
+          ctx.shadowBlur = nd.firing ? 16 : 5;
+          ctx.fill();
+          ctx.shadowBlur = 0;
+          ctx.strokeStyle = 'rgba('+rgb2[0]+','+rgb2[1]+','+rgb2[2]+',0.55)';
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+
+          var ndist = Math.sqrt((ndx-cx)*(ndx-cx)+(ndy-cy)*(ndy-cy));
+          if (nd.r > 5.5 || ndist < 230) {
+            ctx.fillStyle = 'rgba(229,231,235,0.6)';
+            ctx.font = '500 9px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'top';
+            ctx.fillText(nd.label, ndx, ndy + nd.r + 2);
+          }
+        }
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    /* Стартовые сигналы */
+    setTimeout(function () {
+      for (var k = 0; k < 6; k++) {
+        (function(k){ setTimeout(function(){
+          spawnSignal(1 + Math.floor(Math.random()*(NODE_COUNT-1)));
+        }, k*280); })(k);
+      }
+    }, 150);
+
+    requestAnimationFrame(draw);
+  })();
 </script>
 
 </body>
